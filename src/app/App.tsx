@@ -9,6 +9,7 @@ import { Dropwdown, enumStyleDropdown } from "shared/ui/dropdown/Dropdown"
 import { Carousel } from "shared/ui/carousel/Carousel"
 import { Image } from "shared/ui/image"
 import { SliderManagment, enumPositionSliderManagment } from "shared/ui/slider/SliderManagment"
+import { Loader } from "shared/ui/loader"
 
 export const App = () => {
     const [open, setOpen] = useState(false);
