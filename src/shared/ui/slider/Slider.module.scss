@@ -1,0 +1,59 @@
+.wrap{
+    position: relative;
+}
+
+.content{
+    display: flex;
+    position: absolute;
+    top: 0;
+}
+
+.legt{
+    left: 0;
+}
+.right{
+    right: 0;
+}
+.center{
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #D2D2D2;
+    border-radius: 50%;
+    width: 46px;
+    height: 46px;
+    background-color: transparent;
+    margin: 0 10px;
+    transition: .1s;
+}
+.btn:hover{
+    border: 2px solid #000000;
+}
+
+.dot_wrap{
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.dot{
+    background-color: #E2E2E2;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: .3s;
+}
+.dot:hover{
+    background-color: #fff0a5;
+    margin-bottom: 5px;
+}
+.dot_select{
+    background-color: #FFD600;
+}

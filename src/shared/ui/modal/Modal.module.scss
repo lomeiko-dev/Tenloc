@@ -1,0 +1,54 @@
+.wrapper{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.overlay{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba($color: #252525, $alpha: 50%);
+    width: 100%;
+    height: 100%;
+}
+
+.modal{
+    position: relative;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    padding: 20px 30px;
+    transition: .2s;
+    transform: scale(.1);
+}
+
+.open{
+    opacity: 1;
+    z-index: 10;
+    pointer-events: auto;
+    .modal{
+        transform: scale(1);
+    }
+}
+
+.closed{
+    .modal{
+        transform: scale(.1);
+    }
+}
+
+.btn_close{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: transparent;
+}
+
+.content{
+    margin-top: 20px;
+}

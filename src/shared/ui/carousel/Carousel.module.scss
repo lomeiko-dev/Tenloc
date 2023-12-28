@@ -1,0 +1,41 @@
+.wrapper{
+    position: relative;
+    height: 300px;
+    overflow: hidden;
+}
+
+.btn{
+    position: absolute;
+    z-index: 888;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #252525;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+}
+
+.content_wrap{
+    min-width: fit-content;
+    max-width: fit-content;
+}
+
+.content{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    transition: .2s;
+}
+
+.btn_left{
+    top: calc(50% - 22px);
+    right: 40px;
+}
+
+.btn_right{
+    top: calc(50% - 22px);
+    left: 40px;
+}

@@ -1,0 +1,51 @@
+import classNames from "classnames"
+import style from "./Image.module.scss"
+import { CSSProperties, HTMLAttributes, memo } from "react"
+
+export enum enumStyleImage {
+    PRIMARY = "primary_image",
+    SECONDARY = "secondary_image",
+    TERNARY = "ternary_image",
+    NONE = 0
+} 
+
+interface IImageProps extends HTMLAttributes<HTMLDivElement> {
+    src: string,
+    className?: string,
+    styleImage?: enumStyleImage,
+    width?: string,
+    height?: string,
+    margin?: string,
+    borderRadius?: number,
+    bgColor?: string,
+}
+
+export const Image: React.FC<IImageProps> = memo((props) => {
+    const {
+        src,
+        styleImage = enumStyleImage.NONE,
+        bgColor,
+        borderRadius,
+        className,
+        height,
+        margin,
+        width,
+        ...otherProps
+    } = props
+
+    const cssStyles: CSSProperties = {
+        backgroundColor: bgColor,
+        backgroundImage: `url(${src})`,
+        borderRadius: `${borderRadius}px`,
+        height: height,
+        width: width,
+        margin: margin
+    }
+
+    return(
+        <div 
+            {...otherProps} 
+            style={cssStyles} 
+            className={classNames(style.image, className, style[styleImage])}/>
+    )
+})
