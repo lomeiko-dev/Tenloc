@@ -26,7 +26,7 @@ export const App = () => {
             <Button width="40px" height="40px" borderRadius="50%" styleButton={enumStyleButton.TERNARY}>+</Button>
             <Button margin="20px" styleButton={enumStyleButton.SECONDARY}>Кнопка</Button>
             <Button styleButton={enumStyleButton.PRIMARY_OUTLINE}>Кнопка</Button>
-                    
+
             <Text styleText={enumStyleText.PRIMARY_TITLE} text="Новый текст"/>
             <Text styleText={enumStyleText.SECONDARY_TITLE} text="Новый текст"/>
             <Text styleText={enumStyleText.TERNARY_TITLE} text="Новый текст"/>

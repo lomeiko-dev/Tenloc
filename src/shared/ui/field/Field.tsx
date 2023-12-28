@@ -73,14 +73,12 @@ export const Field: React.FC<IFIeldProps> = memo((props) => {
         color: color,
         backgroundColor: bgColor,
         borderRadius: borderRadius,
+        padding: padding,
     }
 
     const cssStyleWrap: CSSProperties = {
-        backgroundColor: bgColor,
-        borderRadius: borderRadius,
         width: width,
         height: height,
-        padding: padding,
         margin: margin,
     }
 
