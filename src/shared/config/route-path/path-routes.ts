@@ -68,5 +68,10 @@ export const pathRoutes: Record<enumPath, IRoutePathProperties> = {
         path: "/thanks",
         fullPath: "/thanks",
         isAuth: false
+    },
+    [enumPath.NOTFOUND]: {
+        path: "/not-found",
+        fullPath: "/not-found",
+        isAuth: false,
     }
 }

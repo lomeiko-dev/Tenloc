@@ -19,5 +19,6 @@ export enum enumPath {
     BLOG = "blog",
     ARTICLE = "article",
     GUIDE = "guide",
+    NOTFOUND = "notfound"
     
 }
