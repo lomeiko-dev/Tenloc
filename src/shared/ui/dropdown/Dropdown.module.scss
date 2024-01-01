@@ -1,18 +1,22 @@
 .wrap{
     position: relative;
-    margin: 20px;
 }
 
 .dropdown{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     z-index: 999;
+    background-color: transparent;
 }
 
 .primary{
     background-color: #FFD600;
     border-radius: 100px;
-    padding: 10px 20px;
+    padding: 12px 27px;
     font-size: 15px;
     font-weight: 600;
+    line-height: 25px;
 }
 
 .secondary{
@@ -23,16 +27,17 @@
     font-weight: 400;
 }
 
+.none{
+    font-size: 15px;
+    font-weight: 400;
+}
+
 .content{
+    background-color: #FFFFFF;
+    box-shadow: 0px 7px 100px 0px #00000026;
+    border-radius: 15px;
     z-index: 500;
     position: absolute;
-    top: 20px;
-    left: 0;
-    margin-top: 5px;
-    width: fit-content;
-    border-radius: 20px;
-    background-color: #FFFFFF;
-    padding: 10px;
     transition: .1s;
     opacity: 0;
 }
@@ -40,7 +45,7 @@
 .open{
     .content{
         opacity: 1;
-        top: 35px;
+        margin-top: 10px;
         left: 0;
     }
 }

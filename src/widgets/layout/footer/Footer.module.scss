@@ -1,0 +1,146 @@
+.footer, .footer_mobile{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.footer{
+    height: 517px;
+    width: 100%;
+    background-color: #FBFBFB;
+    padding: 113px 143px 59px 144px;
+}
+
+.footer_mobile{
+    height: 533px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.namespace{
+    margin-right: 110px;
+}
+
+.links{
+    display: flex;
+}
+.group_links{
+    margin: 0 47.5px;
+    span{
+        display: flex;
+        width: 350px;
+        align-items: center;
+        margin: 5px 0;
+    }
+}
+
+.bottom_footer{
+    margin-top: 59px;
+    border-top: 1px solid #E2E2E2;
+    height: 96px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.right_part, .dev_info{
+    display: flex;
+    align-items: center;
+}
+
+.customer_support{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    border-top: 1px solid #E2E2E2;
+    border-bottom: 1px solid #E2E2E2;
+
+    padding: 17px 0;
+    margin: 25px 0;
+}
+
+.download{
+    width: 80%;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    span{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    border-top: 1px solid #E2E2E2;
+    border-bottom: 1px solid #E2E2E2;
+    padding-bottom: 10px;
+}
+
+@media (max-width: 1580px) {
+    .footer{
+        height: 717px;
+    }
+}
+
+@media (max-width: 1450px) {
+    .group_links{
+        margin: 0 15px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .namespace{
+        margin-right: 20px;
+    }
+    
+}
+
+@media (max-width: 1100px) {
+    .footer{
+        padding: 113px 50px 59px 60px;
+    }
+    
+}
+
+@media (max-width: 950px) {
+    .footer{
+        padding: 113px 10px 59px 10px;
+    }
+    
+}
+
+@media (max-width: 800px) {
+    .group_links:nth-child(5){
+        display: none;
+    }
+    
+}
+
+
+// THE MOBILE
+@media (max-width: 600px) {
+    .group_links{
+        width: 80%;
+        align-items: center;
+        border-top: 1px solid #E2E2E2;
+        padding-top: 20px;
+        span{
+            width: fit-content;
+        }
+    }
+
+    .bottom_footer{
+        display: flex;
+        flex-direction: column;
+        justify-content: none;
+        margin-bottom: 23px;
+        border-top: none;
+    }
+}

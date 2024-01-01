@@ -1,7 +1,7 @@
 .image{
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .primary_image{
@@ -14,4 +14,9 @@
 
 .ternary_image{
     border-radius: 50%;
+}
+
+.img{
+    width: 100%;
+    height: 100%;
 }

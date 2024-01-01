@@ -6,11 +6,12 @@ import ArrowBottomIcon from "shared/assets/img/svg-icon/arrow-bottom.svg?react"
 export enum enumStyleDropdown {
     PRIMARY = "primary",
     SECONDARY = "secondary",
-    NONE = 0,
+    NONE = 'none',
 }
 
 interface IDowndropProps {
     children: React.ReactNode,
+    className?: string,
     content: React.ReactNode,
     styleDropdown?: enumStyleDropdown,
     margin?: string,
@@ -28,6 +29,7 @@ interface IDowndropProps {
 export const Dropwdown: React.FC<IDowndropProps> = (props) => {
     const {
         children,
+        className,
         content,
         styleDropdown = enumStyleDropdown.NONE,
         bgColor,
@@ -53,8 +55,6 @@ export const Dropwdown: React.FC<IDowndropProps> = (props) => {
     }, [open])
 
     const cssStylesWrap: CSSProperties = {
-        width: width,
-        height: height,
         margin: margin
     }
 
@@ -66,6 +66,8 @@ export const Dropwdown: React.FC<IDowndropProps> = (props) => {
         fontSize: fontSize,
         fontWeight: fontWeight,
         padding: padding,
+        width: width,
+        height: height,
     }
 
     const mods = {
@@ -76,7 +78,7 @@ export const Dropwdown: React.FC<IDowndropProps> = (props) => {
     return(
         <div 
             style={cssStylesWrap} 
-            className={classNames(style.wrap, mods)}>
+            className={classNames(style.wrap, mods, className)}>
             <button 
                 style={cssStylesDropdown}
                 onClick={clickHandle} 
@@ -84,9 +86,10 @@ export const Dropwdown: React.FC<IDowndropProps> = (props) => {
                 {children}
                 <ArrowBottomIcon className={style.arrow}/>
             </button>
-            {show && <div className={style.content}>
-                {content}
-            </div>}
+            {show && 
+                <div className={classNames(style.content)}>
+                    {content}
+                </div>}
         </div>
     )
 }

@@ -1,0 +1,21 @@
+.navbar_desktop{
+    display: flex;
+    align-items: center;
+
+    .link{
+        margin: 0 27.5px;
+    }
+}
+
+.navbar_android{
+    display: flex;
+    flex-direction: column;
+
+    .link{
+        border-bottom: 1px solid #DEDEDE;
+        margin: 11px 0;
+    }
+    .link:nth-child(3){
+        margin-top: 11px;
+    }
+}

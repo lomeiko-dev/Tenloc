@@ -12,12 +12,15 @@ export enum enumStyleText {
     TERNARY_SUBTITLE = "ternary_subtitle",
     QUATERNARY_SUBTITLE = "quaternary_subtitle",
     PRIMARY_TEXT = "primary_text",
+    SECONDARY_TEXT = "secondary_text",
     DESCRIPTION_TEXT = "description_text",
     NONE = 0,
 }
 
 interface ITextProps extends HTMLAttributes<HTMLDivElement> {
     text: string,
+    iconLeft?: React.ReactNode,
+    iconRight?: React.ReactNode,
     className?: string,
     styleText?: enumStyleText,
     fontSize?: number,
@@ -32,6 +35,8 @@ interface ITextProps extends HTMLAttributes<HTMLDivElement> {
 export const Text: React.FC<ITextProps> = memo((props) => {
     const {
         className,
+        iconLeft,
+        iconRight,
         text,
         border,
         color,
@@ -58,8 +63,10 @@ export const Text: React.FC<ITextProps> = memo((props) => {
         <div 
             {...otherProps} 
             style={cssStyles} 
-            className={classNames(className, style[styleText])}>
+            className={classNames(className, style.text, style[styleText])}>
+            {iconLeft && <div style={{marginRight: '6px'}}>{iconLeft}</div>}
             {text}
+            {iconRight && <div style={{marginLeft: '6px'}}>{iconRight}</div>}
         </div>
     )
 })

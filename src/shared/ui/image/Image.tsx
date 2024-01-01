@@ -9,7 +9,7 @@ export enum enumStyleImage {
     NONE = 0
 } 
 
-interface IImageProps extends HTMLAttributes<HTMLDivElement> {
+interface IImageProps extends HTMLAttributes<HTMLImageElement> {
     src: string,
     className?: string,
     styleImage?: enumStyleImage,
@@ -27,15 +27,14 @@ export const Image: React.FC<IImageProps> = memo((props) => {
         bgColor,
         borderRadius,
         className,
-        height,
+        height = "fit-content",
         margin,
-        width,
+        width = 'fit-content',
         ...otherProps
     } = props
 
     const cssStyles: CSSProperties = {
         backgroundColor: bgColor,
-        backgroundImage: `url(${src})`,
         borderRadius: `${borderRadius}px`,
         height: height,
         width: width,
@@ -43,9 +42,10 @@ export const Image: React.FC<IImageProps> = memo((props) => {
     }
 
     return(
-        <div 
-            {...otherProps} 
+        <div
             style={cssStyles} 
-            className={classNames(style.image, className, style[styleImage])}/>
+            className={classNames(style.image, className, style[styleImage])}>
+            <img className={style.img} src={src} {...otherProps} />        
+        </div>
     )
 })

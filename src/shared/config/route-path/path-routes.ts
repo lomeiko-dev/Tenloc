@@ -2,8 +2,8 @@ import { IRoutePathProperties, enumPath } from "./type";
 
 export const pathRoutes: Record<enumPath, IRoutePathProperties> = {
     [enumPath.MAIN]: {
-        path: "/main",
-        fullPath: "/main",
+        path: "/",
+        fullPath: "/",
         isAuth: false,
     },
     [enumPath.ABOUT]: {

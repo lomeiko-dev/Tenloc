@@ -1,14 +1,13 @@
 @import "./normalize.css";
 @import "vars.css";
 
-.app{
-    background-color: var(--bg-color);
-    overflow-x: scroll;
-}
 .container{
     width: 100%;
-    max-width: 1600px;
+    max-width: 1800px;
     margin: 0 auto;
     padding: 0 10px;
     height: 100vh;
+
+    background-color: var(--bg-color);
+    overflow-y: none;
 }

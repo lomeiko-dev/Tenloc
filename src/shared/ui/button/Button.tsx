@@ -13,7 +13,8 @@ export enum enumStyleButton {
 
 interface IButtonProps extends HTMLAttributes<HTMLButtonElement> {
     children?: React.ReactNode,
-    SVGIcon?: React.ReactNode,
+    iconLeft?: React.ReactNode,
+    iconRight?: React.ReactNode,
     styleButton?: enumStyleButton,
     className?: string,
     color?: string,
@@ -31,29 +32,30 @@ interface IButtonProps extends HTMLAttributes<HTMLButtonElement> {
 
 export const Button: React.FC<IButtonProps> = memo((props) => {
     const {
-        SVGIcon,
+        iconLeft,
+        iconRight,
         bgColor,
         border,
         borderRadius = "100px",
         children,
         className,
         color,
-        fontSize,
-        fontWeight,
+        fontSize = "15px",
+        fontWeight = 500,
         height,
         margin,
-        padding,
+        padding = "10px 20px",
         styleButton = enumStyleButton.NONE,
         width,
         HoverBgColor,
         ...otherProps
     } = props;
 
-    const [colorState, setColor] = useState<string>(color ?? "");
+    const [colorState, setColor] = useState<string>(bgColor ?? "");
 
     const cssStyles: CSSProperties = {
-        color: colorState,
-        backgroundColor: bgColor,
+        color: color,
+        backgroundColor: colorState,
         border: border,
         borderRadius: borderRadius,
         fontSize: `${fontSize}px`,
@@ -69,8 +71,8 @@ export const Button: React.FC<IButtonProps> = memo((props) => {
     }, [HoverBgColor])
 
     const mouseLeaveHandle = useCallback(() => {
-        setColor(color ?? "");
-    }, [color])
+        setColor(bgColor ?? "");
+    }, [bgColor])
 
     return(
         <button 
@@ -79,8 +81,11 @@ export const Button: React.FC<IButtonProps> = memo((props) => {
             {...otherProps}
             style={cssStyles}
             className={classNames(className, style.button, style[styleButton])}>
-            {SVGIcon}
-            {children}
+            {iconLeft}
+            <div className={style.content}>
+                {children}
+            </div>
+            {iconRight}
         </button>
     )
 })
