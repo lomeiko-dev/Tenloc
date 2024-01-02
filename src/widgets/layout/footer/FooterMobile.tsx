@@ -8,14 +8,28 @@ import { Image } from "shared/ui/image"
 import { ButtonSocial } from "./ui/button-socials/ButtonSocial"
 import { GroupLinks } from "./ui/group-links/GroupLinks"
 
+import feedbackJson from "shared/assets/json/feedback.json";
+import linksJson from "shared/assets/json/links.json"
+import locationJson from "shared/assets/json/location.json"
+import downloadJson from "shared/assets/json/download.json"
+
 import ButtonGooglePlayDownloadIcon from "shared/assets/img/btn/google-play-download.svg?react"
 import BUttonAppstoreDownloadIcon from "shared/assets/img/btn/appstore-download.svg?react"
 
 import developmentLogo from "shared/assets/img/logo/logo-development.png"
 import logo from "shared/assets/img/logo/logo.png"
-import { memo } from "react"
+import { memo, useCallback } from "react"
 
 export const FooterMobile = memo(() => {
+
+    const downloadGooglePlayHandle = useCallback(() => {
+        window.location.href = downloadJson.google_play
+    }, [downloadJson.google_play])
+
+    const downloadAppStoreHandle = useCallback(() => {
+        window.location.href = downloadJson.app_store
+    }, [downloadJson.app_store])
+
     return(
         <div className={style.footer_mobile}>
             <Link to={pathRoutes.main.path}>
@@ -24,25 +38,31 @@ export const FooterMobile = memo(() => {
             <GroupLinks margin="20px 0 0 0" title="Поддержка клиентов" className={style.group_links}>
                 <span>
                     <Text fontSize={14} fontWeight={600} text="Телефон: "/>
-                    <Text fontSize={14} fontWeight={400} text="+7 (495) 123-45-67"/>
+                    <Text fontSize={14} fontWeight={400} text={feedbackJson.phone}/>
                 </span>
                 <span>
                     <Text fontSize={14} fontWeight={600} text="E-mail: "/>
-                    <Text fontSize={14} fontWeight={400} text="hello@trevelme.ru"/>
+                    <Text fontSize={14} fontWeight={400} text={feedbackJson.mail}/>
                 </span>
                 <span>
                     <Text fontSize={14} fontWeight={600} text="Офис: "/>
-                    <Text fontSize={14} fontWeight={400} text="Москва, ул. Название улицы 10, офис 11"/>
+                    <Text fontSize={14} fontWeight={400} text={`${locationJson.city}, ${locationJson.street}, ${locationJson.other_info}`}/>
                 </span>
-                <ButtonSocial margin="25px 0 0 0" isMobile linkInstagram="/" linkTelegram="/" linkVk="/" linkWatsapp="/"/>
+                <ButtonSocial 
+                    margin="25px 0 0 0"    
+                    isMobile 
+                    linkInstagram={linksJson.instagram}  
+                    linkTelegram={linksJson.telegram} 
+                    linkVk={linksJson.vk} 
+                    linkWatsapp={linksJson.watsapp}/>
             </GroupLinks>
             <div className={style.download}>
                 <Text margin="20px 0 13px 0" styleText={enumStyleText.QUATERNARY_SUBTITLE} text="Скачайте наше приложение"/>
                 <span>
-                    <Button styleButton={enumStyleButton.NONE}>
+                    <Button onClick={downloadAppStoreHandle} styleButton={enumStyleButton.NONE}>
                         <BUttonAppstoreDownloadIcon/>
                     </Button>
-                    <Button styleButton={enumStyleButton.NONE}>
+                    <Button onClick={downloadGooglePlayHandle} styleButton={enumStyleButton.NONE}>
                         <ButtonGooglePlayDownloadIcon/>
                     </Button>
                 </span>

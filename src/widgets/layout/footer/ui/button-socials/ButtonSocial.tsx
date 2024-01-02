@@ -1,5 +1,5 @@
 import classNames from "classnames"
-import { memo } from "react"
+import { memo, useCallback } from "react"
 import style from "./ButtonSocial.module.scss"
 
 import { Button, enumStyleButton } from "shared/ui/button"
@@ -32,29 +32,37 @@ export const ButtonSocial: React.FC<IButtonSocialProps> = memo((props) => {
 
     } = props
 
+    const watsAppHandle = useCallback(() => {
+        window.location.href = linkWatsapp
+    }, [linkWatsapp])
+
+    const telegramHandle = useCallback(() => {
+        window.location.href = linkInstagram
+    }, [linkTelegram])
+
+    const vkHandle = useCallback(() => {
+        window.location.href = linkVk
+    }, [linkVk])
+
+    const instagramHandle = useCallback(() => {
+        window.location.href = linkInstagram
+    }, [linkInstagram])
+
     return(
         <div style={{margin: margin}} className={classNames(style.btns, className)}>
-            <Link to={linkWatsapp}>
-                <Button className={style.btn} width="40px" height="40px" borderRadius="5px" styleButton={enumStyleButton.SECONDARY_OUTLINE}>
-                    <WatsappIcon/>
-                </Button>
-            </Link>
-            <Link to={linkTelegram}>
-                <Button className={style.btn} width="40px" height="40px" borderRadius="5px" styleButton={enumStyleButton.SECONDARY_OUTLINE}>
-                    <TelegramIcon/>
-                </Button>
-            </Link>
-            <Link to={linkVk}>
-                <Button className={style.btn} width="40px" height="40px" borderRadius="5px" styleButton={enumStyleButton.SECONDARY_OUTLINE}>
-                    <VkIcon/>
-                </Button>
-            </Link>
+            <Button onClick={watsAppHandle} className={style.btn} width="40px" height="40px" borderRadius="5px" styleButton={enumStyleButton.SECONDARY_OUTLINE}>
+                <WatsappIcon/>
+            </Button>
+            <Button onClick={telegramHandle} className={style.btn} width="40px" height="40px" borderRadius="5px" styleButton={enumStyleButton.SECONDARY_OUTLINE}>
+                <TelegramIcon/>
+            </Button>
+            <Button onClick={vkHandle} className={style.btn} width="40px" height="40px" borderRadius="5px" styleButton={enumStyleButton.SECONDARY_OUTLINE}>
+                <VkIcon/>
+            </Button>
             {isMobile ? 
-                <Link to={linkInstagram}>
-                    <Button className={style.btn} width="40px" height="40px" borderRadius="5px" styleButton={enumStyleButton.SECONDARY_OUTLINE}>
-                        <InstagramIcon/>
-                    </Button>
-                </Link> : undefined}
+                <Button onClick={instagramHandle} className={style.btn} width="40px" height="40px" borderRadius="5px" styleButton={enumStyleButton.SECONDARY_OUTLINE}>
+                    <InstagramIcon/>
+                </Button> : undefined}
         </div>
     )
 })

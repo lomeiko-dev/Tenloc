@@ -9,6 +9,10 @@ import { GroupLinks } from "./ui/group-links/GroupLinks";
 import { ButtonSocial } from "./ui/button-socials/ButtonSocial";
 import { Logotype } from "shared/ui/logotype";
 
+import feedbackJson from "shared/assets/json/feedback.json";
+import linksJson from "shared/assets/json/links.json"
+import locationJson from "shared/assets/json/location.json"
+
 import PhoneIcon from "shared/assets/img/svg-icon/phone.svg?react"
 import EmailIcon from "shared/assets/img/svg-icon/email.svg?react"
 import VectorIcon from "shared/assets/img/svg-icon/Vector.svg?react"
@@ -23,7 +27,11 @@ export const Footer = memo(() => {
                 <div className={style.namespace}>
                     <Logotype/>
                     <Text margin="70px 0 0 0" styleText={enumStyleText.SECONDARY_TEXT} text="Мы в соц сетях"/>
-                    <ButtonSocial linkInstagram="/" linkTelegram="/" linkVk="/" linkWatsapp="/"/>
+                    <ButtonSocial 
+                        linkInstagram={linksJson.instagram}  
+                        linkTelegram={linksJson.telegram} 
+                        linkVk={linksJson.vk} 
+                        linkWatsapp={linksJson.watsapp}/>
                 </div>
                 <GroupLinks className={style.group_links} title="Сервис">
                     <Link margin="0 0 5px 0" to={pathRoutes.about.path}>{pathRoutes.about.name}</Link>
@@ -45,15 +53,15 @@ export const Footer = memo(() => {
                 <GroupLinks className={style.group_links} title="Поддержка клиентов">
                     <span>
                         <Text iconLeft={<PhoneIcon/>} fontSize={14} fontWeight={600} text="Телефон: "/>
-                        <Text fontSize={14} fontWeight={400} text="+7 (495) 123-45-67"/>
+                        <Text fontSize={14} fontWeight={400} text={feedbackJson.phone}/>
                     </span>
                     <span>
                         <Text iconLeft={<EmailIcon/>} fontSize={14} fontWeight={600} text="E-mail: "/>
-                        <Text fontSize={14} fontWeight={400} text="hello@trevelme.ru"/>
+                        <Text fontSize={14} fontWeight={400} text={feedbackJson.mail}/>
                     </span>
                     <span>
                         <Text iconLeft={<VectorIcon/>} fontSize={14} fontWeight={600} text="Офис: "/>
-                        <Text fontSize={14} fontWeight={400} text="Москва, ул. Название улицы 10, офис 11"/>
+                        <Text fontSize={14} fontWeight={400} text={`${locationJson.city}, ${locationJson.street}, ${locationJson.other_info}`}/>
                     </span>
                 </GroupLinks>
             </div>
