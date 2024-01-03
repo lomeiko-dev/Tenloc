@@ -3,7 +3,6 @@ import { memo, useCallback } from "react"
 import style from "./ButtonSocial.module.scss"
 
 import { Button, enumStyleButton } from "shared/ui/button"
-import { Link } from "shared/ui/link"
 
 import TelegramIcon from "shared/assets/img/svg-social/telegram2.svg?react"
 import WatsappIcon from "shared/assets/img/svg-social/watsapp2.svg?react"
