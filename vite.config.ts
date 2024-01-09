@@ -12,7 +12,8 @@ export default defineConfig({
       widgets: '/src/widgets',
       features: '/src/features',
       entities: '/src/entities',
-      shared: '/src/shared'
+      shared: '/src/shared',
+      server: '/server'
     }
   }
 })

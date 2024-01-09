@@ -1,0 +1,16 @@
+.skeleton {
+    background:
+        linear-gradient(0.25turn, transparent, #FFF, transparent),
+        linear-gradient(#DDD, #DDD);
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: -215px 0, 0 0, 15px 150px, 15px 180px;
+    animation: loading 1.5s infinite;
+    border-radius: 20px;
+}
+
+@keyframes loading {
+  to {
+    background-position: 215px 0, 0 0, 15px 150px, 15px 180px;
+  }
+}

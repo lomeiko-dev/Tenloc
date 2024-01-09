@@ -17,6 +17,7 @@ interface IFIeldProps extends HTMLAttributes<HTMLInputElement | HTMLTextAreaElem
     childrenRight?: React.ReactNode,
     type?: "date" | "datetime-local" | "email" | "hidden" | "month" | "password" | "search" | "tel" | "text" | "time" | "url"
     className?: string,
+    value?: string,
     classNameInput?: string,
     placeholder?: string,
     styleField?: enumStyleField,
@@ -54,6 +55,7 @@ export const Field: React.FC<IFIeldProps> = memo((props) => {
         width,
         isMultiline = false,
         selection,
+        value,
         getSelection = () => null,
         ...otherProps
     } = props
@@ -97,11 +99,13 @@ export const Field: React.FC<IFIeldProps> = memo((props) => {
                 {childrenLeft}
                 {isMultiline ? 
                     <textarea 
+                        value={value}
                         style={cssStyleInput}
                         className={classNames(classNameInput, style.textarea)}
                         /> :
                     <input
                         {...otherProps}
+                        value={value}
                         style={cssStyleInput}
                         className={classNames(classNameInput, style.input)} 
                         placeholder={placeholder} 

@@ -1,15 +1,18 @@
-import { CSSProperties, useEffect, useState } from "react"
+import { CSSProperties, Suspense, useEffect, useState } from "react"
 import style from "./Modal.module.scss"
+import { createPortal } from "react-dom"
 import classNames from "classnames"
 import CloseIcon from "shared/assets/img/svg-icon/close.svg?react"
 
 
 interface IModalProps {
     children: React.ReactNode,
+    className?: string,
     onClose : () => void,
     open?: boolean
     width?: string,
     height?: string,
+    loadingComponent?: React.ReactNode
 }
 
 
@@ -19,7 +22,9 @@ export const Modal: React.FC<IModalProps> = (props) => {
         onClose,
         height,
         open = false,
-        width
+        width,
+        className,
+        loadingComponent
     } = props
 
     useEffect(() => {
@@ -71,24 +76,31 @@ export const Modal: React.FC<IModalProps> = (props) => {
         return
 
     return(
-        <div className={classNames(style.wrapper, mods)}>
-            <div 
-                className={style.overlay}
-                onClick={closeHandle}>
-                <div 
-                    style={cssStyles} 
-                    className={style.modal}
-                    onClick={stopPropagationHandle}>
-                    <button 
-                        onClick={closeHandle} 
-                        className={style.btn_close}>
-                        <CloseIcon/>
-                    </button>
-                    <div className={style.content}>
-                        {children}
+        <>
+            {createPortal(
+                <Suspense fallback={loadingComponent === undefined ? "loading..." : loadingComponent}>
+                    <div className={classNames(style.wrapper, mods)}>
+                        <div 
+                            className={classNames(style.overlay, className)}
+                            onClick={closeHandle}>
+                            <div 
+                                style={cssStyles} 
+                                className={style.modal}
+                                onClick={stopPropagationHandle}>
+                                <button 
+                                    onClick={closeHandle} 
+                                    className={style.btn_close}>
+                                    <CloseIcon/>
+                                </button>
+                                <div className={style.content}>
+                                    {children}
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
+                </Suspense>,
+                document.body
+            )}
+        </>
     )
 }

@@ -1,0 +1,40 @@
+.wrapper{
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    
+}
+
+.darkening{
+    position: absolute;
+    bottom: -300px;
+    left: -300px;
+    width: 646px;
+    height: 548px;
+    z-index: 2;
+    background-color: #252525;
+    filter: blur(200px);
+    opacity: 79%;
+    border-radius: 50%;
+}
+
+.background{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.content_block{
+    position: absolute;
+    left: 43px;
+    bottom: 38px;
+    z-index: 2;
+}
+
+@media (max-width: 600px) {
+    .content_block{
+        left: 16px;
+        bottom: 16px;
+    }
+}

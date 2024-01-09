@@ -1,5 +1,5 @@
 import { combineReducers, type Reducer, type ReducersMapObject } from '@reduxjs/toolkit'
-import {IStore, StoreKey} from "../types"
+import {IStore, storeKey} from "../types"
 
 export function createReducerManager (initialReducers: ReducersMapObject<IStore>) {
   const reducers = { ...initialReducers }

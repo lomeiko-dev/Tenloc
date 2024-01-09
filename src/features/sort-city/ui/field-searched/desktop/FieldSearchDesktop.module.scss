@@ -1,0 +1,10 @@
+.field{
+    width: 618px;
+    height: 75px;
+}
+
+@media (max-width: 750px) {
+    .field{
+        width: 418px;
+    }
+}

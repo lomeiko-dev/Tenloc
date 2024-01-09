@@ -25,6 +25,7 @@
     padding: 20px 30px;
     transition: .2s;
     transform: scale(.1);
+    overflow: hidden;
 }
 
 .open{
@@ -50,5 +51,7 @@
 }
 
 .content{
+    width: 100%;
+    height: 100%;
     margin-top: 20px;
 }

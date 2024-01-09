@@ -1,10 +1,10 @@
 import { memo, useEffect, useState } from "react";
 import style from "./Header.module.scss"
 
-import { Dropwdown, enumStyleDropdown } from "shared/ui/dropdown";
 import { Navbar } from "../navbar/Navbar";
 import { Button, enumStyleButton } from "shared/ui/button";
 import { Sidebar } from "../sidebar/Sidebar";
+import { DropdownSelection } from "features/sort-city";
 import { Logotype } from "shared/ui/logotype";
 
 import LikeIcon from "shared/assets/img/svg-icon/like.svg?react"
@@ -34,13 +34,10 @@ export const Header = memo(() => {
             <Logotype/>
             <div className={style.right_part}>
                 {isNav ? 
-                    <Dropwdown 
+                    <DropdownSelection 
                         width="186px" height="50px"
                         margin="0 49px 0 0"
-                        styleDropdown={enumStyleDropdown.PRIMARY} 
-                        content="пусто">
-                            Направления
-                    </Dropwdown> : 
+                        cityCount={6}/> : 
                     undefined}
 
                     {isNav ? <Navbar/> : undefined}

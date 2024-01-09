@@ -1,6 +1,5 @@
 .footer, .footer_mobile{
     position: absolute;
-    bottom: 0;
     left: 0;
     right: 0;
 }
@@ -116,11 +115,10 @@
     
 }
 
-@media (max-width: 800px) {
+@media (max-width: 890px) {
     .group_links:nth-child(5){
         display: none;
     }
-    
 }
 
 

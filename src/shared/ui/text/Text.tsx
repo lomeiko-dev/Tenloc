@@ -30,6 +30,9 @@ interface ITextProps extends HTMLAttributes<HTMLDivElement> {
     border?: string,
     margin?: string,
     padding?: string,
+    width?: string,
+    height?: string,
+    isCentered?: boolean,
 }
 
 export const Text: React.FC<ITextProps> = memo((props) => {
@@ -46,6 +49,9 @@ export const Text: React.FC<ITextProps> = memo((props) => {
         styleText = enumStyleText.NONE,
         margin,
         padding,
+        width,
+        height,
+        isCentered = false,
         ...otherProps
     } = props;
 
@@ -53,10 +59,13 @@ export const Text: React.FC<ITextProps> = memo((props) => {
         color: color,
         fontSize: `${fontSize}px`,
         fontWeight: fontWeight,
-        lineHeight: `${lineHeight}`,
+        lineHeight: `${lineHeight}px`,
         border: border,
         margin: margin,
         padding: padding,
+        width: width,
+        height: height,
+        textAlign: isCentered ? 'center' : undefined
     }
 
     return(
