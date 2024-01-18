@@ -1,0 +1,57 @@
+.card{
+    width: 333px;
+    height: 476px;
+    border-radius: 20px;
+    border: 1px solid #DFDFDF;
+    overflow: hidden;
+    opacity: 0;
+    transition: .4s;
+}
+
+.card_view{
+    opacity: 1;
+}
+
+.content{
+    padding: 21px 26px;
+}
+
+.price{
+    display: flex;
+    align-items: center;
+    border-top: 1px solid #E6E6E6;
+    padding-top: 14px;
+}
+
+.title{
+    width: 293px;
+    height: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.descr{
+    width: 283px;
+    height: 80px;
+    text-overflow: ellipsis; 
+    overflow: hidden;
+}
+
+@media (max-width: 360px) {
+    .card{
+        width: 240px;
+        height: 480px;
+    }
+    .content{
+        padding: 5px 5px;
+    }
+
+    .title{
+        width: 230px;
+        height: 60px;
+        font-size: 12px;
+    }
+    .descr{
+        width: 230px;
+        font-size: 10px;
+    }
+}

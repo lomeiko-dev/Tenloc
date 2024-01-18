@@ -25,6 +25,10 @@
     width: 800px;
 }
 
+.title{
+    width: 550px;
+}
+
 @media (max-width: 800px) {
     .sort_list{
         width: 500px;
@@ -40,15 +44,33 @@
     }
 }
 
-@media (max-width: 770px) {
-    .title_mobile{
+@media (max-width: 600px) {
+    .title{
         font-size: 22px;
-        width: 288px;
+        width: 300px;
     }
-
-    .subtitle_mobile{
+    .subtitle{
         font-size: 14px;
         font-weight: 400;
         width: 265px;
+    }
+}
+
+@media (max-width: 420px) {
+    .sort_list{
+        width: 310px;
+    }
+}
+
+@media (max-width: 320px) {
+    .title{
+        font-size: 15px;
+        line-height: 20px;
+        width: 200px;
+    }
+    .subtitle{
+        font-size: 13px;
+        font-weight: 300;
+        width: 150px;
     }
 }

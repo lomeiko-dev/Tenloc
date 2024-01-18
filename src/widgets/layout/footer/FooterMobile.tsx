@@ -1,7 +1,8 @@
+import { memo, useCallback, useEffect, useState } from "react"
 import style from "./Footer.module.scss"
+import { pathRoutes } from "shared/config/route-path"
 
 import { Link } from "shared/ui/link"
-import { pathRoutes } from "shared/config/route-path"
 import { Text, enumStyleText } from "shared/ui/text"
 import { Button, enumStyleButton } from "shared/ui/button"
 import { Image } from "shared/ui/image"
@@ -18,9 +19,18 @@ import BUttonAppstoreDownloadIcon from "shared/assets/img/btn/appstore-download.
 
 import developmentLogo from "shared/assets/img/logo/logo-development.png"
 import logo from "shared/assets/img/logo/logo.png"
-import { memo, useCallback } from "react"
 
 export const FooterMobile = memo(() => {
+    const [isSmallMobile, setSmallMobile] = useState(false)
+
+    const resizeInnerWidthHandle = () => {
+        window.innerWidth < 400 ? setSmallMobile(true) : setSmallMobile(false)
+    }
+
+    useEffect(() => {
+        resizeInnerWidthHandle()
+        window.addEventListener('resize', resizeInnerWidthHandle)
+    }, [window])
 
     const downloadGooglePlayHandle = useCallback(() => {
         window.location.href = downloadJson.google_play
@@ -37,16 +47,16 @@ export const FooterMobile = memo(() => {
             </Link>
             <GroupLinks margin="20px 0 0 0" title="Поддержка клиентов" className={style.group_links}>
                 <span>
-                    <Text fontSize={14} fontWeight={600} text="Телефон: "/>
-                    <Text fontSize={14} fontWeight={400} text={feedbackJson.phone}/>
+                    <Text fontSize={isSmallMobile ? 9 : 14} fontWeight={isSmallMobile ? 400 : 600} text="Телефон: "/>
+                    <Text fontSize={isSmallMobile ? 9 : 14} fontWeight={isSmallMobile ? 300 : 400} text={feedbackJson.phone}/>
                 </span>
                 <span>
-                    <Text fontSize={14} fontWeight={600} text="E-mail: "/>
-                    <Text fontSize={14} fontWeight={400} text={feedbackJson.mail}/>
+                    <Text fontSize={isSmallMobile ? 9 : 14} fontWeight={isSmallMobile ? 400 : 600} text="E-mail: "/>
+                    <Text fontSize={isSmallMobile ? 9 : 14} fontWeight={isSmallMobile ? 300 : 400} text={feedbackJson.mail}/>
                 </span>
                 <span>
-                    <Text fontSize={14} fontWeight={600} text="Офис: "/>
-                    <Text fontSize={14} fontWeight={400} text={`${locationJson.city}, ${locationJson.street}, ${locationJson.other_info}`}/>
+                    <Text fontSize={isSmallMobile ? 9 : 14} fontWeight={isSmallMobile ? 400 : 600} text="Офис: "/>
+                    <Text fontSize={isSmallMobile ? 9 : 14} fontWeight={isSmallMobile ? 300 : 400} text={`${locationJson.city}, ${locationJson.street}, ${locationJson.other_info}`}/>
                 </span>
                 <ButtonSocial 
                     margin="25px 0 0 0"    

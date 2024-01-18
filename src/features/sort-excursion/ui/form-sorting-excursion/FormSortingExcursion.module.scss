@@ -1,0 +1,21 @@
+.form{
+    display: flex;
+    gap: 0 29px;
+}
+
+.calendar{
+    cursor: pointer;
+}
+
+@media (max-width: 600px){
+    .form{
+        gap: 0 10px;
+    }
+}
+
+@media (max-width: 350px){
+    .form{
+        flex-direction: column;
+        gap: 10px;
+    }
+}

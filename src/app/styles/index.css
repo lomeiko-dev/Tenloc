@@ -1,6 +1,11 @@
 @import "./normalize.css";
 @import "vars.css";
 
+.app{
+    overflow-y: scroll;
+    position: relative;
+}
+
 .container{
     width: 100%;
     max-width: 1460px;
@@ -9,4 +14,19 @@
     height: 100vh;
 
     background-color: var(--bg-color);
+}
+
+.app::-webkit-scrollbar {
+    width: 10px;
+}
+.app::-webkit-scrollbar-thumb {
+    background-color: #FFD600;
+    border-radius: 20px;
+}
+
+
+@media (max-width: 600px) {
+    .app::-webkit-scrollbar-thumb {
+        display: none;
+    }
 }

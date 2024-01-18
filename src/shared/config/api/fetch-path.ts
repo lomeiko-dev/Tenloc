@@ -1,7 +1,9 @@
 enum enumFetchPath {
-    CITY = "city"
+    CITY = "city",
+    EXCURSION = "excursion"
 }
 
 export const fetchPath: Record<enumFetchPath, string> = {
-    [enumFetchPath.CITY]: "cities"
+    [enumFetchPath.CITY]: "cities",
+    [enumFetchPath.EXCURSION]: "excursions"
 }

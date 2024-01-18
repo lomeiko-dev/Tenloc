@@ -1,6 +1,7 @@
-import classNames from "classnames";
 import { memo, useCallback } from "react";
+import classNames from "classnames";
 import style from "./ContactForm.module.scss"
+
 import { Button } from "shared/ui/button"
 import { Text } from "shared/ui/text"
 
@@ -28,10 +29,33 @@ const ContactForm: React.FC<IContactFormProps> = memo(({className}) => {
 
     return (
         <div className={classNames(style.form, className)}>
-            <Text text={`Мы на связи с ${feedbackJson.time_with} до ${feedbackJson.time_before} ${feedbackJson.time_format}`}/>
+            <Text 
+                text={
+                    `Мы на связи с ${feedbackJson.time_with} 
+                     до ${feedbackJson.time_before} 
+                     ${feedbackJson.time_format}`}
+            />
             <div className={style.block}>
-                <Button onClick={watsAppHandle} margin="0 14px 0 0" width="162px" bgColor="#4CAF50" HoverBgColor="#4CAF5090" borderRadius="100px" padding="12px 11px" color="#ffffff" fontSize={14} iconLeft={<WatsappIcon/>}>WatsApp</Button>
-                <Button onClick={telegtamHandle} width="162px" bgColor="#039BE5" HoverBgColor="#039BE590" borderRadius="100px" padding="12px 11px" color="#ffffff" fontSize={14} iconLeft={<TelegramIcon/>}>Telegram</Button>
+                <Button 
+                    onClick={watsAppHandle} 
+                    margin="0 14px 0 0" padding="12px 11px"
+                    width="162px" 
+                    bgColor="#4CAF50" HoverBgColor="#4CAF5090" color="#ffffff"
+                    borderRadius="100px" 
+                    fontSize={14} 
+                    iconLeft={<WatsappIcon/>}>
+                        WatsApp
+                </Button>
+                <Button 
+                    onClick={telegtamHandle} 
+                    width="162px" 
+                    bgColor="#039BE5" HoverBgColor="#039BE590" color="#ffffff"
+                    borderRadius="100px" 
+                    padding="12px 11px" 
+                    fontSize={14} 
+                    iconLeft={<TelegramIcon/>}>
+                        Telegram
+                </Button>
             </div>
             <div className={style.block}>
                 <Text margin="0 20px 0 0 " iconLeft={<PhoneIcon/>} text={feedbackJson.phone}/>

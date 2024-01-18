@@ -1,10 +1,12 @@
-import style from "./Navbar.module.scss"
 import { Suspense, memo } from "react";
-import { pathRoutes } from "shared/config/route-path";
+import style from "./Navbar.module.scss"
+
 import { Dropwdown, enumStyleDropdown } from "shared/ui/dropdown";
 import { Link } from "shared/ui/link";
 import { Loader } from "shared/ui/loader";
 import { ConcatFromLazy } from "widgets/contcat-form";
+
+import { pathRoutes } from "shared/config/route-path";
 
 export enum enumStyleNavbar {
     DESKTOP = "desktop",
@@ -13,18 +15,30 @@ export enum enumStyleNavbar {
 
 interface INavbarProps {
     styleNavbar?: enumStyleNavbar
+    onFunc?: () => void
 }
 
 export const Navbar: React.FC<INavbarProps> = memo((props) => {
     const {
-        styleNavbar = enumStyleNavbar.DESKTOP
+        styleNavbar = enumStyleNavbar.DESKTOP,
+        onFunc
     } = props
 
     return(
         <nav className={style[`navbar_${styleNavbar}`]}>
             <Suspense fallback={<Loader/>}>
-                <Link className={style.link} to={pathRoutes.about.path}>{pathRoutes.about.name}</Link>
-                <Link className={style.link} to={pathRoutes.blog.path}>{pathRoutes.blog.name}</Link>
+                <Link 
+                    onClick={onFunc}
+                    className={style.link} 
+                    to={pathRoutes.about.path}>
+                        {pathRoutes.about.name}
+                </Link>
+                <Link 
+                    onClick={onFunc}
+                    className={style.link} 
+                    to={pathRoutes.blog.path}>
+                        {pathRoutes.blog.name}
+                </Link>
                 {styleNavbar === enumStyleNavbar.DESKTOP ?
                     <Dropwdown 
                         className={style.link_desktop} 
@@ -32,7 +46,11 @@ export const Navbar: React.FC<INavbarProps> = memo((props) => {
                         styleDropdown={enumStyleDropdown.NONE}>
                             Помощь клиентам
                     </Dropwdown> :
-                    <Link to={pathRoutes.guide.path}>{pathRoutes.guide.name}</Link>}
+                    <Link 
+                        onClick={onFunc} 
+                        to={pathRoutes.guide.path}>
+                            {pathRoutes.guide.name}
+                    </Link>}
             </Suspense>
         </nav>
     )

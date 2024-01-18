@@ -4,50 +4,68 @@ import style from "./Header.module.scss"
 import { Navbar } from "../navbar/Navbar";
 import { Button, enumStyleButton } from "shared/ui/button";
 import { Sidebar } from "../sidebar/Sidebar";
-import { DropdownSelection } from "features/sort-city";
+import { DropdownSelection } from "features/sort-excursion";
 import { Logotype } from "shared/ui/logotype";
 
 import LikeIcon from "shared/assets/img/svg-icon/like.svg?react"
 import BurgerMenuIcon from "shared/assets/img/svg-icon/burger-menu.svg?react"
 
 export const Header = memo(() => {
-    const [isNav, setNav] = useState(true);
+    const [isMobile, setMobile] = useState(false);
+    const [isSmallMobile, setSmallMobile] = useState(false)
+
     const [openSidebar, setOpenSidebar] = useState(false);
 
     const resizeInnerWidthHandle = () => {
-        window.innerWidth < 600 ? setNav(false) : setNav(true)
+        window.innerWidth < 600 ? setMobile(true) : setMobile(false)
+        window.innerWidth < 330 ? setSmallMobile(true) : setSmallMobile(false)
     }
 
     useEffect(() => {
         resizeInnerWidthHandle()
         window.addEventListener('resize', resizeInnerWidthHandle)
+
+        return () => {
+            window.removeEventListener('resize', resizeInnerWidthHandle)
+        }
     }, [window])
 
     return(
         <header className={style.header}>
-            {isNav ? 
-                undefined : 
-                <Button onClick={() => setOpenSidebar(true)} width="20px" margin="0 15px 0 0">
-                    <BurgerMenuIcon/>
-                </Button>}
-            <Sidebar onClose={() => setOpenSidebar(false)} isOpen={openSidebar}/>
+            {isMobile &&
+                <>
+                    <Button 
+                        onClick={() => setOpenSidebar(true)} 
+                        width="20px" 
+                        margin="0 15px 0 0">
+                            <BurgerMenuIcon/>
+                    </Button>
+                    <Sidebar 
+                        onClose={() => setOpenSidebar(false)} 
+                        isOpen={openSidebar}/>
+                </>}
             <Logotype/>
+
             <div className={style.right_part}>
-                {isNav ? 
+                {!isMobile &&
                     <DropdownSelection 
                         width="186px" height="50px"
                         margin="0 49px 0 0"
-                        cityCount={6}/> : 
-                    undefined}
+                        cityCount={6}/>}
 
-                    {isNav ? <Navbar/> : undefined}
+                {isMobile ? undefined : <Navbar/>}
 
+                {!isSmallMobile && 
                     <div className={style.btns}>
-                        <Button margin="0 20px 0 0" padding="0" width="50px" height="50px" styleButton={enumStyleButton.SECONDARY}>
-                            <LikeIcon/>
+                        <Button
+                            width={isMobile ? '35px' : '50px'} height={isMobile ? '35px' : '50px'} 
+                            styleButton={enumStyleButton.SECONDARY}>
+                                <LikeIcon width={isMobile ? '15px' : '40px'}/>
                         </Button>
-                        <Button height="50px" width="114px" styleButton={enumStyleButton.SECONDARY}>Войти</Button>
-                    </div>
+                        <Button 
+                            height={isMobile ? '35px' : '50px'} width={isMobile ? '75px' : '114px'} 
+                            styleButton={enumStyleButton.SECONDARY}>Войти</Button>
+                    </div>}
             </div>
         </header>
     )

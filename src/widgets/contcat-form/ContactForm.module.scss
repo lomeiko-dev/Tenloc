@@ -7,3 +7,14 @@
     margin: 15px 0;
     display: flex;
 }
+
+@media (max-width: 370px) {
+    .block{
+        flex-direction: column;
+        gap: 10px 0;
+    }
+    .form{
+        width: 200px;
+        padding: 5px 23px 5px 27px;
+    }
+}

@@ -4,8 +4,10 @@ import { Layout } from "widgets/layout"
 
 export const App = () => {
     return(
-        <Layout className="container">
-            <Routing/>
-        </Layout>
+        <div className="app">
+            <Layout className="container">
+                <Routing/>
+            </Layout>
+        </div>
     )
 }

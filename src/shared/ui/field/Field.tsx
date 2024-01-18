@@ -1,4 +1,4 @@
-import { CSSProperties, HTMLAttributes, memo, useCallback, useState } from "react"
+import { CSSProperties, HTMLAttributes, memo, useCallback, useEffect, useState } from "react"
 import style from "./Field.module.scss"
 import classNames from "classnames"
 
@@ -61,7 +61,9 @@ export const Field: React.FC<IFIeldProps> = memo((props) => {
     } = props
 
     const [openSelection, setOpenSelection] = useState(false)
-    const [showSelection, setShowSelection] = useState(false);
+    const [showSelection, setShowSelection] = useState(false)
+
+    const [valueField, setValue] = useState<string | undefined>('');
 
     const showSelectionHandle = useCallback(() => {
         showSelection ? setOpenSelection(false) : setShowSelection(true)
@@ -69,6 +71,10 @@ export const Field: React.FC<IFIeldProps> = memo((props) => {
             showSelection ? setShowSelection(false) : setOpenSelection(true)
         }, 100)
     }, [showSelection])
+
+    useEffect(() => {
+        setValue(value);
+    }, [value])
 
     const cssStyleInput: CSSProperties = {
         fontSize: fontSize,
@@ -99,13 +105,13 @@ export const Field: React.FC<IFIeldProps> = memo((props) => {
                 {childrenLeft}
                 {isMultiline ? 
                     <textarea 
-                        value={value}
+                        value={valueField}
                         style={cssStyleInput}
                         className={classNames(classNameInput, style.textarea)}
                         /> :
                     <input
                         {...otherProps}
-                        value={value}
+                        value={valueField}
                         style={cssStyleInput}
                         className={classNames(classNameInput, style.input)} 
                         placeholder={placeholder} 
@@ -120,7 +126,11 @@ export const Field: React.FC<IFIeldProps> = memo((props) => {
             <div className={style.selection_wrap}>
                 <div className={style.selection}>
                     {selection?.map(item => 
-                        <div onClick={() => getSelection(item)} className={style.selection_item}>
+                        <div onClick={() => { 
+                                setValue(item)
+                                getSelection(item)
+                                setOpenSelection(false)
+                            }} className={style.selection_item}>
                             {item}
                         </div>)}
                 </div>

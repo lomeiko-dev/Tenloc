@@ -1,10 +1,13 @@
 import { configureStore, Reducer, ReducersMapObject } from "@reduxjs/toolkit";
 import { IStore } from "./types";
 import { createReducerManager } from "./utils/reducerManager";
-import { sortCityApiMiddleware, sortCityApiReducer } from "features/sort-city";
+import { sortExcursionApiMiddleware, sortExcursionApiReducer } from "features/sort-excursion";
+import { excursionApiMiddleware, excursionApiReducer, excursionReducer } from "entities/excursion";
 
 const rootReducers: ReducersMapObject<IStore> = {
-    SortCityApi: sortCityApiReducer
+    SortExcursionApi: sortExcursionApiReducer,
+    ExcursionApi: excursionApiReducer,
+    ExcursionReducer: excursionReducer
 }
 
 export const reducerManager = createReducerManager(rootReducers);
@@ -14,7 +17,8 @@ export const store = configureStore({
     devTools: true,
     middleware: (getDefaultMiddleware) => 
         getDefaultMiddleware()
-            .concat(sortCityApiMiddleware)
+            .concat(sortExcursionApiMiddleware,
+                    excursionApiMiddleware)
 })
 
 export type RootState = ReturnType<typeof store.getState>

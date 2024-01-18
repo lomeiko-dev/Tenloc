@@ -5,6 +5,19 @@
     background-color: rgba($color: #000, $alpha: .7);
     border-radius: 20px;
     padding: 5px 20px;
+
+    animation-duration: 5s;
+    animation-name: opacity;
+}
+
+@keyframes opacity {
+    from {
+        opacity: 1;
+    }
+  
+    to {
+        opacity: .5;
+    }
 }
 
 .error_text{

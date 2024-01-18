@@ -1,8 +1,10 @@
-import { ErrorMessage } from "shared/ui/error-message";
 import style from "./Cities.module.scss"
-import { CitySkeleton, CityView } from "entities/city";
+
 import { useEffect, useState } from "react";
-import { useGetCityByBookingCountQuery } from "features/sort-city";
+import { useGetCityByBookingCountQuery } from "features/sort-excursion";
+
+import { ErrorMessage } from "shared/ui/error-message";
+import { CitySkeleton, CityView } from "entities/excursion";
 
 export const Cities = () => {
     const [isMobile, setMobile] = useState(false);
@@ -24,11 +26,8 @@ export const Cities = () => {
     if (isLoading)
         return (
             <div className={style.list}>
-                <CitySkeleton className={style.city}/>
-                <CitySkeleton className={style.city}/>
-                <CitySkeleton className={style.city}/>
-                <CitySkeleton className={style.city}/>
-                <CitySkeleton className={style.city}/>
+                {Array(5).fill(null).map(() => 
+                    <CitySkeleton className={style.city}/>)}
             </div>
         );
     

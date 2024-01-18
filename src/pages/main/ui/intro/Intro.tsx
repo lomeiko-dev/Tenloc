@@ -2,18 +2,24 @@ import style from "./Intro.module.scss"
 import { memo, useEffect, useState } from "react"
 
 import { Text, enumStyleText } from "shared/ui/text"
-import { FieldSearched, SortList } from "features/sort-city"
+import { FieldSearched, SortList } from "features/sort-excursion"
 
 export const Intro = memo(() => {
     const [isMobile, setMobile] = useState(false)
+    const [isSmallMobile, setSmallMobile] = useState(false)
 
     const resizeInnerWidthHandle = () => {
         window.innerWidth < 600 ? setMobile(true) : setMobile(false)
+        window.innerWidth < 340 ? setSmallMobile(true) : setSmallMobile(false)
     }
 
     useEffect(() => {
         resizeInnerWidthHandle()
         window.addEventListener('resize', resizeInnerWidthHandle)
+
+        return () => {
+            window.removeEventListener('resize', resizeInnerWidthHandle)
+        }
     }, [window])
 
     return(
@@ -22,21 +28,21 @@ export const Intro = memo(() => {
                 <Text 
                     isCentered 
                     styleText={enumStyleText.PRIMARY_TITLE} 
-                    className={isMobile ? style.title_mobile : undefined}
-                    width={isMobile ? "288px" : "549px"}
+                    className={style.title}
                     text="Поиск и бронирование экскурсий"/>
                 <Text 
                     isCentered
-                    className={isMobile ? style.subtitle_mobile : undefined}
+                    className={style.subtitle}
                     styleText={enumStyleText.PRIMARY_TEXT} 
                     margin="49px 0 0 0" 
                     text="Экскурсии и частные гиды в России и за рубежом"/>
                 <FieldSearched 
                     isMobile={isMobile} 
                     margin={isMobile ? "20px 0 0 0" : "47px 0 0 0"}/>
-                <SortList
-                    cityCount={isMobile ? 4 : 5}
-                    className={style.sort_list}/>
+                {!isSmallMobile &&
+                    <SortList
+                        cityCount={isMobile ? 4 : 5}
+                        className={style.sort_list}/>}
             </div>
         </div>
     )

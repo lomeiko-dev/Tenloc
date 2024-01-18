@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { Footer } from "./footer/Footer"
+
 import { Header } from "./header/Header"
+import { FooterDesktop } from "./footer/FooterDesktop"
 import { FooterMobile } from "./footer/FooterMobile";
 
 interface ILayoutProps {
@@ -14,22 +15,26 @@ export const Layout: React.FC<ILayoutProps> = (props) => {
         className
     } = props
 
-    const [isFooterMobile, setFooter] = useState(false);
+    const [isMobile, setMobile] = useState(false);
 
     const resizeInnerWidthHandle = () => {
-        window.innerWidth < 600 ? setFooter(true) : setFooter(false)
+        window.innerWidth < 600 ? setMobile(true) : setMobile(false)
     }
 
     useEffect(() => {
         resizeInnerWidthHandle()
         window.addEventListener('resize', resizeInnerWidthHandle)
+
+        return () => {
+            window.removeEventListener('resize', resizeInnerWidthHandle)
+        }
     }, [window])
 
     return(
         <div className={className}>
             <Header/>
             {children}
-            {isFooterMobile ? <FooterMobile/> : <Footer/>}
+            {isMobile ? <FooterMobile/> : <FooterDesktop/>}
         </div>
     )
 }
