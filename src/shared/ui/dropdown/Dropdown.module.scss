@@ -47,11 +47,13 @@
         opacity: 1;
         margin-top: 10px;
         left: 0;
+        z-index: 500;
     }
 }
 
 .close{
     .content{
+        z-index: -100;
         opacity: 0;
         top: 20px;
         left: 0;

@@ -8,14 +8,20 @@ import { useInView } from "react-intersection-observer"
 
 import { IExcursionListProps } from "../types"
 
-export const ExcursionListDynamicPagination: React.FC<IExcursionListProps> = (props) => {
+interface IExcursionListDynamicPaginationProps extends IExcursionListProps {
+    totalCount: number
+}
+
+export const ExcursionListDynamicPagination: React.FC<IExcursionListDynamicPaginationProps> = (props) => {
     const {
         isError = true,
         isLoading = true,
         data,
         onLoadData,
         className,
-        valueSkeletons = 10
+        valueSkeletons = 10,
+        isMobile = false,
+        totalCount,
     } = props
 
     const [refObserver, inViewObserver] = useInView()
@@ -36,18 +42,20 @@ export const ExcursionListDynamicPagination: React.FC<IExcursionListProps> = (pr
     return(
         <div className={style.wrapper}>
             <ExcursionList
+                isMobile={isMobile}
                 data={data}
                 className={className}
                 isError={isError}
                 isLoading={isLoading}
                 valueSkeletons={valueSkeletons}/>
             {!isDynamicPagination ?
-                <Button 
-                    onClick={showMoreHandle}
-                    margin="73px 0 0 0" 
-                    styleButton={enumStyleButton.PRIMARY}>
-                        Все экскурсии
-                </Button> :
+                data.length > 0 &&
+                    <Button 
+                        onClick={showMoreHandle}
+                        margin="73px 0 0 0" 
+                        styleButton={enumStyleButton.PRIMARY}>
+                            Все экскурсии
+                    </Button> :
                 <div ref={refObserver}/>}
         </div>
     )

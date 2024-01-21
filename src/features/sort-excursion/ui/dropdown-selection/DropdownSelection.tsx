@@ -46,6 +46,7 @@ export const DropdownSelection: React.FC<IDropdowndSelectionProps> = memo((props
                         <Text color="red" text="Данных нет."/> :
                         data?.map(item => 
                             <div
+                                key={item.id}
                                 onClick={() => clickHandle(item.id)} 
                                 className={style.item}>
                                     {item.city}

@@ -1,0 +1,18 @@
+.btn{
+    background-color: rgba($color: #FFFFFF, $alpha: 10%);
+    transition: .2s;
+}
+
+.btn_active{
+    background-color: rgba($color: red, $alpha: 50%);
+    transition: .2s;
+}
+
+.btn:hover{
+    background-color: rgba($color: red, $alpha: 50%);
+}
+
+.btn_active:hover{
+    background-color: rgba($color: #FFFFFF, $alpha: 10%);
+    transition: .2s;
+}

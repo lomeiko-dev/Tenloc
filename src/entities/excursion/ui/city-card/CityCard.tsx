@@ -1,4 +1,4 @@
-import { CSSProperties, memo, useEffect, useState } from "react"
+import { CSSProperties, memo } from "react"
 import style from "./CityCard.module.scss"
 import classNames from "classnames"
 
@@ -14,9 +14,10 @@ interface ICityVIewProps extends Pick<ICity, "excursionCount" | "title" | "previ
     height?: string,
     margin?: string,
     onClick?: () => void,
+    isMobile?: boolean
 }
 
-export const CityView: React.FC<ICityVIewProps> = memo((props) => {
+export const CityCard: React.FC<ICityVIewProps> = memo((props) => {
     const {
         excursionCount,
         preview,
@@ -26,22 +27,8 @@ export const CityView: React.FC<ICityVIewProps> = memo((props) => {
         margin,
         width,
         onClick,
+        isMobile = false
     } = props
-
-    const [isMobile, setMobile] = useState(false);
-
-    const resizeInnerWidthHandle = () => {
-        window.innerWidth < 600 ? setMobile(true) : setMobile(false)
-    }
-
-    useEffect(() => {
-        resizeInnerWidthHandle()
-        window.addEventListener('resize', resizeInnerWidthHandle)
-
-        return () => {
-            window.removeEventListener('resize', resizeInnerWidthHandle)
-        }
-    }, [window])
 
     const cssStyle: CSSProperties = {
         width: width,

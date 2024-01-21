@@ -7,4 +7,5 @@ export interface IExcursionListProps {
     isLoading?: boolean
     isError?: boolean
     valueSkeletons?: number
+    isMobile?: boolean
 }

@@ -12,12 +12,14 @@ export const ExcursionListPagination: React.FC<IExcursionListProps> = (props) =>
         data,
         onLoadData,
         className,
-        valueSkeletons = 10
+        valueSkeletons = 10,
+        isMobile = false
     } = props
 
     return(
         <div className={style.wrapper}>
             <ExcursionList 
+                isMobile={isMobile}
                 data={data} 
                 className={className} 
                 isLoading={isLoading} 

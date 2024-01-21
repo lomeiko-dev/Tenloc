@@ -2,22 +2,30 @@ export const openDatePicker = (func: (date: string) => void, object: React.RefOb
     const datePicker = document.createElement('input');
     datePicker.type = 'date';
     datePicker.style.pointerEvents = 'none';
-    datePicker.style.display = 'none'
+    datePicker.style.display = 'none';
 
     let isClick = false;
+
+    // обработчик события для при нажатии 
+    // пользователем по месту на экране где нет DatePicker(а)
+    const windowClickHandle = () => {
+        if(isClick){
+            object.current?.removeChild(datePicker)
+            window.removeEventListener('click', windowClickHandle)
+        }
+        else
+            isClick = true
+    }
 
     datePicker.addEventListener('change', () => {
         const selectedDate = new Date(datePicker.value);
         const formattedDate = formatDate(selectedDate)
         func(formattedDate);
         object.current?.removeChild(datePicker);
+        window.removeEventListener('click', windowClickHandle)
     });
 
-    window.addEventListener('click', () => {
-        isClick ?
-            object.current?.removeChild(datePicker) :
-            isClick = true
-    })
+    window.addEventListener('click', windowClickHandle)
 
     object.current?.append(datePicker)
     datePicker.showPicker();

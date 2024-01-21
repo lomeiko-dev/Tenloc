@@ -14,5 +14,5 @@ export type {IExcursionSliceScheme} from "./model/types/slice-scheme"
 
 export {ExcursionCard} from "./ui/excursion-card/ExcursionCard"
 export {ExcursionSkeleton} from "./ui/excursion-skeleton/ExcursionSkeleton"
-export {CityView} from "./ui/city-card/CityCard"
+export {CityCard} from "./ui/city-card/CityCard"
 export {CitySkeleton} from "./ui/city-skeleton/CitySkeleton"

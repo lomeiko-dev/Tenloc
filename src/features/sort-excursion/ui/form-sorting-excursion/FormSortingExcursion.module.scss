@@ -9,13 +9,6 @@
 
 @media (max-width: 600px){
     .form{
-        gap: 0 10px;
-    }
-}
-
-@media (max-width: 350px){
-    .form{
-        flex-direction: column;
         gap: 10px;
     }
 }

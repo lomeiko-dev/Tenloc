@@ -1,11 +1,19 @@
 .card{
-    width: 333px;
-    height: 476px;
+    position: relative;
     border-radius: 20px;
     border: 1px solid #DFDFDF;
-    overflow: hidden;
     opacity: 0;
     transition: .4s;
+}
+
+.image{
+    border-radius: 20px 20px 0 0;
+}
+
+.like_slot{
+    position: absolute;
+    top: 16px;
+    right: 15px;
 }
 
 .card_view{
@@ -21,6 +29,7 @@
     align-items: center;
     border-top: 1px solid #E6E6E6;
     padding-top: 14px;
+    margin-bottom: 8px;
 }
 
 .title{
@@ -31,27 +40,29 @@
 }
 .descr{
     width: 283px;
-    height: 80px;
+    height: 60px;
     text-overflow: ellipsis; 
     overflow: hidden;
 }
 
-@media (max-width: 360px) {
+@media (max-width: 700px) {
     .card{
-        width: 240px;
-        height: 480px;
+        width: 500px;
+    }
+}
+
+@media (max-width: 600px) {
+    .title{
+        font-size: 11px;
+        font-weight: 700;
+        line-height: 15px;
+        width: 138px;
+        height: 44px;
     }
     .content{
-        padding: 5px 5px;
+        padding: 9px;
     }
-
-    .title{
-        width: 230px;
-        height: 60px;
-        font-size: 12px;
-    }
-    .descr{
-        width: 230px;
-        font-size: 10px;
+    .image{
+        height: 97px;
     }
 }

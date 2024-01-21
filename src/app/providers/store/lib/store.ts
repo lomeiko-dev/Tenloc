@@ -1,19 +1,20 @@
-import { configureStore, Reducer, ReducersMapObject } from "@reduxjs/toolkit";
+import { configureStore, ReducersMapObject } from "@reduxjs/toolkit";
 import { IStore } from "./types";
-import { createReducerManager } from "./utils/reducerManager";
 import { sortExcursionApiMiddleware, sortExcursionApiReducer } from "features/sort-excursion";
-import { excursionApiMiddleware, excursionApiReducer, excursionReducer } from "entities/excursion";
+import { excursionApiMiddleware, excursionApiReducer, excursionReducer,  } from "entities/excursion";
+import { likesReducer } from "entities/likes";
+import { cartReducer } from "entities/cart";
 
 const rootReducers: ReducersMapObject<IStore> = {
-    SortExcursionApi: sortExcursionApiReducer,
+    LikesReducer: likesReducer,
+    CartReducer: cartReducer,
     ExcursionApi: excursionApiReducer,
+    SortExcursionApi: sortExcursionApiReducer,
     ExcursionReducer: excursionReducer
 }
 
-export const reducerManager = createReducerManager(rootReducers);
-
 export const store = configureStore({
-    reducer: reducerManager.reduce as Reducer,
+    reducer: rootReducers,
     devTools: true,
     middleware: (getDefaultMiddleware) => 
         getDefaultMiddleware()

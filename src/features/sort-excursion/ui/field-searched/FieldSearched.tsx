@@ -6,12 +6,12 @@ import { FieldSearchedDesktop } from "./desktop/FieldSearchedDecktop";
 import { Modal } from "shared/ui/modal";
 import { ModalMapLazy } from "./modal-map";
 import { Loader } from "shared/ui/loader";
+import { ErrorMessage } from "shared/ui/error-message";
 
 import { useNavigate } from "react-router-dom";
 
 import { ConvertCoordToCity } from "../../model/lib/ConvertCoordToCity";
 import { pathRoutes } from "shared/config/route-path";
-import { ErrorMessage } from "shared/ui/error-message";
 
 interface IFieldSearchedProps {
     isMobile?: boolean,

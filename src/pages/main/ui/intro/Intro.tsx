@@ -37,7 +37,7 @@ export const Intro = memo(() => {
                     margin="49px 0 0 0" 
                     text="Экскурсии и частные гиды в России и за рубежом"/>
                 <FieldSearched 
-                    isMobile={isMobile} 
+                    isMobile={isMobile}
                     margin={isMobile ? "20px 0 0 0" : "47px 0 0 0"}/>
                 {!isSmallMobile &&
                     <SortList

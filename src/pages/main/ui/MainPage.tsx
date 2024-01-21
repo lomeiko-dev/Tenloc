@@ -1,4 +1,5 @@
 import style from "./MainPage.module.scss"
+import { useEffect, useState } from "react";
 
 import { Intro } from "./intro/Intro"
 import { Cities } from "./cities/Cities"; 
@@ -7,6 +8,21 @@ import { FormSortingExcursion } from "features/sort-excursion";
 import { Excursions } from "./excursions/Excursions";
 
 const MainPage = () => {
+    const [isMobile, setMobile] = useState(false)
+
+    const resizeInnerWidthHandle = () => {
+        window.innerWidth < 600 ? setMobile(true) : setMobile(false)
+    }
+
+    useEffect(() => {
+        resizeInnerWidthHandle()
+        window.addEventListener('resize', resizeInnerWidthHandle)
+
+        return () => {
+            window.removeEventListener('resize', resizeInnerWidthHandle)
+        }
+    }, [window])
+
     return(
         <div>
             <Intro/>
@@ -22,14 +38,14 @@ const MainPage = () => {
                     text="Проводим индивидуальные и групповые экскурсии на русском языке"/>
                 <Cities/>
             </div>
-            <div>
+            <div className={style.excursions}>
                 <div className={style.title}>
-                    <Text 
-                        className={style.title_excursion} 
-                        margin="0 54px 0 0" 
+                    <Text
+                        margin="0 54px 0 0"
+                        className={style.title_excursion}
                         styleText={enumStyleText.TERNARY_TITLE} 
                         text="Экскурсии"/>
-                    <FormSortingExcursion/>
+                    <FormSortingExcursion isMobile={isMobile}/>
                 </div>
                 <Excursions/>
             </div>

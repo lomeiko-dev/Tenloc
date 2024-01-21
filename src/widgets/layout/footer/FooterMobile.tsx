@@ -67,7 +67,7 @@ export const FooterMobile = memo(() => {
                     linkWatsapp={linksJson.watsapp}/>
             </GroupLinks>
             <div className={style.download}>
-                <Text margin="20px 0 13px 0" styleText={enumStyleText.QUATERNARY_SUBTITLE} text="Скачайте наше приложение"/>
+                <Text isCentered margin="20px 0 13px 0" styleText={enumStyleText.QUATERNARY_SUBTITLE} text="Скачайте наше приложение"/>
                 <span>
                     <Button onClick={downloadAppStoreHandle} styleButton={enumStyleButton.NONE}>
                         <BUttonAppstoreDownloadIcon/>

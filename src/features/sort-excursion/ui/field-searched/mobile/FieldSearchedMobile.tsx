@@ -25,7 +25,7 @@ export const FieldSearchedMobile: React.FC<IFieldSearchedMobileProps> = (props) 
         onChangeDate,
         onChange,
         value,
-        valueDate
+        valueDate,
     } = props
 
     const blockRef = useRef<HTMLDivElement>(null);

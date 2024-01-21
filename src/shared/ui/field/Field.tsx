@@ -123,18 +123,18 @@ export const Field: React.FC<IFIeldProps> = memo((props) => {
                 {childrenRight}
             </div>
             {showSelection &&
-            <div className={style.selection_wrap}>
-                <div className={style.selection}>
-                    {selection?.map(item => 
-                        <div onClick={() => { 
-                                setValue(item)
-                                getSelection(item)
-                                setOpenSelection(false)
-                            }} className={style.selection_item}>
-                            {item}
-                        </div>)}
-                </div>
-            </div>}
+                <div className={style.selection_wrap}>
+                    <div className={style.selection}>
+                        {selection?.map(item => 
+                            <div key={item} onClick={() => { 
+                                    setValue(item)
+                                    getSelection(item)
+                                    showSelectionHandle()
+                                }} className={style.selection_item}>
+                                {item}
+                            </div>)}
+                    </div>
+                </div>}
         </div>
     )
 })

@@ -4,3 +4,23 @@
     flex-wrap: wrap;
     gap: 30px 35px;
 }
+
+.cart{
+    position: absolute;
+    z-index: 90;
+    top: 50%;
+    right: 17px;
+    transform: translate(0, -50%);
+}
+
+@media (max-width: 740px) {
+    .list{
+        gap: 10px;
+    }
+}
+
+@media (max-width: 600px) {
+    .cart{
+        right: -10px;
+    }
+}

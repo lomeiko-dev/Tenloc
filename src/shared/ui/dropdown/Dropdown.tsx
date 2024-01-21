@@ -1,4 +1,4 @@
-import { CSSProperties, useCallback, useState } from "react"
+import { CSSProperties, useCallback, useEffect, useState } from "react"
 import style from "./Dropdown.module.scss"
 import classNames from "classnames"
 import ArrowBottomIcon from "shared/assets/img/svg-icon/arrow-bottom.svg?react"
@@ -22,8 +22,8 @@ interface IDowndropProps {
     borderRadius?: string,
     width?: string,
     height?: string,
-    fontSize?: string,
-    fontWeight?: string,
+    fontSize?: number,
+    fontWeight?: number,
 }
 
 export const Dropwdown: React.FC<IDowndropProps> = (props) => {
@@ -54,6 +54,14 @@ export const Dropwdown: React.FC<IDowndropProps> = (props) => {
         }, 100)
     }, [open])
 
+    useEffect(() => {
+        window.addEventListener('click', () => setOpen(false))
+
+        return () => {
+            window.removeEventListener('click', () => setOpen(false))
+        }
+    }, [])
+
     const cssStylesWrap: CSSProperties = {
         margin: margin
     }
@@ -63,8 +71,8 @@ export const Dropwdown: React.FC<IDowndropProps> = (props) => {
         backgroundColor: bgColor,
         borderRadius: borderRadius,
         color: color,
-        fontSize: fontSize,
-        fontWeight: fontWeight,
+        fontSize: `${fontSize}px`,
+        fontWeight: `${fontWeight}px`,
         padding: padding,
         width: width,
         height: height,

@@ -11,10 +11,16 @@ import { openDatePicker } from "shared/lib/handlers/openDatePicker"
 
 import CalendarIcon from "shared/assets/img/svg-icon/calendar.svg?react"
 
-export const FormSortingExcursion = memo(() => {
-    const dispatch = useAppDispatch()
+interface IFormSortingExcursionProps {
+    isMobile?: boolean
+}
 
-    const [isMobile, setMobile] = useState(false);
+export const FormSortingExcursion : React.FC<IFormSortingExcursionProps> = memo((props) => {
+    const {
+        isMobile = false
+    } = props
+    
+    const dispatch = useAppDispatch()
     const divRef = useRef<HTMLDivElement>(null);
 
     const [valueCity, setValueCity] = useState<string | undefined>(undefined)
@@ -22,15 +28,6 @@ export const FormSortingExcursion = memo(() => {
 
     const [enter, setEnter] = useState(false)
     const {data, isLoading} = useGetCityByBookingCountQuery(6);
-
-    const resizeInnerWidthHandle = () => {
-        window.innerWidth < 600 ? setMobile(true) : setMobile(false)
-    }
-
-    useEffect(() => {
-        resizeInnerWidthHandle()
-        window.addEventListener('resize', resizeInnerWidthHandle)
-    }, [window])
 
     const dispatchSetQueryString = (city?: string, date?: string) => {
         dispatch(setQueryString(`
@@ -54,24 +51,26 @@ export const FormSortingExcursion = memo(() => {
     return(
         <div ref={divRef} className={style.form}>
             <Field
-                value={valueCity}
+                padding={isMobile ? '5px' : '10px'}
+                value={valueCity || ''}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
                     setValueCity(e.target.value)}
-                placeholder="Выберите город"
+                placeholder={isMobile ? 'Город' : 'Выберите город'}
                 borderRadius={10}
-                width={isMobile ? '160px' : '241px'} height={isMobile ? "35px" : '55px'}
+                width={isMobile ? '120px' : '241px'} height={isMobile ? "35px" : '55px'}
                 selection={!isLoading ? data?.map(item => item.city) : undefined}
                 getSelection={setValueCity}
                 styleField={enumStyleField.SECONDARY_OUTLINE}/>
 
             <Field
-                value={valueDate}
+                padding={isMobile ? '5px' : '10px'}
+                value={valueDate || ''}
                 onKeyDown={searchDateHandle}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
                     setValueDate(e.target.value)}
-                placeholder="Выберите дату"
+                placeholder={isMobile ? 'Дата' : 'Выберите дату'}
                 borderRadius={10}
-                width={isMobile ? '160px' : '241px'} height={isMobile ? "35px" : '55px'}
+                width={isMobile ? '100px' : '241px'} height={isMobile ? "35px" : '55px'}
                 styleField={enumStyleField.SECONDARY_OUTLINE}
                 childrenRight={
                     <CalendarIcon 

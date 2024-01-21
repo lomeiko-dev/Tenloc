@@ -1,0 +1,50 @@
+.form{
+    display: flex;
+    justify-content: space-between;
+    z-index: 1000;
+}
+
+.btn_wrapper{
+    position: relative;
+    width: 46px;
+    height: 46px;
+
+    .btn{
+        position: absolute;
+        top: -15px;
+        left: 0;
+    }
+}
+
+.lock{
+    opacity: .5;
+    pointer-events: none;
+}
+
+.dropdown_content{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px 20px;
+    width: 150px;
+    gap: 10px;
+
+    .content_item{
+        cursor: pointer;
+        text-align: center;
+        border-bottom: 2px solid #ECECEC;
+        transition: .2s;
+        width: 120px;
+    }
+    .content_item:hover{
+        color: #FFD600;
+    }
+}
+
+@media (max-width: 600px) {
+    .form{
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+}

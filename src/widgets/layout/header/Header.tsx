@@ -1,4 +1,5 @@
 import { memo, useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import style from "./Header.module.scss"
 
 import { Navbar } from "../navbar/Navbar";
@@ -11,7 +12,7 @@ import LikeIcon from "shared/assets/img/svg-icon/like.svg?react"
 import BurgerMenuIcon from "shared/assets/img/svg-icon/burger-menu.svg?react"
 
 export const Header = memo(() => {
-    const [isMobile, setMobile] = useState(false);
+    const [isMobile, setMobile] = useState(true);
     const [isSmallMobile, setSmallMobile] = useState(false)
 
     const [openSidebar, setOpenSidebar] = useState(false);
@@ -22,6 +23,7 @@ export const Header = memo(() => {
     }
 
     useEffect(() => {
+        setMobile(false) // прогрузка Sidebar
         resizeInnerWidthHandle()
         window.addEventListener('resize', resizeInnerWidthHandle)
 
@@ -40,9 +42,12 @@ export const Header = memo(() => {
                         margin="0 15px 0 0">
                             <BurgerMenuIcon/>
                     </Button>
-                    <Sidebar 
+                    {createPortal(
+                        <Sidebar 
                         onClose={() => setOpenSidebar(false)} 
-                        isOpen={openSidebar}/>
+                        isOpen={openSidebar}/>,
+                        document.body
+                    )}
                 </>}
             <Logotype/>
 
