@@ -63,7 +63,8 @@ export const Text: React.FC<ITextProps> = memo((props) => {
         border: border,
         margin: margin,
         padding: padding,
-        width: width,
+        maxWidth: width,
+        width: width !== undefined ? '100%' : undefined,
         height: height,
         textAlign: isCentered ? 'center' : undefined
     }

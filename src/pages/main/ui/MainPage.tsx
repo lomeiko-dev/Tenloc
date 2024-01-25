@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import { Intro } from "./intro/Intro"
 import { Cities } from "./cities/Cities"; 
 import { Text, enumStyleText } from "shared/ui/text";
-import { FormSortingExcursion } from "features/sort-excursion";
 import { Excursions } from "./excursions/Excursions";
+import { Reviews } from "./reviews/Reviews";
 
 const MainPage = () => {
     const [isMobile, setMobile] = useState(false)
@@ -38,17 +38,11 @@ const MainPage = () => {
                     text="Проводим индивидуальные и групповые экскурсии на русском языке"/>
                 <Cities/>
             </div>
-            <div className={style.excursions}>
-                <div className={style.title}>
-                    <Text
-                        margin="0 54px 0 0"
-                        className={style.title_excursion}
-                        styleText={enumStyleText.TERNARY_TITLE} 
-                        text="Экскурсии"/>
-                    <FormSortingExcursion isMobile={isMobile}/>
-                </div>
-                <Excursions/>
-            </div>
+            <Excursions 
+                isMobile={isMobile}/>
+                
+            <Reviews 
+                isMobile={isMobile}/>
         </div>
     )
 }

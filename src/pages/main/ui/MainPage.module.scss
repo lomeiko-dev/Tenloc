@@ -2,37 +2,15 @@
     margin-top: 93px;
 }
 
-.excursions{
-    margin-top: 111px
-}
-
 .list{
     display: flex;
     flex-wrap: wrap;
     gap: 30px 35px;
 }
 
-.title{
-    display: flex;
-    margin-bottom: 84px;
-}
-
-@media (max-width: 900px) {
-    .title{
-        flex-direction: column;
-        gap: 20px;
-    }
-}
-
 @media (max-width: 600px) {
     .popular_directions{
         margin-top: 61px;
-    }
-    .excursions{
-        margin-top: 62px;
-    }
-    .title{
-        margin-bottom: 32px;
     }
 }
 
@@ -45,10 +23,5 @@
     .subtitle_cities{
         font-size: 14px;
         width: 240px;
-    }
-    .title_excursion{
-        font-size: 18px;
-        line-height: 20px;
-        width: 200px;
     }
 }

@@ -1,4 +1,4 @@
-import { memo, useCallback, useState } from "react";
+import { memo } from "react";
 import style from "./Slider.module.scss";
 
 import classNames from "classnames";
@@ -14,9 +14,14 @@ export enum enumPositionSliderManagment {
 }
 
 interface ISliderManagmentProps {
-    getValue: (value: number) => void,
+    className?: string,
+    onGetValue?: (index: number) => void,
+    onClickNext?: () => void,
+    onClickPrev?: () => void,
+    indexDotted?: number,
     maxValue: number,
     isShowViewValue?: boolean,
+    isHideButtons?: boolean,
     margin?: string,
     position?: enumPositionSliderManagment,
     isButtonSides?: boolean
@@ -24,55 +29,53 @@ interface ISliderManagmentProps {
 
 export const SliderManagment: React.FC<ISliderManagmentProps> = memo((props) => {
     const {
-        getValue,
+        className,
+        onGetValue,
+        indexDotted = 0,
         maxValue,
         isShowViewValue,
         margin,
         position = enumPositionSliderManagment.NONE,
         isButtonSides = false,
+        onClickNext,
+        isHideButtons,
+        onClickPrev
     } = props
 
-    const [value, setValue] = useState(0);
-
-    const valueHandle = useCallback((count: number) => {
-        let score = count;
-        if(count === maxValue)
-            score = 0;
-        else if(count < 0)
-            score = 0
-
-        setValue(score);
-        getValue(score)
-    }, [maxValue]);
-
     return(
-        <div className={style.wrap}>
+        <div className={classNames(style.wrap, className)}>
             <div style={{margin: margin}} className={classNames(style.content, style[position])}>
                 {isButtonSides ? 
-                    <button 
-                        onClick={() => valueHandle(value-1)} 
-                        className={style.btn}>
-                        <ArrowNextIcon/>
-                    </button> : undefined}
+                    !isHideButtons &&
+                        <button 
+                            onClick={onClickPrev}
+                            className={style.btn}>
+                                <ArrowNextIcon/>
+                        </button> : undefined}
                 {isShowViewValue &&
                     <div className={style.dot_wrap}>
                         {Array.from({length: maxValue}, (_, index) => 
                         <span 
-                            onClick={() => valueHandle(index)} 
-                            className={classNames(style.dot, index === value ? style.dot_select : undefined)}>
+                            key={index}
+                            onClick={() => onGetValue && onGetValue(index)} 
+                            className={classNames(style.dot, index === indexDotted ? style.dot_select : undefined)}>
                         </span>)}
                     </div>}
-                {isButtonSides ? undefined : 
-                    <button 
-                        onClick={() => valueHandle(value-1)} 
-                        className={style.btn}>
-                        <ArrowNextIcon/>
-                    </button>}
-                <button 
-                    onClick={() => valueHandle(value+1)} 
-                    className={style.btn}>
-                    <ArrowPrevIcon/>
-                </button>
+                {!isHideButtons &&
+                    <>
+                        {isButtonSides ? 
+                            undefined : 
+                            <button 
+                                onClick={onClickPrev}
+                                className={style.btn}>
+                                    <ArrowNextIcon/>
+                            </button>}
+                        <button 
+                            onClick={onClickNext}
+                            className={style.btn}>
+                            <ArrowPrevIcon/>
+                        </button>
+                    </>}
             </div>
         </div>
     )

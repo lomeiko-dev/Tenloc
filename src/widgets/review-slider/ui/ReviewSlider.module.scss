@@ -1,0 +1,32 @@
+.wrapper{
+    width: fit-content;
+}
+
+.wrapper_mobile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.managment{
+    margin-top: 54px;
+    display: flex;
+    justify-content: right;
+    height: 50px;
+}
+
+.managment_mobile{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    height: 30px;
+    margin-top: 24px;
+    margin-bottom: 28px;
+}
+
+.loader_wrap{
+    display: flex;
+    align-items: center;
+    height: 100%;
+}

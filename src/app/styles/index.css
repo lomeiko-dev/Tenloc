@@ -13,7 +13,7 @@
     padding: 0 10px;
     height: 100vh;
 
-    background-color: var(--bg-color);
+    background: linear-gradient(180deg, #FFFFFF 0%, rgba(217, 217, 217, 0) 100%);
 }
 
 .app::-webkit-scrollbar {

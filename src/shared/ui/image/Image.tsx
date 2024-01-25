@@ -27,9 +27,9 @@ export const Image: React.FC<IImageProps> = memo((props) => {
         bgColor,
         borderRadius,
         className,
-        height = "fit-content",
+        height,
         margin,
-        width = 'fit-content',
+        width,
         ...otherProps
     } = props
 

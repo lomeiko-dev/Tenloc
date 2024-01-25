@@ -5,7 +5,9 @@ export {
         useGetCityByBookingCountQuery, 
         useGetCityByNameQuery, 
         useLazyGetCityByBookingCountQuery, 
-        useLazyGetCityByNameQuery} from "./model/api/sort-excursion-api"
+        useLazyGetCityByNameQuery,
+        useGetExcursionByNameQuery,
+        useLazyGetExcursionByNameQuery} from "./model/api/sort-excursion-api"
 
 export {DropdownSelection} from "./ui/dropdown-selection/DropdownSelection"
 export {FieldSearched} from "./ui/field-searched/FieldSearched"

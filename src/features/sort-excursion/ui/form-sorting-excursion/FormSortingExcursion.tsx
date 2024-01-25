@@ -4,23 +4,23 @@ import { Field, enumStyleField } from "shared/ui/field"
 
 import { useGetCityByBookingCountQuery } from "../../model/api/sort-excursion-api"
 import { memo, useCallback, useEffect, useRef, useState } from "react"
-import { useAppDispatch } from "shared/lib/hooks/useAppDispatch"
 
-import { setQueryString } from "entities/excursion"
 import { openDatePicker } from "shared/lib/handlers/openDatePicker"
-
 import CalendarIcon from "shared/assets/img/svg-icon/calendar.svg?react"
 
 interface IFormSortingExcursionProps {
-    isMobile?: boolean
+    isMobile?: boolean,
+    onGetQueryString: (query: string) => void
+    onResetData: () => void
 }
 
 export const FormSortingExcursion : React.FC<IFormSortingExcursionProps> = memo((props) => {
     const {
-        isMobile = false
+        isMobile = false,
+        onGetQueryString,
+        onResetData
     } = props
     
-    const dispatch = useAppDispatch()
     const divRef = useRef<HTMLDivElement>(null);
 
     const [valueCity, setValueCity] = useState<string | undefined>(undefined)
@@ -29,10 +29,11 @@ export const FormSortingExcursion : React.FC<IFormSortingExcursionProps> = memo(
     const [enter, setEnter] = useState(false)
     const {data, isLoading} = useGetCityByBookingCountQuery(6);
 
-    const dispatchSetQueryString = (city?: string, date?: string) => {
-        dispatch(setQueryString(`
+    const setQueryString = (city?: string, date?: string) => {
+        onResetData()
+        onGetQueryString(`
             ${city ? `&city_like=${city}` : ""}
-            ${date ? `&date_like=${date}` : ""}`))
+            ${date ? `&date_like=${date}` : ""}`)
     }
 
     const searchDateHandle = useCallback((event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -42,8 +43,9 @@ export const FormSortingExcursion : React.FC<IFormSortingExcursionProps> = memo(
     }, [valueDate])
 
     useEffect(() => {
+        if(enter || valueCity !== undefined)
             setTimeout(() => {
-                dispatchSetQueryString(valueCity, valueDate)
+                setQueryString(valueCity, valueDate)
             }, 300);
             setEnter(false);
     }, [valueCity, enter])

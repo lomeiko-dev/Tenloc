@@ -105,6 +105,8 @@ export const Field: React.FC<IFIeldProps> = memo((props) => {
                 {childrenLeft}
                 {isMultiline ? 
                     <textarea 
+                        {...otherProps}
+                        placeholder={placeholder} 
                         value={valueField}
                         style={cssStyleInput}
                         className={classNames(classNameInput, style.textarea)}
