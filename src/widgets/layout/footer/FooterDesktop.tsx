@@ -1,36 +1,34 @@
-import { memo } from "react";
-import style from "./Footer.module.scss"
-import { pathRoutes } from "shared/config/route-path"
+import { memo } from 'react'
+import style from './Footer.module.scss'
+import { pathRoutes } from 'shared/config/route-path'
 
-import { Image } from "shared/ui/image"
-import { Text, enumStyleText } from "shared/ui/text";
-import { Link } from "shared/ui/link"
-import { GroupLinks } from "./ui/group-links/GroupLinks";
-import { ButtonSocial } from "./ui/button-socials/ButtonSocial";
-import { Logotype } from "shared/ui/logotype";
+import { Image } from 'shared/ui/image'
+import { Text, enumStyleText } from 'shared/ui/text'
+import { Link } from 'shared/ui/link'
+import { GroupLinks } from './ui/group-links/GroupLinks'
+import { ButtonSocial } from './ui/button-socials/ButtonSocial'
+import { Logotype } from 'shared/ui/logotype'
 
-import feedbackJson from "shared/assets/json/feedback.json";
-import linksJson from "shared/assets/json/links.json"
-import locationJson from "shared/assets/json/location.json"
-
-import PhoneIcon from "shared/assets/img/svg-icon/phone.svg?react"
-import EmailIcon from "shared/assets/img/svg-icon/email.svg?react"
-import VectorIcon from "shared/assets/img/svg-icon/Vector.svg?react"
-
-import bankLogotypes from "shared/assets/img/other/bank-logotypes.png"
-import developmentLogo from "shared/assets/img/logo/logo-development.png"
+import feedbackJson from 'shared/assets/json/feedback.json'
+import linksJson from 'shared/assets/json/links.json'
+import locationJson from 'shared/assets/json/location.json'
+import PhoneIcon from 'shared/assets/img/svg-icon/phone.svg?react'
+import EmailIcon from 'shared/assets/img/svg-icon/email.svg?react'
+import VectorIcon from 'shared/assets/img/svg-icon/Vector.svg?react'
+import bankLogotypes from 'shared/assets/img/other/bank-logotypes.png'
+import developmentLogo from 'shared/assets/img/logo/logo-development.png'
 
 export const FooterDesktop = memo(() => {
-    return(
+  return (
         <footer className={style.footer}>
             <div className={style.links}>
                 <div className={style.namespace}>
                     <Logotype/>
                     <Text margin="70px 0 0 0" styleText={enumStyleText.SECONDARY_TEXT} text="Мы в соц сетях"/>
-                    <ButtonSocial 
-                        linkInstagram={linksJson.instagram}  
-                        linkTelegram={linksJson.telegram} 
-                        linkVk={linksJson.vk} 
+                    <ButtonSocial
+                        linkInstagram={linksJson.instagram}
+                        linkTelegram={linksJson.telegram}
+                        linkVk={linksJson.vk}
                         linkWatsapp={linksJson.watsapp}/>
                 </div>
                 <GroupLinks className={style.group_links} title="Сервис">
@@ -76,5 +74,5 @@ export const FooterDesktop = memo(() => {
                 </div>
             </div>
         </footer>
-    )
+  )
 })

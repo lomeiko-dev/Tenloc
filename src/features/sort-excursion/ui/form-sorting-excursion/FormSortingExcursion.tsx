@@ -1,87 +1,53 @@
-import style from "./FormSortingExcursion.module.scss"
+import { CSSProperties, memo } from "react";
+import { FormPrimarySortingLazy } from "./form-primary-sorting-excursion";
+import { FormSecondarySortingLazy } from "./form-secondary-sorting-excursion";
 
-import { Field, enumStyleField } from "shared/ui/field"
-
-import { useGetCityByBookingCountQuery } from "../../model/api/sort-excursion-api"
-import { memo, useCallback, useEffect, useRef, useState } from "react"
-
-import { openDatePicker } from "shared/lib/handlers/openDatePicker"
-import CalendarIcon from "shared/assets/img/svg-icon/calendar.svg?react"
-
-interface IFormSortingExcursionProps {
-    isMobile?: boolean,
-    onGetQueryString: (query: string) => void
-    onResetData: () => void
+export enum enumTypeFormSortingExcursion {
+    PRIMARY = 'primary',
+    SECONDARY = 'secondary'
 }
 
-export const FormSortingExcursion : React.FC<IFormSortingExcursionProps> = memo((props) => {
+interface IFormSortingExcursionProps {
+    typeFormSortingExcursion?: enumTypeFormSortingExcursion,
+    className?: string,
+    width?: string,
+    height?: string,
+    margin?: string,
+    isMobile?: boolean,
+    isMiddleMobile?: boolean,
+    onGetQueryString: (query: string) => void,
+}
+
+export const FormSortingExcursion: React.FC<IFormSortingExcursionProps> = memo((props) => {
     const {
-        isMobile = false,
+        className,
+        height,
+        isMiddleMobile,
+        isMobile,
+        margin,
+        typeFormSortingExcursion,
+        width,
         onGetQueryString,
-        onResetData
     } = props
-    
-    const divRef = useRef<HTMLDivElement>(null);
 
-    const [valueCity, setValueCity] = useState<string | undefined>(undefined)
-    const [valueDate, setValueDate] = useState<string | undefined>(undefined)
-
-    const [enter, setEnter] = useState(false)
-    const {data, isLoading} = useGetCityByBookingCountQuery(6);
-
-    const setQueryString = (city?: string, date?: string) => {
-        onResetData()
-        onGetQueryString(`
-            ${city ? `&city_like=${city}` : ""}
-            ${date ? `&date_like=${date}` : ""}`)
+    const cssStyle: CSSProperties = {
+        height,
+        maxWidth: width,
+        width: width !== undefined ? width : undefined,
+        margin
     }
 
-    const searchDateHandle = useCallback((event: React.KeyboardEvent<HTMLInputElement>) => {
-        if(event.key === 'Enter'){
-            setEnter(true)
-        }
-    }, [valueDate])
-
-    useEffect(() => {
-        if(enter || valueCity !== undefined)
-            setTimeout(() => {
-                setQueryString(valueCity, valueDate)
-            }, 300);
-            setEnter(false);
-    }, [valueCity, enter])
-
     return(
-        <div ref={divRef} className={style.form}>
-            <Field
-                padding={isMobile ? '5px' : '10px'}
-                value={valueCity || ''}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
-                    setValueCity(e.target.value)}
-                placeholder={isMobile ? 'Город' : 'Выберите город'}
-                borderRadius={10}
-                width={isMobile ? '120px' : '241px'} height={isMobile ? "35px" : '55px'}
-                selection={!isLoading ? data?.map(item => item.city) : undefined}
-                getSelection={setValueCity}
-                styleField={enumStyleField.SECONDARY_OUTLINE}/>
+        <div style={cssStyle} className={className}>
+            {typeFormSortingExcursion === enumTypeFormSortingExcursion.PRIMARY &&
+                <FormPrimarySortingLazy
+                    isMobile={isMobile}
+                    onGetQueryString={onGetQueryString}/>}
 
-            <Field
-                padding={isMobile ? '5px' : '10px'}
-                value={valueDate || ''}
-                onKeyDown={searchDateHandle}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
-                    setValueDate(e.target.value)}
-                placeholder={isMobile ? 'Дата' : 'Выберите дату'}
-                borderRadius={10}
-                width={isMobile ? '100px' : '241px'} height={isMobile ? "35px" : '55px'}
-                styleField={enumStyleField.SECONDARY_OUTLINE}
-                childrenRight={
-                    <CalendarIcon 
-                        className={style.calendar} 
-                        onClick={() => openDatePicker((date) => {
-                            setValueDate(date)
-                            setEnter(true)
-                        }, divRef)}/>}
-            />
+            {typeFormSortingExcursion === enumTypeFormSortingExcursion.SECONDARY &&
+                <FormSecondarySortingLazy 
+                    onGetQueryString={onGetQueryString}
+                    isMiddleMobile={isMiddleMobile}/>}
         </div>
     )
 })

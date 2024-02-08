@@ -7,16 +7,16 @@
 }
 
 .primary_button{
-    background-color: #FFD600;
+    background-color: var(--primary-color);
 }
 .primary_button:hover{
-    background-color: #ecc91a;
+    background-color: var(--primary-color);
 }
 .primary_button_outline{
-    border: 1px solid #FFD600;
+    border: 1px solid var(--primary-color);
 }
 .primary_button_outline:hover{
-    background-color: #FFD600;
+    background-color: var(--primary-color);
     opacity: .5;
 }
 

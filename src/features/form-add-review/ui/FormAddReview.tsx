@@ -1,126 +1,131 @@
-import React, { memo, useState } from "react"
-import { useAddNewReviewMutation } from ".."
-import style from "./FormAddReview.module.scss"
-import classNames from "classnames"
+import React, { CSSProperties, memo, useCallback, useEffect, useState } from 'react'
+import style from './FormAddReview.module.scss'
+import classNames from 'classnames'
 
-import { Field, enumStyleField } from "shared/ui/field"
-import { Button, enumStyleButton } from "shared/ui/button"
-import { ExcursionItem, IExcursion } from "entities/excursion"
-import { ErrorMessage } from "shared/ui/error-message"
-import { ScoreWriter } from "shared/ui/score-writer"
-import { Text } from "shared/ui/text"
-import { Loader } from "shared/ui/loader"
+import { Field, enumStyleField } from 'shared/ui/field'
+import { Button, enumStyleButton } from 'shared/ui/button'
+import { ExcursionItem, type IExcursion } from 'entities/excursion'
+import { ScoreWriter } from 'shared/ui/score-writer'
+import { Text } from 'shared/ui/text'
+import { Loader } from 'shared/ui/loader'
+
+import { useAddNewReviewMutation } from '..'
 
 interface IFormAddReviewProps {
-    onCloseModal?: () => void,
-    valueSearch: string,
-    onChangeValueSearch: (text: string) => void,
-    excursions: IExcursion[],
-    isError?: boolean,
-    isLoading?: boolean,
+  onCloseModal?: () => void
+  valueSearch: string
+  onChangeValueSearch: (text: string) => void
+  excursions: IExcursion[]
+  isErrorExursion?: boolean
+  isLoadingExcursion?: boolean,
+  width?: string,
+  height?: string,
+  className?: string,
+  margin?: string
 }
 
 const FormAddReview: React.FC<IFormAddReviewProps> = memo((props) => {
-    const {
-        onCloseModal,
-        excursions,
-        onChangeValueSearch,
-        valueSearch,
-        isError = false,
-        isLoading = false
-    } = props
+  const {
+    onCloseModal,
+    excursions,
+    onChangeValueSearch,
+    valueSearch,
+    isErrorExursion = false,
+    isLoadingExcursion = false,
+    className,
+    height,
+    margin,
+    width
+  } = props
 
-    const [message, setMessage] = useState('')
-    const [selectId, setId] = useState('');
-    const [addNewReview, secondaryDataReview] = useAddNewReviewMutation()
+  const [message, setMessage] = useState('')
+  const [score, setScore] = useState(1)
+  const [selectId, setId] = useState('')
+  const [error, setError] = useState<string | undefined>(undefined)
+  const [addNewReview, secondaryDataReview] = useAddNewReviewMutation()
 
-    const [isThisError, setError] = useState(secondaryDataReview.isError)
-    const [errorMessage, setErrorMessage] = useState('')
+  useEffect(() => {
+    onChangeValueSearch('')
+  }, [])
 
-    const sendReviewHandle = async () => {
-        if(message.length < 10){
-            setErrorMessage('Отзыв не может быть отправлен в связи с малым количеством символов')
-            setError(true)
-            return
-        }
-
-        if(selectId === ''){
-            setErrorMessage('Отзыв не может быть отправлен в связи с не выбранной экскурсией')
-            setError(true)
-            return
-        }
-
-        await addNewReview({
-            message: message, 
-            excursionId: selectId, 
-            score: 4})
-
-        onCloseModal && onCloseModal();
+  const sendReviewHandle = useCallback(async () => {
+    if (message.length < 10) {
+      setError('Сообщение не может быть меньше 10 символов')
+      return
     }
 
-    if(isThisError)
-        return
-            <ErrorMessage 
-                onDeleteMessage={() => {
-                    setError(false)
-                    setErrorMessage('')
-                }} 
-                message={errorMessage === '' ? 
-                    "Возникла ошибка при отправки отзыва. Попробуйте позже." : 
-                    errorMessage}/>
+    if (selectId === '') {
+      setError('Не вырбана экскурсия')
+      return
+    }
 
-    return(
-        <div className={style.form}>
-            <Field 
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                    onChangeValueSearch(e.target.value)}
+    await addNewReview({
+      message,
+      excursionId: selectId,
+      score
+    })
+
+    onCloseModal && onCloseModal()
+  }, [selectId, message, score])
+
+  const cssStyles: CSSProperties = {
+    margin,
+    height,
+    maxWidth: width,
+    width: width !== undefined ? width : undefined,
+  }
+
+  return (
+        <div style={cssStyles} className={className}>
+            <Field
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => { onChangeValueSearch(e.target.value) }}
                 value={valueSearch}
                 borderRadius={10}
-                height="50px"
-                styleField={enumStyleField.SECONDARY} 
+                width='100%' height="50px"
+                styleField={enumStyleField.SECONDARY}
                 placeholder="Найдите экскурсию"/>
+
+            {error &&
+                <Text margin="10px 0 0 0" color='red' text={error}/>}
+
             <div className={style.excursions}>
-                {isError &&
-                    <Text text="Экскурсий не найдено."/>}
-                {isLoading ?
-                    <Loader isCenter/> :
-                    excursions.map(item =>
-                        <div key={item.id} onClick={() => setId(item.id)}>
-                            <ExcursionItem 
-                                className={classNames(
-                                    style.excursion_item, 
-                                    item.id === selectId ? style.excursion_item_select : undefined)}
-                                description={item.description} 
-                                image={item.imagePreview}
-                                name={item.name}
-                                price={item.priceMiddle}/>
-                        </div>
-                    )}
+                {isErrorExursion &&
+                    <Text text="Ошибка Сервера. Данных нет."/>}
+                {isLoadingExcursion
+                  ? <Loader isCenter/>
+                  : excursions.map(item =>
+                        <ExcursionItem
+                            {...item}
+                            onClick={() => { setId(item.id) }}
+                            key={item.id}
+                            className={classNames(
+                              style.excursion_item,
+                              item.id === selectId ? style.excursion_item_select : undefined)}/>
+                  )}
             </div>
             <div className={style.score_managment}>
                 <Text text="Оценка: "/>
-                <ScoreWriter width="100px" onGetScore={() => null}/>
+                <ScoreWriter width="100px" onGetScore={setScore}/>
             </div>
             <Field
-                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => 
-                    setMessage(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => { setMessage(e.target.value) }}
                 value={message}
                 borderRadius={10}
-                height="100px"
+                height="100px" width='100%'
                 styleField={enumStyleField.SECONDARY}
-                placeholder="Отзыв" 
+                placeholder="Отзыв"
                 isMultiline/>
             <div className={style.submit_wrapper}>
-                <Button 
+                <Button
                     onClick={sendReviewHandle}
-                    margin="10px 0 0 0" 
-                    className={style.submit} 
+                    margin="10px 0 0 0"
+                    className={style.submit}
                     styleButton={enumStyleButton.PRIMARY}>
                         {secondaryDataReview.isLoading ? 'Загрузка...' : 'Отправить отзыв'}
                 </Button>
-            </div> 
+            </div>
         </div>
-    )
+  )
 })
 
 export default FormAddReview

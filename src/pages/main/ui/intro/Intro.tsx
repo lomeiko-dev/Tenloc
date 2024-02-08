@@ -1,49 +1,48 @@
-import style from "./Intro.module.scss"
-import { memo, useEffect, useState } from "react"
+import { Suspense, memo } from 'react'
+import style from './Intro.module.scss'
 
-import { Text, enumStyleText } from "shared/ui/text"
-import { FieldSearched, SortList } from "features/sort-excursion"
+import { Text, enumStyleText } from 'shared/ui/text'
+import { FieldSearched } from 'features/sort-excursion'
+import { CityListLazy } from './city-list'
+import { Loader } from 'shared/ui/loader'
 
-export const Intro = memo(() => {
-    const [isMobile, setMobile] = useState(false)
-    const [isSmallMobile, setSmallMobile] = useState(false)
+interface IIntroProps {
+  isMobile?: boolean
+  isSmallMobile?: boolean
+}
 
-    const resizeInnerWidthHandle = () => {
-        window.innerWidth < 600 ? setMobile(true) : setMobile(false)
-        window.innerWidth < 340 ? setSmallMobile(true) : setSmallMobile(false)
-    }
+export const Intro: React.FC<IIntroProps> = memo((props) => {
+  const {
+    isMobile = undefined,
+    isSmallMobile
+  } = props
+  
+  if (isSmallMobile === undefined || isMobile === undefined) { return null }
 
-    useEffect(() => {
-        resizeInnerWidthHandle()
-        window.addEventListener('resize', resizeInnerWidthHandle)
-
-        return () => {
-            window.removeEventListener('resize', resizeInnerWidthHandle)
-        }
-    }, [window])
-
-    return(
+  return (
         <div className={style.intro}>
             <div className={style.container}>
-                <Text 
-                    isCentered 
-                    styleText={enumStyleText.PRIMARY_TITLE} 
+                <Text
+                    isCentered
+                    styleText={enumStyleText.PRIMARY_TITLE}
                     className={style.title}
                     text="Поиск и бронирование экскурсий"/>
-                <Text 
+                <Text
                     isCentered
                     className={style.subtitle}
-                    styleText={enumStyleText.PRIMARY_TEXT} 
-                    margin="49px 0 0 0" 
+                    styleText={enumStyleText.PRIMARY_TEXT}
+                    margin="49px 0 0 0"
                     text="Экскурсии и частные гиды в России и за рубежом"/>
-                <FieldSearched 
+                <FieldSearched
+                    className={style.field}
                     isMobile={isMobile}
-                    margin={isMobile ? "20px 0 0 0" : "47px 0 0 0"}/>
+                    margin={isMobile ? '20px 0 0 0' : '47px 0 0 0'}/>
+
                 {!isSmallMobile &&
-                    <SortList
-                        cityCount={isMobile ? 4 : 5}
-                        className={style.sort_list}/>}
+                    <Suspense fallback={<Loader isCenter/>}>
+                        <CityListLazy isMobile={isMobile}/>
+                    </Suspense>}
             </div>
         </div>
-    )
+  )
 })

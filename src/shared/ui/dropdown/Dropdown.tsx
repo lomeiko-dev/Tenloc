@@ -1,103 +1,106 @@
-import { CSSProperties, useCallback, useEffect, useState } from "react"
-import style from "./Dropdown.module.scss"
-import classNames from "classnames"
-import ArrowBottomIcon from "shared/assets/img/svg-icon/arrow-bottom.svg?react"
+import { type CSSProperties, useCallback, useEffect, useState } from 'react'
+import style from './Dropdown.module.scss'
+import classNames from 'classnames'
+import ArrowBottomIcon from 'shared/assets/img/svg-icon/arrow-bottom.svg?react'
 
 export enum enumStyleDropdown {
-    PRIMARY = "primary",
-    SECONDARY = "secondary",
-    NONE = 'none',
+  PRIMARY = 'primary',
+  SECONDARY = 'secondary',
+  NONE = 'none',
 }
 
 interface IDowndropProps {
-    children: React.ReactNode,
-    className?: string,
-    content: React.ReactNode,
-    styleDropdown?: enumStyleDropdown,
-    margin?: string,
-    padding?: string,
-    bgColor?: string,
-    color?: string,
-    border?: string,
-    borderRadius?: string,
-    width?: string,
-    height?: string,
-    fontSize?: number,
-    fontWeight?: number,
+  children: React.ReactNode
+  className?: string
+  classNameContent?: string
+  content: React.ReactNode
+  styleDropdown?: enumStyleDropdown
+  margin?: string
+  padding?: string
+  bgColor?: string
+  color?: string
+  border?: string
+  borderRadius?: string
+  width?: string
+  height?: string
+  fontSize?: number
+  fontWeight?: number
 }
 
 export const Dropwdown: React.FC<IDowndropProps> = (props) => {
-    const {
-        children,
-        className,
-        content,
-        styleDropdown = enumStyleDropdown.NONE,
-        bgColor,
-        border,
-        borderRadius,
-        color,
-        fontSize,
-        fontWeight,
-        height,
-        margin,
-        padding,
-        width
-    } = props
+  const {
+    children,
+    className,
+    classNameContent,
+    content,
+    styleDropdown = enumStyleDropdown.NONE,
+    bgColor,
+    border,
+    borderRadius,
+    color,
+    fontSize,
+    fontWeight,
+    height,
+    margin,
+    padding,
+    width
+  } = props
 
-    const [open, setOpen] = useState(false)
-    const [show, setShow] = useState(false)
+  const [open, setOpen] = useState(false)
+  const [show, setShow] = useState(false)
 
-    const clickHandle = useCallback(() => {
-        open ? setOpen(false) : setShow(true)
-        setTimeout(() => {
-            open ? setShow(false) : setOpen(true)
-        }, 100)
-    }, [open])
+  const clickHandle = useCallback(() => {
+    open ? setOpen(false) : setShow(true)
+    setTimeout(() => {
+      open ? setShow(false) : setOpen(true)
+    }, 100)
+  }, [open])
 
-    useEffect(() => {
-        window.addEventListener('click', () => setOpen(false))
+  useEffect(() => {
+    window.addEventListener('click', () => { setOpen(false) })
 
-        return () => {
-            window.removeEventListener('click', () => setOpen(false))
-        }
-    }, [])
-
-    const cssStylesWrap: CSSProperties = {
-        margin: margin
+    return () => {
+      window.removeEventListener('click', () => { setOpen(false) })
     }
+  }, [])
 
-    const cssStylesDropdown: CSSProperties = {
-        border: border,
-        backgroundColor: bgColor,
-        borderRadius: borderRadius,
-        color: color,
-        fontSize: `${fontSize}px`,
-        fontWeight: `${fontWeight}px`,
-        padding: padding,
-        width: width,
-        height: height,
-    }
+  const cssStylesWrap: CSSProperties = {
+    margin
+  }
 
-    const mods = {
-        [style.open]: open,
-        [style.close]: !open
-    }
+  const cssStylesDropdown: CSSProperties = {
+    border,
+    backgroundColor: bgColor,
+    borderRadius,
+    color,
+    fontSize: `${fontSize}px`,
+    fontWeight: `${fontWeight}px`,
+    padding,
+    maxWidth: width,
+    width: width !== undefined ? width : undefined,
+    height
+  }
 
-    return(
-        <div 
-            style={cssStylesWrap} 
+  const mods = {
+    [style.open]: open,
+    [style.close]: !open
+  }
+
+  return (
+        <div
+            style={cssStylesWrap}
             className={classNames(style.wrap, mods, className)}>
-            <button 
-                style={cssStylesDropdown}
-                onClick={clickHandle} 
-                className={classNames(style.dropdown, style[styleDropdown])}>
-                {children}
-                <ArrowBottomIcon className={style.arrow}/>
-            </button>
-            {show && 
-                <div className={classNames(style.content)}>
-                    {content}
-                </div>}
+                <button
+                    style={cssStylesDropdown}
+                    onClick={clickHandle}
+                    className={classNames(style.dropdown, style[styleDropdown])}>
+                    {children}
+                        <ArrowBottomIcon className={style.arrow}/>
+                </button>
+                {show &&
+                    <div className={classNames(style.content, classNameContent)}>
+                        {content}
+                    </div>}
         </div>
-    )
+  )
 }

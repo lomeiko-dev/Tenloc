@@ -1,32 +1,32 @@
-import { memo, useCallback, useState } from "react";
-import style from "./Checkbox.module.scss"
-import classNames from "classnames";
+import { memo, useCallback, useState } from 'react'
+import style from './Checkbox.module.scss'
+import classNames from 'classnames'
 
 interface ICheckboxProps {
-    children?: React.ReactNode,
-    onChecked: (value: boolean) => void,
-    className?: string,
-    margin?: string
+  children?: React.ReactNode
+  onChecked: (value: boolean) => void
+  className?: string
+  margin?: string
 }
 
 export const Checkbox: React.FC<ICheckboxProps> = memo((props) => {
-    const {
-        onChecked,
-        children,
-        className,
-        margin
-    } = props
+  const {
+    onChecked,
+    children,
+    className,
+    margin
+  } = props
 
-    const [isChecked, setChecked] = useState(false);
+  const [isChecked, setChecked] = useState(false)
 
-    const handleCheckboxChange = useCallback(() => {
-        setChecked(!isChecked);
-        onChecked(isChecked);
-    }, [isChecked]);
+  const handleCheckboxChange = useCallback(() => {
+    setChecked(!isChecked)
+    onChecked(isChecked)
+  }, [isChecked])
 
-    return (
-        <label 
-          style={{margin: margin}} 
+  return (
+        <label
+          style={{ margin }}
           className={classNames(style.custom_checkbox, className)}>
           <input
             type="checkbox"
@@ -36,5 +36,5 @@ export const Checkbox: React.FC<ICheckboxProps> = memo((props) => {
           <span className={style.checkmark}/>
           {children}
         </label>
-      );
+  )
 })

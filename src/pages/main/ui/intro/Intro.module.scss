@@ -1,4 +1,7 @@
 .intro{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: relative;
     background-image: url('shared/assets/img/other/intro.png');
     background-size: cover;
@@ -8,37 +11,47 @@
 }
 
 .container{
-    padding-top: 123px;
     display: flex;
-    flex-direction: column;
     position: absolute;
-    left: 50%;
-    transform: translate(-50%, 0);
+    flex-direction: column;
     align-items: center;
+    padding-top: 123px;
     height: 100%;
+    width: 100%;
+    padding: 123px 10px 0 10px;
+    text-align: center;
+}
+
+.field{
+    width: 100%;
+    max-width: 628px;
 }
 
 .sort_list{
-    justify-content: center;
+    display: flex;
     position: absolute;
+    flex-wrap: wrap;
+    justify-content: center;
     bottom: 61px;
-    width: 800px;
+    width: 100%;
+    max-width: 800px;
+    gap: 15px;
+
+    .btn{
+        background-color: rgba($color: #252525, $alpha: 15%);
+        transition: .2s;
+    }
+    .btn:hover{
+        background-color: rgba($color: #000000, $alpha: 65%);
+    }
 }
 
 .title{
-    width: 550px;
-}
-
-@media (max-width: 800px) {
-    .sort_list{
-        width: 500px;
-    }
+    max-width: 549px;
+    width: 100%;
 }
 
 @media (max-width: 600px) {
-    .sort_list{
-        width: 400px;
-    }
     .container{
         padding-top: 44px;
     }
@@ -47,18 +60,13 @@
 @media (max-width: 600px) {
     .title{
         font-size: 22px;
-        width: 300px;
+        max-width: 300px;
+        height: 66px;
+        line-height: 32px;
     }
     .subtitle{
         font-size: 14px;
         font-weight: 400;
-        width: 265px;
-    }
-}
-
-@media (max-width: 420px) {
-    .sort_list{
-        width: 310px;
     }
 }
 
@@ -66,11 +74,9 @@
     .title{
         font-size: 15px;
         line-height: 20px;
-        width: 200px;
     }
     .subtitle{
         font-size: 13px;
         font-weight: 300;
-        width: 150px;
     }
 }

@@ -1,1 +1,1 @@
-export {Field, enumStyleField} from "./Field"
+export { Field, enumStyleField } from './Field'

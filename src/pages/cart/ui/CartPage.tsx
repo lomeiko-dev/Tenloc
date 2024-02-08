@@ -1,9 +1,9 @@
 const CartPage = () => {
-    return(
+  return (
         <div>
             Cart Page
         </div>
-    )
+  )
 }
 
 export default CartPage

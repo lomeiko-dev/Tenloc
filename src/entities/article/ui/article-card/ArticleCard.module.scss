@@ -1,0 +1,16 @@
+.card{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.date_block{
+    .icon{
+        margin-bottom: 4px;
+    }
+    display: flex;
+    align-items: center;
+    margin-top: 23px;
+    gap: 9px;
+}

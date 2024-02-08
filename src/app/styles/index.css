@@ -20,10 +20,9 @@
     width: 10px;
 }
 .app::-webkit-scrollbar-thumb {
-    background-color: #FFD600;
+    background-color: var(--primary-color);
     border-radius: 20px;
 }
-
 
 @media (max-width: 600px) {
     .app::-webkit-scrollbar-thumb {

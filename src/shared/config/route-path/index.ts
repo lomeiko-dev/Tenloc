@@ -1,2 +1,2 @@
-export {pathRoutes} from "./path-routes"
-export {enumPath} from "./type"
+export { pathRoutes } from './path-routes'
+export { enumPath } from './type'

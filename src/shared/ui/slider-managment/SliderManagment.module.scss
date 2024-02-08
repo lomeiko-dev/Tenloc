@@ -1,0 +1,40 @@
+.wrap{
+    display: flex;
+    gap: 10px;
+}
+
+.btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #D2D2D2;
+    border-radius: 50%;
+    background-color: transparent;
+    transition: .1s;
+}
+.btn:hover{
+    border: 2px solid #000000;
+}
+
+.dot_wrap{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dot{
+    background-color: #E2E2E2;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: .3s;
+}
+.dot:hover{
+    background-color: #fff0a5;
+    margin-bottom: 5px;
+}
+.dot_select{
+    background-color: var(--primary-color);
+}

@@ -39,14 +39,11 @@
 .btns{
     margin-top: 51px;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px 49px;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 100%;
 }
 
-.search{
-    width: 334px;
-}
 .btn_search{
     cursor: pointer;
 }
@@ -60,10 +57,7 @@
         padding: 10px 11px;
     }
     .btns{
+        gap: 10px;
         flex-direction: column;
-        margin-top: 20px;
-    }
-    .search{
-        width: 200px;
     }
 }

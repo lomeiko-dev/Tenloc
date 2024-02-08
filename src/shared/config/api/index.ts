@@ -1,2 +1,2 @@
-export {baseQuery} from "./base-query"
-export {fetchPath} from "./fetch-path"
+export { baseQuery } from './base-query'
+export { fetchPath } from './fetch-path'

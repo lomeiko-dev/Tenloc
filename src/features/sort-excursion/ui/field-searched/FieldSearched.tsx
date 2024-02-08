@@ -1,79 +1,86 @@
-import React, { useCallback, useState } from "react";
+import React, { CSSProperties, Suspense, memo, useCallback, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-import { FieldSearchedMobile } from "./mobile/FieldSearchedMobile";
-import { FieldSearchedDesktop } from "./desktop/FieldSearchedDecktop";
+import { FieldSearhedMobileLazy } from './mobile/'
+import { FieldSearchedDesktopLazy } from './desktop/'
+import { Modal } from 'shared/ui/modal'
+import { YandexMapLazy } from './yandex-map'
+import { Loader } from 'shared/ui/loader'
 
-import { Modal } from "shared/ui/modal";
-import { ModalMapLazy } from "./modal-map";
-import { Loader } from "shared/ui/loader";
-import { ErrorMessage } from "shared/ui/error-message";
-
-import { useNavigate } from "react-router-dom";
-
-import { ConvertCoordToCity } from "../../model/lib/ConvertCoordToCity";
-import { pathRoutes } from "shared/config/route-path";
+import { ConvertCoordToCity } from '../../model/lib/ConvertCoordToCity'
+import { pathRoutes } from 'shared/config/route-path'
 
 interface IFieldSearchedProps {
-    isMobile?: boolean,
-    margin?: string,
+  isMobile?: boolean
+  margin?: string,
+  width?: string,
+  height?: string,
+  className?: string,
 }
 
-export const FieldSearched: React.FC<IFieldSearchedProps> = (props) => {
-    const {
-        isMobile = false,
-        margin
-    } = props
+export const FieldSearched: React.FC<IFieldSearchedProps> = memo((props) => {
+  const {
+    isMobile,
+    margin,
+    className,
+    height,
+    width
+  } = props
 
-    const [error, setError] = useState<string | undefined>(undefined)
+  const [date, setDate] = useState('')
+  const [search, setSearch] = useState('')
 
-    const [date, setDate] = useState('');
-    const [search, setSearch] = useState('')
-    
-    const [isOpenModal, setOpenModal] = useState(false)
-    const navigate = useNavigate();
+  const [isOpenModal, setOpenModal] = useState(false)
+  const navigate = useNavigate()
 
-    const searchHandle = useCallback(() => {
-        if(search !== '')
-            navigate(`${pathRoutes.city.path}/${search}/${date}`)
-        else
-            setError('Вы не указали город')
-    }, [search])
+  const searchHandle = useCallback(() => {
+    if (search !== '') { navigate(`${pathRoutes.city.path}/${search}/${date}`) }
+  }, [search])
 
-    const setCoordHandle = useCallback(async(coord: [number, number]) => {
-        const city = await ConvertCoordToCity(coord[0], coord[1]);
+  const setCoordHandle = useCallback(async (coord: [number, number]) => {
+    const city = await ConvertCoordToCity(coord[0], coord[1])
 
-        if(city)
-            setSearch(city)
-        else
-            setError('Город не найден')
+    if (city) { setSearch(city) }
 
-        setOpenModal(false)
-    }, [])
+    setOpenModal(false)
+  }, [])
 
-    return(
-        <div style={{margin: margin}}>
-            {error && <ErrorMessage onDeleteMessage={() => setError(undefined)} message={error}/>}
-            {isMobile ?
-                <FieldSearchedMobile
-                    value={search} onChange={setSearch}
-                    onChangeDate={setDate} valueDate={date}
-                    onClickSearch={searchHandle} 
-                    setOpenModal={() => setOpenModal(true)}/> :
-                <FieldSearchedDesktop
-                    onChange={(e) => setSearch(e.target.value)} value={search}
-                    onClickSearch={searchHandle} 
-                    setOpenModal={() => setOpenModal(true)}/>}
+  const cssStyle: CSSProperties = {
+    height,
+    maxWidth: width,
+    width: width !== undefined ? width : undefined,
+    margin
+  }
 
-            <Modal 
-                loadingComponent={<Loader isCenter/>} 
-                width="90%" height="90%" 
-                open={isOpenModal} onClose={() => setOpenModal(false)}>
-                    <ModalMapLazy 
-                        placemarkCoord={[55.751574, 37.573856]} 
-                        zoom={4} 
-                        setCoord={setCoordHandle} 
+  if (isMobile === undefined) { return null }
+
+  return (
+        <div style={cssStyle} className={className}>
+            {isMobile
+              ? <Suspense>
+                    <FieldSearhedMobileLazy
+                        value={search} onChange={setSearch}
+                        onChangeDate={setDate} valueDate={date}
+                        onClickSearch={searchHandle}
+                        setOpenModal={() => { setOpenModal(true) }}/>
+                </Suspense>
+              : <Suspense>
+                    <FieldSearchedDesktopLazy
+                        onChange={(e) => { setSearch(e.target.value) }} value={search}
+                        onClickSearch={searchHandle}
+                        setOpenModal={() => { setOpenModal(true) }}/>
+                </Suspense>}
+
+            <Modal
+                loadingComponent={<Loader isCenter/>} lazy
+                width="90%" height="90%"
+                open={isOpenModal} onClose={() => { setOpenModal(false) }}>
+                    <YandexMapLazy
+                        placemarkCoord={[55.751574, 37.573856]}
+                        zoom={4}
+                        setCoord={setCoordHandle}
                         centerCoord={[55.751574, 37.573856]}/>
             </Modal>
         </div>
-    )
-}
+  )
+})

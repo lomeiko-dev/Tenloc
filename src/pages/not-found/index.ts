@@ -1,3 +1,3 @@
-import { lazy } from "react";
+import { lazy } from 'react'
 
-export const NotFoundPageLazy = lazy(() => import("./ui/NotFoundPage"))
+export const NotFoundPageLazy = lazy(async () => await import('./ui/NotFoundPage'))

@@ -1,10 +1,10 @@
 export interface ICartScheme {
-    cart: ICart[]
+  cart: ICart[]
 }
 
 export interface ICart {
-    excursionId: string,
-    date: string,
-    title: string,
-    price: number
+  excursionId: string
+  date: string
+  title: string
+  price: number
 }

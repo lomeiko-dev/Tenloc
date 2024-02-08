@@ -1,106 +1,106 @@
-import { CSSProperties, Suspense, useEffect, useState } from "react"
-import style from "./Modal.module.scss"
-import { createPortal } from "react-dom"
-import classNames from "classnames"
-import CloseIcon from "shared/assets/img/svg-icon/close.svg?react"
+import { type CSSProperties, Suspense, useEffect, useState } from 'react'
+import style from './Modal.module.scss'
+import classNames from 'classnames'
 
+import { createPortal } from 'react-dom'
+import CloseIcon from 'shared/assets/img/svg-icon/close.svg?react'
 
 interface IModalProps {
-    children: React.ReactNode,
-    className?: string,
-    onClose : () => void,
-    open?: boolean
-    width?: string,
-    height?: string,
-    loadingComponent?: React.ReactNode
+  children: React.ReactNode
+  className?: string
+  onClose: () => void
+  open?: boolean
+  width?: string
+  height?: string
+  loadingComponent?: React.ReactNode
+  lazy?: boolean
 }
 
-
 export const Modal: React.FC<IModalProps> = (props) => {
-    const {
-        children,
-        onClose,
-        height,
-        open = false,
-        width,
-        className,
-        loadingComponent
-    } = props
+  const {
+    children,
+    onClose,
+    height,
+    open = false,
+    width,
+    className,
+    loadingComponent,
+    lazy = false
+  } = props
 
-    useEffect(() => {
-        setLazy(true)
-    }, [open])
+  const [isMounted, setMounted] = useState(false)
+  const [closed, setClosed] = useState(false)
 
-    useEffect(() => {
-        if (open) {
-          window.addEventListener('keydown', onKeyDown)
-        }
-    
-        return () => {
-          window.removeEventListener('keydown', onKeyDown)
-        }
-    }, [open])
+  useEffect(() => {
+    if (open) { setMounted(true) }
+  }, [open])
 
-    const [lazy, setLazy] = useState(false)
-    const [closed, setClosed] = useState(false);
-
-    const closeHandle = () => {
-        setClosed(true);
-        setTimeout(() => {
-            onClose();
-            setClosed(false)
-        }, 200)
+  useEffect(() => {
+    if (open) {
+      window.addEventListener('keydown', onKeyDown)
     }
 
-    const stopPropagationHandle = (e: React.MouseEvent) => {
-        e.stopPropagation()
+    return () => {
+      window.removeEventListener('keydown', onKeyDown)
     }
-    
-    const onKeyDown = (e: KeyboardEvent) => {
-        if (e.key === 'Escape') {
-          closeHandle()
-        }
-      }
+  }, [open])
 
-    const cssStyles: CSSProperties = {
-        width: width,
-        height: height
+  const closeHandle = () => {
+    setClosed(true)
+    setTimeout(() => {
+      onClose()
+      setClosed(false)
+    }, 200)
+  }
+
+  const stopPropagationHandle = (e: React.MouseEvent) => {
+    e.stopPropagation()
+  }
+
+  const onKeyDown = (e: KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      closeHandle()
     }
+  }
 
-    const mods = {
-        [style.open]: open,
-        [style.closed]: closed
-    }
+  const cssStyles: CSSProperties = {
+    width,
+    height
+  }
 
-    if(!lazy && open)
-        return
+  const mods = {
+    [style.open]: open,
+    [style.closed]: closed
+  }
 
-    return(
+  if (lazy && !isMounted) { return null }
+
+  return (
         <>
             {createPortal(
-                <Suspense fallback={loadingComponent === undefined ? "loading..." : loadingComponent}>
+                <Suspense fallback={loadingComponent === undefined ? 'loading...' : loadingComponent}>
                     <div className={classNames(style.wrapper, mods)}>
-                        <div 
+                        <div
                             className={classNames(style.overlay, className)}
                             onClick={closeHandle}>
-                            <div 
-                                style={cssStyles} 
-                                className={style.modal}
-                                onClick={stopPropagationHandle}>
-                                <button 
-                                    onClick={closeHandle} 
-                                    className={style.btn_close}>
-                                    <CloseIcon/>
-                                </button>
-                                <div className={style.content}>
-                                    {children}
+                                <div
+                                    style={cssStyles}
+                                    className={style.modal}
+                                    onClick={stopPropagationHandle}>
+                                    <button
+                                        onClick={closeHandle}
+                                        className={style.btn_close}>
+                                            <CloseIcon/>
+                                    </button>
+                                    <div className={style.content}>
+                                        {children}
+                                    </div>
                                 </div>
-                            </div>
                         </div>
                     </div>
                 </Suspense>,
                 document.body
             )}
         </>
-    )
+  )
 }

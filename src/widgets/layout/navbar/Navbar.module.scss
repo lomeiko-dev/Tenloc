@@ -19,3 +19,9 @@
         margin-top: 11px;
     }
 }
+
+@media (max-width: 1040px) {
+    .dropdown_content{
+        left: -230px;
+    }
+}

@@ -1,27 +1,31 @@
-.popular_directions{
-    margin-top: 93px;
-}
+.excursions{
+    margin-top: 108px;
 
-.list{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px 35px;
+    .head_excursion{
+        gap: 54px;
+        margin-bottom: 77px;
+    }
+
+    .button_excursion{
+        margin-top: 73px;
+    }
+
+    @media (max-width: 820px) {
+        .head_excursion{
+            flex-direction: column;
+            gap: 28px 18px;
+            margin-bottom: 39px;
+        }
+    }
+    @media (max-width: 600px) {
+        .button_excursion{
+            margin-top: 44px;
+        }
+    }
 }
 
 @media (max-width: 600px) {
-    .popular_directions{
-        margin-top: 61px;
-    }
-}
-
-@media (max-width: 400px) {
-    .title_cities{
-        font-size: 18px;
-        line-height: 20px;
-        width: 200px;
-    }
-    .subtitle_cities{
-        font-size: 14px;
-        width: 240px;
+    .excursions{
+        margin-top: 67px;
     }
 }

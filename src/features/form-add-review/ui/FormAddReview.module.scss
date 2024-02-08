@@ -1,13 +1,11 @@
 .excursions{
-    display: flex;
-    flex-direction: column;
     border-top: 1px solid #EBEBEB;
     border-bottom: 1px solid #EBEBEB;
     margin: 20px 0;
     padding: 20px 0;
-    gap: 20px 0;
     height: 300px;
-    overflow-y: scroll;
+    width: 100%;
+    overflow: auto;
 }
 .submit_wrapper{
     position: relative;
@@ -27,14 +25,15 @@
     gap: 10px;
 }
 .excursion_item{
+    margin: 10px 0;
     cursor: pointer;
     transition: .2s;
 }
 
 .excursion_item_select{
-    border: 3px solid #FFD600;
+    border: 3px solid var(--primary-color);
 }
 
 .excursion_item:hover {
-    border: 1px solid #FFD600;
+    border: 1px solid var(--primary-color);
 }

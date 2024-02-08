@@ -1,9 +1,9 @@
 const FeedbackAnswerPage = () => {
-    return(
+  return (
         <div>
             Feedback answer Page
         </div>
-    )
+  )
 }
 
-export default FeedbackAnswerPage;
+export default FeedbackAnswerPage

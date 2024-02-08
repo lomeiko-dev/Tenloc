@@ -1,1 +1,1 @@
-export {Text, enumStyleText} from "./Text";
+export { Text, enumStyleText } from './Text'

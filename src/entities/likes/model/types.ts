@@ -1,3 +1,3 @@
 export interface ILikesScheme {
-    excursionIds: string[],
+  excursionIds: string[]
 }

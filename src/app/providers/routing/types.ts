@@ -1,5 +1,5 @@
-import { RouteProps } from "react-router-dom";
+import { type RouteProps } from 'react-router-dom'
 
 export type typeRouteProps = {
-    isAuth: boolean,
+  isAuth: boolean
 } & RouteProps

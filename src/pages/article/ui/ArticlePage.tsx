@@ -1,9 +1,9 @@
 const ArticlePage = () => {
-    return(
+  return (
         <div>
             Article Page
         </div>
-    )
+  )
 }
 
 export default ArticlePage

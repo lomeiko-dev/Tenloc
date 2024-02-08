@@ -1,1 +1,1 @@
-export {ScoreView} from "./ScoreView"
+export { ScoreView } from './ScoreView'

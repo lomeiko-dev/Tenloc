@@ -1,0 +1,18 @@
+.dropdown{
+    .content{
+        padding: 26px 40px 21px 29px;
+        width: 206px;
+    
+        .item{
+            padding: 0 0 7.5px 0;
+            border-bottom: 1px solid #ECECEC;
+            margin-bottom: 7.5px;
+            cursor: pointer;
+            transition: .2s;
+        }
+        .item:hover{
+            margin-left: 5px;
+            border-bottom: 1px solid #FFD600;
+        }
+    }
+}

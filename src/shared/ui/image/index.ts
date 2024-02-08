@@ -1,1 +1,1 @@
-export {Image, enumStyleImage} from "./Image"
+export { Image, enumStyleImage } from './Image'

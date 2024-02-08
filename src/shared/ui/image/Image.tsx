@@ -1,51 +1,55 @@
-import classNames from "classnames"
-import style from "./Image.module.scss"
-import { CSSProperties, HTMLAttributes, memo } from "react"
+import { type CSSProperties, type HTMLAttributes, memo } from 'react'
+import style from './Image.module.scss'
+import classNames from 'classnames'
 
 export enum enumStyleImage {
-    PRIMARY = "primary_image",
-    SECONDARY = "secondary_image",
-    TERNARY = "ternary_image",
-    NONE = 0
-} 
+  PRIMARY = 'primary_image',
+  SECONDARY = 'secondary_image',
+  TERNARY = 'ternary_image',
+  NONE = 0
+}
 
 interface IImageProps extends HTMLAttributes<HTMLImageElement> {
-    src: string,
-    className?: string,
-    styleImage?: enumStyleImage,
-    width?: string,
-    height?: string,
-    margin?: string,
-    borderRadius?: number,
-    bgColor?: string,
+  src: string
+  className?: string
+  styleImage?: enumStyleImage
+  width?: string
+  height?: string
+  margin?: string
+  borderRadius?: number
+  bgColor?: string
 }
 
 export const Image: React.FC<IImageProps> = memo((props) => {
-    const {
-        src,
-        styleImage = enumStyleImage.NONE,
-        bgColor,
-        borderRadius,
-        className,
-        height,
-        margin,
-        width,
-        ...otherProps
-    } = props
+  const {
+    src,
+    styleImage = enumStyleImage.NONE,
+    bgColor,
+    borderRadius,
+    className,
+    height,
+    margin,
+    width,
+    ...otherProps
+  } = props
 
-    const cssStyles: CSSProperties = {
-        backgroundColor: bgColor,
-        borderRadius: `${borderRadius}px`,
-        height: height,
-        width: width,
-        margin: margin
-    }
+  const cssStyles: CSSProperties = {
+    backgroundColor: bgColor,
+    borderRadius: `${borderRadius}px`,
+    height,
+    maxWidth: width,
+    width: width !== undefined ? width : undefined,
+    margin
+  }
 
-    return(
+  return (
         <div
-            style={cssStyles} 
+            style={cssStyles}
             className={classNames(style.image, className, style[styleImage])}>
-            <img className={style.img} src={src} {...otherProps} />        
+                <img
+                    className={style.img}
+                    src={src}
+                    {...otherProps} />
         </div>
-    )
+  )
 })

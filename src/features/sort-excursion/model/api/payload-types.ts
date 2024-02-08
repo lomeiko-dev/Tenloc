@@ -1,5 +1,5 @@
 export interface IGetExcursionByNameProps {
-    text: string,
-    page?: number,
-    limit?: number
+  text: string
+  page?: number
+  limit?: number
 }

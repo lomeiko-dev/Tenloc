@@ -1,77 +1,74 @@
-import { memo, useEffect, useState } from "react";
-import { createPortal } from "react-dom";
-import style from "./Header.module.scss"
+import { Suspense, memo, useEffect, useState } from 'react'
+import style from './Header.module.scss'
 
-import { Navbar } from "../navbar/Navbar";
-import { Button, enumStyleButton } from "shared/ui/button";
-import { Sidebar } from "../sidebar/Sidebar";
-import { DropdownSelection } from "features/sort-excursion";
-import { Logotype } from "shared/ui/logotype";
+import { Navbar } from '../navbar/Navbar'
+import { Button, enumStyleButton } from 'shared/ui/button'
+import { SideBarLazy } from '../sidebar'
+import { Logotype } from 'shared/ui/logotype'
+import { Loader } from 'shared/ui/loader'
 
-import LikeIcon from "shared/assets/img/svg-icon/like.svg?react"
-import BurgerMenuIcon from "shared/assets/img/svg-icon/burger-menu.svg?react"
+import LikeIcon from 'shared/assets/img/svg-icon/like.svg?react'
+import BurgerMenuIcon from 'shared/assets/img/svg-icon/burger-menu.svg?react'
+import { DropdownCity } from '../other/dropdown-city/DropdownCity'
 
-export const Header = memo(() => {
-    const [isMobile, setMobile] = useState(true);
-    const [isSmallMobile, setSmallMobile] = useState(false)
+interface IHeaderProps {
+  isMobile?: boolean
+  isSmallMobile?: boolean
+}
 
-    const [openSidebar, setOpenSidebar] = useState(false);
+export const Header: React.FC<IHeaderProps> = memo((props) => {
+  const {
+    isMobile = false,
+    isSmallMobile = false
+  } = props
 
-    const resizeInnerWidthHandle = () => {
-        window.innerWidth < 600 ? setMobile(true) : setMobile(false)
-        window.innerWidth < 330 ? setSmallMobile(true) : setSmallMobile(false)
-    }
+  const [openSidebar, setOpenSidebar] = useState(false)
+  const [isMountedSidebar, setMountedSidebar] = useState(false)
 
-    useEffect(() => {
-        setMobile(false) // прогрузка Sidebar
-        resizeInnerWidthHandle()
-        window.addEventListener('resize', resizeInnerWidthHandle)
+  useEffect(() => {
+    if (openSidebar) { setMountedSidebar(true) }
+  })
 
-        return () => {
-            window.removeEventListener('resize', resizeInnerWidthHandle)
-        }
-    }, [window])
-
-    return(
+  return (
         <header className={style.header}>
             {isMobile &&
                 <>
-                    <Button 
-                        onClick={() => setOpenSidebar(true)} 
-                        width="20px" 
+                    <Button
+                        onClick={() => { setOpenSidebar(true) }}
+                        width="20px"
                         margin="0 15px 0 0">
                             <BurgerMenuIcon/>
                     </Button>
-                    {createPortal(
-                        <Sidebar 
-                        onClose={() => setOpenSidebar(false)} 
-                        isOpen={openSidebar}/>,
-                        document.body
-                    )}
+                        {isMountedSidebar &&
+                            <Suspense fallback={<Loader isCenter/>}>
+                                <SideBarLazy
+                                    onClose={() => { setOpenSidebar(false) }}
+                                    isOpen={openSidebar}/>
+                            </Suspense>}
                 </>}
             <Logotype/>
 
             <div className={style.right_part}>
                 {!isMobile &&
-                    <DropdownSelection 
-                        width="186px" height="50px"
-                        margin="0 49px 0 0"
-                        cityCount={6}/>}
+                    <DropdownCity/>}
 
-                {isMobile ? undefined : <Navbar/>}
+                {!isMobile &&
+                    <Navbar/>}
 
-                {!isSmallMobile && 
+                {!isSmallMobile &&
                     <div className={style.btns}>
                         <Button
-                            width={isMobile ? '35px' : '50px'} height={isMobile ? '35px' : '50px'} 
+                            width={isMobile ? '35px' : '50px'} height={isMobile ? '35px' : '50px'}
                             styleButton={enumStyleButton.SECONDARY}>
                                 <LikeIcon width={isMobile ? '15px' : '40px'}/>
                         </Button>
-                        <Button 
-                            height={isMobile ? '35px' : '50px'} width={isMobile ? '75px' : '114px'} 
-                            styleButton={enumStyleButton.SECONDARY}>Войти</Button>
+                        <Button
+                            height={isMobile ? '35px' : '50px'} width={isMobile ? '75px' : '114px'}
+                            styleButton={enumStyleButton.SECONDARY}>
+                                Войти
+                        </Button>
                     </div>}
             </div>
         </header>
-    )
+  )
 })

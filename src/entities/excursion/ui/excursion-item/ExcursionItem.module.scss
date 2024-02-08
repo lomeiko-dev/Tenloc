@@ -1,7 +1,6 @@
 .item{
     display: flex;
     justify-content: space-between;
-    width: 100%;
     border-radius: 20px;
     overflow: hidden;
     border: 1px solid #EBEBEB;
@@ -44,10 +43,7 @@
     }
 }
 
-@media (max-width: 550px) {
-    .item{
-        height: 60px;
-    }
+@media (max-width: 550px) { 
     .image{
         width: 50px;
         min-width: 50px;

@@ -1,9 +1,9 @@
 const ThanksPage = () => {
-    return(
+  return (
         <div>
             Thanks Page
         </div>
-    )
+  )
 }
 
 export default ThanksPage

@@ -1,0 +1,1 @@
+export { SliderManagment } from './SliderManagment'
