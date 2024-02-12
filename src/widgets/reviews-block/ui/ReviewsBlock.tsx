@@ -20,6 +20,7 @@ interface IReviewsProps {
   isMobile?: boolean
   description?: string
   isShowTitleBlock?: boolean
+  sortValue?: string
 }
 
 export const ReviewsBlock: React.FC<IReviewsProps> = memo((props) => {
@@ -28,7 +29,8 @@ export const ReviewsBlock: React.FC<IReviewsProps> = memo((props) => {
     margin,
     isMobile,
     description,
-    isShowTitleBlock = false
+    isShowTitleBlock = false,
+    sortValue
   } = props
 
   const [openModal, setOpenModal] = useState(false)
@@ -46,8 +48,12 @@ export const ReviewsBlock: React.FC<IReviewsProps> = memo((props) => {
 
   const ReviewSliderComponent =
         <ReviewSlider
+            sortValue={sortValue}
             limit={isMobile ? LIMIT_MOBILE : LIMIT_DESKTOP}
             isMobile={isMobile}/>
+
+    if(isMobile === undefined)
+        return null
 
   return (
         <div 

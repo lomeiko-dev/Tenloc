@@ -18,7 +18,7 @@ const CityPage = () => {
 
   const [isMobile, setMobile] = useState<boolean | undefined>(undefined)
   const [isMiddleMobile, setMiddleMobile] = useState<boolean | undefined>(undefined)
-
+  
   useEffect(() => {
     if(data.length === 0 && !isLoading)
       navigate(pathRoutes.notfound.path)
@@ -51,7 +51,7 @@ const CityPage = () => {
           <ExcursionsBlock
             classNameHead={style.excrusion_head}
             classNameButton={style.excursion_button}
-            baseQueryString={`&city=${name}`}
+            baseQueryString={`&city_like=${name}`}
             isMobile={isMobile} isMiddleMobile={isMiddleMobile}
             typeSortingForm={enumTypeFormSortingExcursion.SECONDARY}/>
 
@@ -62,6 +62,7 @@ const CityPage = () => {
             subTitle="Проводим индивидуальные и групповые экскурсии на русском языке"/>
 
           <ReviewsBlock
+            sortValue={`&cityName_like=${name}`}
             margin={isMobile ? '65px 0 111px 0' : '125px 0 111px 0'}
             isMobile={isMobile} isShowTitleBlock 
             description="Lorem Ipsum is simply dummy text of the printing and typesetting industry"/>

@@ -1,7 +1,6 @@
 export interface IRoutePathProperties {
   name?: string
   path: string
-  params?: string
   fullPath: string
   isAuth: boolean
 }

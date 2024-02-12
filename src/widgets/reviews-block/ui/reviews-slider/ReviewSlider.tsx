@@ -9,20 +9,23 @@ import { SliderManagment } from 'shared/ui/slider-managment'
 
 interface IReviewSliderProps {
   isMobile?: boolean
-  limit?: number
+  limit?: number,
+  sortValue?: string
 }
 
 export const ReviewSlider: React.FC<IReviewSliderProps> = memo((props) => {
   const {
     isMobile,
-    limit = 4
+    limit = 4,
+    sortValue
   } = props
 
   const [sliderCount, setSliderCount] = useState(0)
   const [page, setPage] = useState(1)
   const { data, isError, isLoading } = useGetPageReviewQuery({
     page,
-    limit
+    limit,
+    params: sortValue ?? ''
   })
 
   const onGetValueHandle = useCallback((index: number) => {
@@ -89,7 +92,7 @@ export const ReviewSlider: React.FC<IReviewSliderProps> = memo((props) => {
                     onGetValue={onGetValueHandle}
                     indexDotted={sliderCount}
                     onClickNext={onClickNextHandle} onClickPrev={onClickPrevHandle}
-                    maxValue={limit} isShowViewValue/>}
+                    maxValue={(data?.totalCount || 0) < limit ? data?.totalCount : limit} isShowViewValue/>}
         </div>
   )
 })

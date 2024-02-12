@@ -72,13 +72,14 @@ const FormAddReview: React.FC<IFormAddReviewProps> = memo((props) => {
     margin,
     height,
     maxWidth: width,
-    width: width !== undefined ? width : undefined,
+    width: width ? '100%' : undefined,
   }
 
   return (
         <div style={cssStyles} className={className}>
             <Field
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => { onChangeValueSearch(e.target.value) }}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
+                  { onChangeValueSearch(e.target.value) }}
                 value={valueSearch}
                 borderRadius={10}
                 width='100%' height="50px"

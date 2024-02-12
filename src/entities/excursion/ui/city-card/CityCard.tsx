@@ -32,7 +32,7 @@ export const CityCard: React.FC<ICityVIewProps> = memo((props) => {
 
   const cssStyle: CSSProperties = {
     maxWidth: width,
-    width: width !== undefined ? width : undefined,
+    width: width ? '100%' : undefined,
     height,
     margin
   }
@@ -43,7 +43,7 @@ export const CityCard: React.FC<ICityVIewProps> = memo((props) => {
             className={classNames(style.wrapper, className)}>
             <div className={style.darkening} />
             <Image
-                borderRadius={20}
+                borderRadius='20px'
                 className={style.background}
                 width="100%" height="100%"
                 src={`/server/assets/${preview}`}/>

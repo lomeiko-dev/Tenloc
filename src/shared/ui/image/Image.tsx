@@ -16,7 +16,7 @@ interface IImageProps extends HTMLAttributes<HTMLImageElement> {
   width?: string
   height?: string
   margin?: string
-  borderRadius?: number
+  borderRadius?: string
   bgColor?: string
 }
 

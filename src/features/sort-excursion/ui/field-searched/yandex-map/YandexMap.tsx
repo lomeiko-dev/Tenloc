@@ -30,7 +30,10 @@ const YandexMap: React.FC<YandexMapProps> = memo((props) => {
         <div className={style.map}>
             <Text margin="0 0 15px 0" text="Выберите место на карте"/>
             <YMaps>
-                <Map onClick={clickMapHandle} className={style.map} defaultState={{ center: centerCoord, zoom }}>
+                <Map 
+                  onClick={clickMapHandle} 
+                  className={style.map} 
+                  defaultState={{ center: centerCoord, zoom }}>
                     <Placemark geometry={coordinate}/>
                 </Map>
             </YMaps>

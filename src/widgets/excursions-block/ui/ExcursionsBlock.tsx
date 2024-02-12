@@ -6,12 +6,14 @@ import { ExcursionList } from './list/ExcursionList'
 import { Button, enumStyleButton } from 'shared/ui/button'
 import { Text, enumStyleText } from 'shared/ui/text'
 import { FormSortingExcursion, enumTypeFormSortingExcursion } from 'features/sort-excursion'
-import debounce from 'lodash.debounce'
-import { useInView } from 'react-intersection-observer'
-import { type IExcursion, useLazyGetPageExcursionsQuery } from 'entities/excursion'
-import { useAppSelector } from 'shared/lib/hooks/useAppSelector'
-import { cartSelection } from 'entities/cart'
 import { CartLinkLazy } from './cart-link'
+
+import { useInView } from 'react-intersection-observer'
+import { useAppSelector } from 'shared/lib/hooks/useAppSelector'
+import { type IExcursion, useLazyGetPageExcursionsQuery } from 'entities/excursion'
+
+import { cartSelection } from 'entities/cart'
+import debounce from 'lodash.debounce'
 
 interface IExcursionListPaginationProps {
   className?: string
@@ -31,10 +33,9 @@ interface IExcursionListPaginationProps {
   height?: string
 }
 
-export const ExcursionsBlock: React.FC<IExcursionListPaginationProps> = memo((props) => {
+export const  ExcursionsBlock: React.FC<IExcursionListPaginationProps> = memo((props) => {
   const {
     className,
-    isFirstLoading = false,
     classNameHead,
     classNameList,
     classNameButton,
@@ -54,19 +55,13 @@ export const ExcursionsBlock: React.FC<IExcursionListPaginationProps> = memo((pr
   const [refObserver, inViewObserver] = useInView()
   const [isActiveDynamic, setActiveDynamic] = useState(false)
   const [querySort, setQuerySort] = useState<string>('')
+  const [isShowList, setShowList] = useState(false)
 
   const [triggerExcursion, resultExcursion] = useLazyGetPageExcursionsQuery()
   const [excursions, setExcursion] = useState<IExcursion[]>([])
 
   const cartExcursions = useAppSelector(cartSelection);
 
-  // primary loaded
-  useEffect(() => {
-    if(isFirstLoading)
-      getPageExcursions()
-  }, [isFirstLoading])
-
-  // trigger observer
   useEffect(() => {
     if (inViewObserver) { getPageExcursions() }
   }, [inViewObserver])
@@ -75,11 +70,14 @@ export const ExcursionsBlock: React.FC<IExcursionListPaginationProps> = memo((pr
       const data = await triggerExcursion({
         page,
         limit,
-        params: `${baseQueryString}${query === undefined ? querySort : query}`
+        params: `${baseQueryString}${query ?? querySort}`
       }).unwrap()
   
       setExcursion(prev => [...prev, ...data?.excursions || []])
       setPage(prev => prev += 1)
+
+      if(!isShowList)
+        setShowList(true)
     }, [querySort, page, baseQueryString])
 
   const setQuerySortHandle = useCallback(
@@ -92,7 +90,7 @@ export const ExcursionsBlock: React.FC<IExcursionListPaginationProps> = memo((pr
     }, 300), [])
 
   const showMoreHandle = useCallback(() => {
-    getPageExcursions(undefined)
+    getPageExcursions()
     setTimeout(() => {
       setActiveDynamic(true)
     }, 200)
@@ -102,7 +100,7 @@ export const ExcursionsBlock: React.FC<IExcursionListPaginationProps> = memo((pr
     margin,
     height,
     maxWidth: width,
-    width: width !== undefined ? width : undefined,
+    width: width ? '100%' : undefined,
   }
 
   return (
@@ -119,12 +117,13 @@ export const ExcursionsBlock: React.FC<IExcursionListPaginationProps> = memo((pr
                 typeFormSortingExcursion={typeSortingForm} 
                 onGetQueryString={setQuerySortHandle}/>
             </div>
-            <ExcursionList
+            {isShowList &&
+              <ExcursionList
                 className={classNameList}
                 isMobile={isMobile}
                 data={excursions}
                 isError={resultExcursion.isError} isLoading={resultExcursion.isLoading}
-                valueSkeletons={limit}/>
+                valueSkeletons={limit}/>}
             <div className={classNames(style.btn_block, classNameButton)}>
               {isDynamicPagination
                 ? !isActiveDynamic

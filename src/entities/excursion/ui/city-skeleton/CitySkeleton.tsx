@@ -25,6 +25,5 @@ export const CitySkeleton: React.FC<ICitySkeletonProps> = (props) => {
             style={cssStyle}
             className={classNames(style.skeleton, className)}>
         </span>
-
   )
 }

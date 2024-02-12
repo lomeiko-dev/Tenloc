@@ -49,11 +49,16 @@ export const Dropwdown: React.FC<IDowndropProps> = (props) => {
   const [open, setOpen] = useState(false)
   const [show, setShow] = useState(false)
 
-  const clickHandle = useCallback(() => {
+  useEffect(() => {
+    setOpen(false)
+  }, [children])
+    
+  const clickHandle = useCallback((e: React.MouseEvent) => {
     open ? setOpen(false) : setShow(true)
     setTimeout(() => {
       open ? setShow(false) : setOpen(true)
     }, 100)
+    e.stopPropagation()
   }, [open])
 
   useEffect(() => {

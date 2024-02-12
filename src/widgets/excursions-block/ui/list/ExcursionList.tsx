@@ -1,10 +1,12 @@
-import React, { memo } from 'react'
+import React, { memo, useCallback } from 'react'
 import style from './ExcursionList.module.scss'
 import classNames from 'classnames'
 
 import { ExcursionCard, ExcursionSkeleton, type IExcursion } from 'entities/excursion'
 import { Text } from 'shared/ui/text'
 import { AddToLikesExcursion, FormAddCartExcursion } from 'features/form-excursion'
+import { useNavigate } from 'react-router-dom'
+import { pathRoutes } from 'shared/config/route-path'
 
 interface IExcursionListProps {
   data: IExcursion[]
@@ -25,14 +27,18 @@ export const ExcursionList: React.FC<IExcursionListProps> = memo((props) => {
     isMobile = false
   } = props
 
+  const navigate = useNavigate()
+
+  const clickExcursionHandle = useCallback((id: string) => {
+    navigate(pathRoutes.excursion.path + `/${id}`)
+  }, [])
+
   if (data.length === 0) {
-    setTimeout(() => {
       return (
         <div className={className}>
             <Text color="#6A6A6A" text="Не найдено"/>
         </div>
-)
-    }, 300);
+      )
   }
   
   if (isLoading) {
@@ -55,7 +61,8 @@ export const ExcursionList: React.FC<IExcursionListProps> = memo((props) => {
   return (
         <div className={classNames(style.list, className)}>
             {data.map(item =>
-                <ExcursionCard
+                <div onClick={() => clickExcursionHandle(item.id)}>
+                  <ExcursionCard
                     {...item}
                     key={item.id}
                     className={style.card}
@@ -69,7 +76,8 @@ export const ExcursionList: React.FC<IExcursionListProps> = memo((props) => {
                             price={item.priceMiddle}
                             title={item.name}
                             dates={item.date}
-                            id={item.id}/>}/>)}
+                            id={item.id}/>}/>
+                </div>)}
         </div>
   )
 })

@@ -48,7 +48,7 @@ export const FieldSearched: React.FC<IFieldSearchedProps> = memo((props) => {
   const cssStyle: CSSProperties = {
     height,
     maxWidth: width,
-    width: width !== undefined ? width : undefined,
+    width: width ? '100%' : undefined,
     margin
   }
 

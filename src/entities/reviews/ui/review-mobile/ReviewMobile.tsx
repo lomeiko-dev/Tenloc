@@ -27,7 +27,7 @@ const ReviewMobile: React.FC<IReviewMobileProps> = memo((props) => {
                 margin="0 0 12px 0"
                 width="91px" height="91px"
                 styleImage={enumStyleImage.TERNARY}
-                src={`server${avatar}`}/>
+                src={`/server${avatar}`}/>
             <div className={style.info_mobile}>
                 <Text
                     fontSize={17} fontWeight={500}

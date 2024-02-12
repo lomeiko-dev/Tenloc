@@ -88,7 +88,7 @@ export const Field: React.FC<IFIeldProps> = memo((props) => {
 
   const cssStyleWrap: CSSProperties = {
     maxWidth: width,
-    width: width !== undefined ? width : undefined,
+    width: width ? '100%' : undefined,
     height,
     margin
   }

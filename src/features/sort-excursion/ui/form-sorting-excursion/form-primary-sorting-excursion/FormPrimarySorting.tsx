@@ -26,21 +26,19 @@ const FormPrimarySorting: React.FC<IFormPrimarySortingProps> = memo((props) => {
   const [valueDate, setValueDate] = useState('')
 
   const [enter, setEnter] = useState(false)
-  const { data, isLoading } = useGetCityQuery(6)
+  const { data, isLoading } = useGetCityQuery(5)
 
   useEffect(() => {
-    const query = GenerateQuerySort(valueCity, valueDate)
-    
-    if(query)
-      onGetQueryString(query)
+    const query = GenerateQuerySort(valueCity, valueDate) || ''
+    console.log(query)
+    onGetQueryString(query)
 
     setEnter(false)
   }, [valueCity, enter])
 
   const searchDateHandle = useCallback((event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter') {
+    if (event.key === 'Enter')
       setEnter(true)
-    }
   }, [valueDate])
 
   return (
@@ -48,7 +46,8 @@ const FormPrimarySorting: React.FC<IFormPrimarySortingProps> = memo((props) => {
             <Field
                 padding={isMobile ? '5px' : '10px'}
                 value={valueCity || ''}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => { setValueCity(e.target.value) }}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
+                  { setValueCity(e.target.value) }}
                 placeholder={isMobile ? 'Город' : 'Выберите город'}
                 borderRadius={10}
                 width={isMobile ? '120px' : '241px'} height={isMobile ? '35px' : '55px'}

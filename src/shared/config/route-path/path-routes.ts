@@ -8,7 +8,6 @@ export const pathRoutes: Record<enumPath, IRoutePathProperties> = {
   },
   [enumPath.CITY]: {
     path: '/city',
-    params: '/:name',
     fullPath: '/city/:name',
     isAuth: false
   },
@@ -20,7 +19,6 @@ export const pathRoutes: Record<enumPath, IRoutePathProperties> = {
   },
   [enumPath.EXCURSION]: {
     path: '/excursion',
-    params: '/:id',
     fullPath: '/excursion/:id',
     isAuth: false
   },
@@ -32,7 +30,6 @@ export const pathRoutes: Record<enumPath, IRoutePathProperties> = {
   },
   [enumPath.ARTICLE]: {
     path: '/article',
-    params: '/:id',
     fullPath: '/article/:id',
     isAuth: false
   },

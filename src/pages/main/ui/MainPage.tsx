@@ -27,7 +27,6 @@ const MainPage = () => {
                 title='Популярные направления'
                 subTitle='Проводим индивидуальные и групповые экскурсии на русском языке'/>
             <ExcursionsBlock 
-              isFirstLoading
               className={style.excursions}
               classNameHead={style.head_excursion}
               classNameButton={style.button_excursion}

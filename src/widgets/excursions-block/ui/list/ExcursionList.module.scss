@@ -10,6 +10,12 @@
 .card{
     width: 333px;
     height: 476px;
+    cursor: pointer;
+}
+
+.card:hover{
+    z-index: 100;
+    transform: scale(1.03);
 }
 
 @media (max-width: 725px) {

@@ -1,9 +1,10 @@
-import { type CSSProperties, memo, useEffect, useState } from 'react'
+import { type CSSProperties, memo } from 'react'
 import style from './ExcursionCard.module.scss'
 import classNames from 'classnames'
 
 import { Image } from 'shared/ui/image'
 import { Text, enumStyleText } from 'shared/ui/text'
+
 import { type IExcursion } from '../../model/types/excursion-scheme'
 
 interface IExcursionCardProps extends
@@ -38,22 +39,12 @@ export const ExcursionCard: React.FC<IExcursionCardProps> = memo((props) => {
     height
   }
 
-  const [view, setView] = useState(false)
-
-  useEffect(() => {
-    setTimeout(() => {
-      setView(true)
-    }, 200)
-  }, [])
-
-  const mods = { [style.card_view]: view }
-
   return (
         <div 
           style={cssStyle} 
-          className={classNames(style.card, mods, className)}>
+          className={classNames(style.card, className)}>
             <Image
-                className={style.image}
+                borderRadius='20px 20px 0 0'
                 width="100%" height={isMobile ? '97px' : '226px'}
                 src={`/server${imagePreview}`}/>
 

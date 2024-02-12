@@ -5,10 +5,10 @@ import classNames from 'classnames'
 import { Image, enumStyleImage } from 'shared/ui/image'
 import { Text, enumStyleText } from 'shared/ui/text'
 import { Link } from 'shared/ui/link'
+import { ScoreView } from 'shared/ui/score-view'
 
 import { type IReview } from '../..'
 import { pathRoutes } from 'shared/config/route-path'
-import { ScoreView } from 'shared/ui/score-view'
 
 interface IReviewDesktopProps extends Omit<IReview, 'id' | 'userId'> {
   className?: string

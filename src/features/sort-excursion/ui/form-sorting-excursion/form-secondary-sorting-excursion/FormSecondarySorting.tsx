@@ -19,7 +19,7 @@ const FormSecondarySorting: React.FC<IFormSecondarySortingProps> = memo((props) 
         isMiddleMobile
     } = props
 
-    const [date, setDate] = useState<string>('')
+    const [date, setDate] = useState('')
 
     const [primaryMoney, setPrimaryMoney] = useState('')
     const [secondaryMoney, setSecondaryMoney] = useState('')
@@ -77,7 +77,7 @@ const FormSecondarySorting: React.FC<IFormSecondarySortingProps> = memo((props) 
             </div>
             <div className={style.slice}>
                 {!isMiddleMobile &&
-                    <Text 
+                    <Text
                         margin="0 21px 0 0" 
                         className={style.label} 
                         text="Тип оплаты"/>}
@@ -96,7 +96,7 @@ const FormSecondarySorting: React.FC<IFormSecondarySortingProps> = memo((props) 
             </div>
             <div className={style.slice}>
                 {!isMiddleMobile &&
-                    <Text 
+                    <Text
                         margin="0 17px 0 0" 
                         className={style.label} 
                         text="Тип экскурсии"/>}

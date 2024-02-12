@@ -8,8 +8,8 @@ export const reviewsApi = createApi({
   baseQuery,
   endpoints: (builder) => ({
     getPageReview: builder.query<IGetPageReviewData, IGetPageReviewProps>({
-      query: ({ limit, page }) =>
-                `${fetchPath.review}?_sort=score&_order=DESC&_page=${page}&_limit=${limit}`,
+      query: ({ limit, page, params }) =>
+        `${fetchPath.review}?_sort=score&_order=DESC&_page=${page}&_limit=${limit}${params ?? ''}`,
 
       transformResponse: (response: IReview[], meta) => {
         const totalCount = meta?.response?.headers.get('x-total-count')

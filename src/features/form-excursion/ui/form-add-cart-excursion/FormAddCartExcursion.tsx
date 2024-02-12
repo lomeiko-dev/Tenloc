@@ -1,4 +1,4 @@
-import { CSSProperties, memo, useCallback, useEffect, useState } from 'react'
+import React, { CSSProperties, memo, useCallback, useState } from 'react'
 import style from './FormAddCartExcursion.module.scss'
 import classNames from 'classnames'
 
@@ -49,7 +49,9 @@ export const FormAddCartExcursion: React.FC<IFromAddCartExcursionProps> = memo((
     !!cart.find(item => item.excursionId === id), 
     [id, cart])
 
-  const toggleCartHandle = useCallback(() => {
+  const toggleCartHandle = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation()
+
     if (date) {
       if (isCartById()) {
         dispatch(removeToCart(id))
@@ -66,17 +68,10 @@ export const FormAddCartExcursion: React.FC<IFromAddCartExcursionProps> = memo((
     } else { setError(true) }
   }, [date, id, title, price, dispatch, cart])
 
-  useEffect(() => {
-    if (date === undefined) {
-      const cartItem = cart.find(item => item.excursionId === id)
-      setDate(cartItem?.date)
-    }
-  })
-
   const cssStyles: CSSProperties = {
     height,
     maxWidth: width,
-    width: width !== undefined ? width : undefined,
+    width: width ? '100%' : undefined,
     margin
   }
 
@@ -95,7 +90,10 @@ export const FormAddCartExcursion: React.FC<IFromAddCartExcursionProps> = memo((
                         {dates.map(item =>
                             <div
                                 key={item}
-                                onClick={() => { setDate(item) }}
+                                onClick={(e: React.MouseEvent) => {
+                                  e.stopPropagation() 
+                                  setDate(item) 
+                                }}
                                 className={style.content_item}>{item}</div>)}
                     </div>}>
                     {date || <Text
@@ -117,7 +115,8 @@ export const FormAddCartExcursion: React.FC<IFromAddCartExcursionProps> = memo((
                         onClick={toggleCartHandle}
                         className={style.btn}
                         width="46px" height="46px"
-                        bgColor={isCartById() ? '#FFD600' : '#E9E9E9'} HoverBgColor="#E9E9E960"
+                        bgColor={isCartById() ? '#FFD600' : '#E9E9E9'} 
+                        HoverBgColor="#E9E9E960"
                         padding="3px 0 0 0"
                         borderRadius='100px'>
                             {isCartById()

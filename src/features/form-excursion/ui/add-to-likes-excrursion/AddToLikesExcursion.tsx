@@ -31,7 +31,8 @@ export const AddToLikesExcursion: React.FC<IAddToLikesExcursionProps> = memo((pr
   const findExcursionById = useCallback(() =>
     excursionIds.find(item => item === id) !== undefined, [id, excursionIds])
 
-  const toggleLikeHamdle = useCallback(() => {
+  const toggleLikeHamdle = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation()
     dispatch(toggleLikeExcursion(id))
     dispatch(saveLikes())
   }, [id, dispatch])
