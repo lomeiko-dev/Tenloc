@@ -55,6 +55,7 @@ export const ExcursionItem: React.FC<IExcursionItemProps> = memo((props) => {
                 </div>}
               {price && 
                 <Text
+                  className={style.price}
                   fontSize={17} fontWeight={600}
                   text={`${price} ₽`}/>}
         </div>

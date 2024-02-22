@@ -13,7 +13,7 @@ import CalendarIcon from "shared/assets/img/svg-icon/calendar2.svg?react"
 import { IExcursion } from "entities/excursion";
 
 interface IOrderFormProps extends 
-    Pick<IExcursion, 'id' | 'date' | 'typePay' | 'timeFrame' | 'priceAdult' | 'pricePensioner' | 'priceYouth' | 'priceSmallChildren' | 'priceChildren' | 'name' | 'imagePreview'> {
+    Pick<IExcursion, 'id' | 'dates' | 'typePay' | 'timeFrame' | 'priceAdult' | 'pricePensioner' | 'priceYouth' | 'priceSmallChildren' | 'priceChildren' | 'name' | 'imagePreview'> {
     className?: string,
     width?: string,
     margin?: string
@@ -25,7 +25,7 @@ export const OrderForm: React.FC<IOrderFormProps> = memo((props) => {
         className,
         margin,
         width,
-        date,
+        dates,
         timeFrame,
         priceAdult,
         priceChildren,
@@ -100,7 +100,7 @@ export const OrderForm: React.FC<IOrderFormProps> = memo((props) => {
                 borderRadius={100}  bgColor="#F5F5F5"
                 getSelection={setValueDate}
                 childrenLeft={<CalendarIcon/>}
-                selection={date} value="Выбрать дату"/>
+                selection={dates} value="Выбрать дату"/>
             <Field 
                 isReadOnly
                 padding="0 20px 0 7.5px" margin="30px 0 0 0" 

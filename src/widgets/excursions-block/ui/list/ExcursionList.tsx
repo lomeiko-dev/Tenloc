@@ -75,7 +75,7 @@ export const ExcursionList: React.FC<IExcursionListProps> = memo((props) => {
                             isMobile={isMobile}
                             price={item.priceMiddle}
                             title={item.name}
-                            dates={item.date}
+                            dates={item.dates}
                             id={item.id}/>}/>
                 </div>)}
         </div>

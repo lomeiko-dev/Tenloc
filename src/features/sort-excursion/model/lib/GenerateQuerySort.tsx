@@ -11,7 +11,7 @@ export const GenerateQuerySort = (
             query += `&_sort=priceMiddle&priceMiddle_gte=${primaryMoney}&priceMiddle_lte=${secondaryMoney}`
 
         if(date)
-            query += `&date_like=${date}`
+            query += `&dates_like=${date}`
 
         if(typeExcursion)
             query += `&typeExcursion=${typeExcursion}`

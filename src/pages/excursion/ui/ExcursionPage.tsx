@@ -72,6 +72,7 @@ const ExcursionPage = () => {
           ]}/>
         <div className={style.head}>
           <Text 
+            className={style.title}
             width="940px" 
             styleText={isMiddleMobile ? enumStyleText.QUATERNARY_SUBTITLE : enumStyleText.QUATERNARY_TITLE} 
             text={data[0].name}/>

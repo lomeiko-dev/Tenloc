@@ -12,7 +12,11 @@
             white-space: pre;
         }
     }
-    
+
+    .title{
+        word-break: break-all;
+        text-overflow: ellipsis;
+    }
 }
 
 .content{

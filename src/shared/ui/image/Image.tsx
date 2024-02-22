@@ -37,8 +37,7 @@ export const Image: React.FC<IImageProps> = memo((props) => {
     backgroundColor: bgColor,
     borderRadius: `${borderRadius}px`,
     height,
-    maxWidth: width,
-    width: width !== undefined ? width : undefined,
+    width: width,
     margin
   }
 
