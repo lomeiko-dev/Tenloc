@@ -2,11 +2,15 @@ export interface IExcursion {
   typeExcursion: enumTypeExcursion,
   typePay: enumTypePay,
   id: string
+  country: string,
   cityId: string
   city: string
   name: string
   time: string
   description: string
+  history: string,
+  gallery: string[]
+  info: string
   detailedDescription: IDescription[]
   priceAdult: number
   pricePensioner: number
@@ -32,7 +36,8 @@ export interface IDescription {
 
 export enum enumTypeExcursion {
   INDIVIDUAL = 'individual',
-  GROUP = 'group'
+  GROUP = 'group',
+  MINIGROUP = 'mimi-group'
 }
 
 export enum enumTypePay {

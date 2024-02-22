@@ -55,7 +55,7 @@ export const ArticleCard: React.FC<IArticleCardProps> = memo((props) => {
             style={cssStyle}
             className={classNames(style.card, className)}>
             <Image
-                borderRadius='15px'
+                borderRadius={15}
                 width={isMobile ? '258px' : '323px'} height={isMobile ? '181px' : '228px'}
                 src={`server${preview}`}/>
             <div className={style.date_block}>

@@ -23440,11 +23440,15 @@
     },
     {
       "typeExcursion": "individual",
+      "typePay": "pay",
       "id": 382,
       "cityId": 1,
+      "country": "Россия",
       "city": "Санкт-Петербург",
       "name": "Петропаловская крепость",
       "time": "3 часа",
+      "history": "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of de Finibus Bonorum et Malorum (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.., comes from a line in section 1.10.32.",
+      "info": "Эрмитаж — это то место, которое стоит посетить в Петербурге. Конечно же, за один день нереально увидеть весь Эрмитаж. Со мной вы прогуляетесь по залам музея, познакомитесь с историей Зимнего дворца и увидите шедевры мастеров прошлого из Западной Европы.",
       "description": "Петропавловская крепость - старейший памятник архитектуры Санкт-Петербурга...",
       "detailedDescription": [
         {
@@ -23487,6 +23491,14 @@
         "/assets/img/Petropalovskaya_krepost/img1.jpg",
         "/assets/img/Petropalovskaya_krepost/img2.jpg",
         "/assets/img/Petropalovskaya_krepost/img3.jpg",
+        "/assets/img/Petropalovskaya_krepost/img4.jpg",
+        "/assets/img/Petropalovskaya_krepost/img5.jpg"
+      ],
+      "gallery": [
+        "/assets/img/Petropalovskaya_krepost/img1.jpg",
+        "/assets/img/Petropalovskaya_krepost/img2.jpg",
+        "/assets/img/Petropalovskaya_krepost/img3.jpg",
+        "/assets/img/Petropalovskaya_krepost/img4.jpg",
         "/assets/img/Petropalovskaya_krepost/img4.jpg",
         "/assets/img/Petropalovskaya_krepost/img5.jpg"
       ],
@@ -36051,6 +36063,12 @@
       "excursionId": 3,
       "score": 3,
       "id": 22
+    },
+    {
+      "message": "ыввыафыафыа",
+      "excursionId": 1,
+      "score": 3,
+      "id": 23
     }
   ],
   "articles": [
@@ -36471,6 +36489,113 @@
           "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
         }
       ]
+    }
+  ],
+  "orders": [
+    {
+      "date": "",
+      "name": "Никита",
+      "excursionId": "",
+      "time": "",
+      "phoneNumber": "+7949124124214",
+      "valueAdult": 1,
+      "valueChildren": 2,
+      "valuePensioner": 0,
+      "valueSmallChildren": 1,
+      "valueYouth": 0,
+      "paymentMethod": "sber",
+      "userId": "",
+      "id": 1
+    },
+    {
+      "date": "",
+      "name": "",
+      "excursionId": "",
+      "time": "",
+      "phoneNumber": "",
+      "valueAdult": 0,
+      "valueChildren": 0,
+      "valuePensioner": 0,
+      "valueSmallChildren": 0,
+      "valueYouth": 0,
+      "paymentMethod": "bank",
+      "userId": "",
+      "id": 2
+    },
+    {
+      "date": "",
+      "name": "",
+      "excursionId": "",
+      "time": "",
+      "phoneNumber": "",
+      "valueAdult": 0,
+      "valueChildren": 0,
+      "valuePensioner": 0,
+      "valueSmallChildren": 0,
+      "valueYouth": 0,
+      "paymentMethod": "bank",
+      "userId": "",
+      "id": 3
+    },
+    {
+      "date": "",
+      "name": "",
+      "excursionId": "",
+      "time": "",
+      "phoneNumber": "",
+      "valueAdult": 0,
+      "valueChildren": 0,
+      "valuePensioner": 0,
+      "valueSmallChildren": 0,
+      "valueYouth": 0,
+      "paymentMethod": "bank",
+      "userId": "",
+      "id": 4
+    },
+    {
+      "date": "16.03.2022",
+      "name": "Никита Ломейко",
+      "excursionId": 382,
+      "time": "13:00 - 16:00",
+      "phoneNumber": "9081886595",
+      "valueAdult": 0,
+      "valueChildren": 1,
+      "valuePensioner": 0,
+      "valueSmallChildren": 0,
+      "valueYouth": 0,
+      "paymentMethod": "yomoney",
+      "userId": "",
+      "id": 5
+    },
+    {
+      "date": "17.04.2023",
+      "time": "13:00 - 16:00",
+      "name": "цывпвыпып",
+      "phoneNumber": "+7 (908) 188 - 65 - 95",
+      "valueAdult": 1,
+      "valueChildren": 1,
+      "valuePensioner": 1,
+      "valueSmallChildren": 1,
+      "valueYouth": 1,
+      "paymentMethod": "sber",
+      "excursionId": 382,
+      "userId": "",
+      "id": 6
+    },
+    {
+      "date": "09.10.2023",
+      "time": "07:00 - 10:00",
+      "name": "Никита",
+      "phoneNumber": "+7 (141) 241 - 24 - 12",
+      "valueAdult": 2,
+      "valueChildren": 2,
+      "valuePensioner": 0,
+      "valueSmallChildren": 0,
+      "valueYouth": 2,
+      "paymentMethod": "yomoney",
+      "excursionId": 382,
+      "userId": "",
+      "id": 7
     }
   ]
 }

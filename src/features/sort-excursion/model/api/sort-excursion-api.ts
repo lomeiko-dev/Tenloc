@@ -14,6 +14,10 @@ export const sortExcursionApi = createApi({
     getExcursionByName: builder.query<IExcursion[], IGetExcursionByNameProps>({
       query: ({ limit, page, text }) =>
                 `${fetchPath.excursion}?name_like=${text}&_page=${page}&_limit=${limit}`
+    }),
+    getExcursionById: builder.query<IExcursion[], string>({
+      query: (id) =>
+                `${fetchPath.excursion}?id=${id}`
     })
   })
 })
@@ -22,7 +26,9 @@ export const {
   useGetCityByNameQuery,
   useLazyGetCityByNameQuery,
   useGetExcursionByNameQuery,
-  useLazyGetExcursionByNameQuery
+  useLazyGetExcursionByNameQuery,
+  useGetExcursionByIdQuery,
+  useLazyGetExcursionByIdQuery
 } = sortExcursionApi
 
 export const sortExcursionApiReducer = sortExcursionApi.reducer

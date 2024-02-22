@@ -62,7 +62,7 @@ export const Button: React.FC<IButtonProps> = memo((props) => {
     fontWeight,
     height,
     maxWidth: width,
-    width: width !== undefined ? width : undefined,
+    width: width ? '100%' : undefined,
     padding,
     margin
   }

@@ -1,4 +1,4 @@
-import React, { CSSProperties, memo, useCallback, useState } from 'react'
+import React, { CSSProperties, memo, useCallback, useEffect, useState } from 'react'
 import style from './FormAddCartExcursion.module.scss'
 import classNames from 'classnames'
 
@@ -49,7 +49,11 @@ export const FormAddCartExcursion: React.FC<IFromAddCartExcursionProps> = memo((
     !!cart.find(item => item.excursionId === id), 
     [id, cart])
 
-  const toggleCartHandle = useCallback((e: React.MouseEvent) => {
+  useEffect(() => {
+    setDate(cart.find(item => item.excursionId === id)?.date)
+  }, [cart, id])
+
+  const toggleCartHandle = useCallback(async(e: React.MouseEvent) => {
     e.stopPropagation()
 
     if (date) {
@@ -57,14 +61,14 @@ export const FormAddCartExcursion: React.FC<IFromAddCartExcursionProps> = memo((
         dispatch(removeToCart(id))
         setDate(undefined)
       } else {
-        dispatch(addToCart({
+       dispatch(addToCart({
           date,
           excursionId: id,
           price,
           title
         }))
       }
-      dispatch(saveCart())
+    dispatch(saveCart())
     } else { setError(true) }
   }, [date, id, title, price, dispatch, cart])
 

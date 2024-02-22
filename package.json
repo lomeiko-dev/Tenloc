@@ -22,17 +22,22 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-geocode": "^1.0.0-alpha.1",
+    "react-input-mask": "^2.0.4",
     "react-intersection-observer": "^9.5.3",
+    "react-maskinput": "^3.2.0",
     "react-redux": "^9.0.4",
     "react-router-dom": "^6.21.1",
+    "react-text-mask": "^5.5.0",
     "react-yandex-maps": "^4.6.0",
     "sass": "^1.69.5",
-    "vite-plugin-svgr": "^4.2.0"
+    "vite-plugin-svgr": "^4.2.0",
+    "vue-the-mask": "^0.11.1"
   },
   "devDependencies": {
     "@types/lodash.debounce": "^4.0.9",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
+    "@types/react-input-mask": "^3.0.5",
     "@typescript-eslint/eslint-plugin": "^6.20.0",
     "@typescript-eslint/parser": "^6.14.0",
     "@vitejs/plugin-react": "^4.2.1",

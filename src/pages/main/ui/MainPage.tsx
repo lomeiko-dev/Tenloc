@@ -37,6 +37,7 @@ const MainPage = () => {
               title='Экскурсии'/>
 
             <ReviewsBlock
+                isSmallMobile={isSmallMobile}
                 margin={isMobile ? '64px 0' : '104px 0'}
                 isShowTitleBlock
                 isMobile={isMobile}

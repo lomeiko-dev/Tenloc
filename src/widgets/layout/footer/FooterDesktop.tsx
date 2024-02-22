@@ -14,7 +14,7 @@ import linksJson from 'shared/assets/json/links.json'
 import locationJson from 'shared/assets/json/location.json'
 import PhoneIcon from 'shared/assets/img/svg-icon/phone.svg?react'
 import EmailIcon from 'shared/assets/img/svg-icon/email.svg?react'
-import VectorIcon from 'shared/assets/img/svg-icon/Vector.svg?react'
+import VectorIcon from 'shared/assets/img/svg-icon/vector.svg?react'
 import bankLogotypes from 'shared/assets/img/other/bank-logotypes.png'
 import developmentLogo from 'shared/assets/img/logo/logo-development.png'
 

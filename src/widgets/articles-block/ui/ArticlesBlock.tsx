@@ -7,8 +7,10 @@ import { SliderManagment } from 'shared/ui/slider-managment'
 import { Text, enumStyleText } from 'shared/ui/text'
 import { Button, enumStyleButton } from 'shared/ui/button'
 import { Loader } from 'shared/ui/loader'
+import classNames from 'classnames'
 
 interface IArticleProps {
+  className?: string
   isMobile?: boolean
   width?: string
   limit?: number
@@ -18,7 +20,8 @@ export const ArticlesBlock: React.FC<IArticleProps> = memo((props) => {
   const {
     isMobile = false,
     limit = 4,
-    width = '100%'
+    width = '100%',
+    className
   } = props
 
   const [position, setPosition] = useState(0)
@@ -59,7 +62,7 @@ export const ArticlesBlock: React.FC<IArticleProps> = memo((props) => {
   }
 
   return (
-        <div className={style.wrap}>
+        <div className={classNames(style.wrap, className)}>
             <div className={style.title}>
                 <div className={style.left_part}>
                     <Text

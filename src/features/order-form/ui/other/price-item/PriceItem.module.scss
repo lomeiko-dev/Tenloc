@@ -1,0 +1,28 @@
+.item{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 1px solid #DFDFDF;
+    padding: 21px 0;
+
+    .price{
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, 0);
+    }
+}
+
+@media (max-width: 370px) {
+    .item{
+        flex-direction: column;
+        align-items: start;
+        gap: 10px;
+        
+        .price{
+            right: 0;
+            transform: translate(50%, 0);
+        }
+    }
+}

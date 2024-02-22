@@ -25,6 +25,7 @@ interface IFIeldProps extends HTMLAttributes<HTMLInputElement | HTMLTextAreaElem
   height?: string
   borderRadius?: number
   padding?: string
+  pattern?: string,
   margin?: string
   isReadOnly?: boolean
   bgColor?: string
@@ -47,6 +48,7 @@ export const Field: React.FC<IFIeldProps> = memo((props) => {
     classNameInput,
     placeholder,
     color,
+    pattern,
     fontSize,
     fontWeight,
     height,
@@ -116,6 +118,7 @@ export const Field: React.FC<IFIeldProps> = memo((props) => {
                             style={cssStyleInput}
                             className={classNames(classNameInput, style.textarea)}/>
                       : <input
+                            pattern={pattern}
                             {...otherProps}
                             readOnly={isReadOnly}
                             value={valueField}

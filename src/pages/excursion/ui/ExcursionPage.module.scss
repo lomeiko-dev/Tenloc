@@ -1,0 +1,88 @@
+.head{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 42px;
+
+    .price{
+        .price_title{
+            float: right;
+        }
+        .price_value{
+            white-space: pre;
+        }
+    }
+    
+}
+
+.content{
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.right_part{
+    position: relative;
+    height: fit-content;
+
+    .secondary_info{
+        position: absolute;
+        bottom: -224px;
+    }
+}
+
+.carousel{
+    height: 459px;
+    width: 100vw;
+    transform: translateX(-50%);
+    position: relative;
+    left: 50%;
+
+    .carousel_content{
+        gap: 6px;
+    }
+
+    .carousel_image{
+        width: 550px;
+        height: 459px;
+    }
+}
+
+.order_form{
+    width: 389px;
+}
+
+.excursion_list{
+    border-top: 1px solid #E8E8E8;
+    margin-top: 53px;
+    margin-bottom: 100px;
+    padding-top: 78px;
+}
+
+@media (max-width: 850px) {
+    .excursion_list{
+        margin-top: 253px;
+    }
+    .order_form{
+        max-width: 100%;
+        width: 100%;
+    }
+    .content{
+        flex-direction: column;
+    }
+    .left_part{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 970px) {
+    .carousel{
+        height: 259px;
+        .carousel_image{
+            width: 350px;
+            height: 259px;
+        }
+    }
+}

@@ -15,112 +15,140 @@ const LIMIT_DESKTOP = 5
 const LIMIT_MOBILE = 7
 
 interface IReviewsProps {
-  className?: string,
-  margin?: string
-  isMobile?: boolean
-  description?: string
-  isShowTitleBlock?: boolean
-  sortValue?: string
+   className?: string
+   margin?: string
+   isMobile?: boolean
+   isSmallMobile?: boolean
+   description?: string
+   isShowTitleBlock?: boolean
+   sortValue?: string
 }
 
 export const ReviewsBlock: React.FC<IReviewsProps> = memo((props) => {
-  const {
-    className,
-    margin,
-    isMobile,
-    description,
-    isShowTitleBlock = false,
-    sortValue
-  } = props
+   const {
+      className,
+      margin,
+      isMobile,
+      description,
+      isShowTitleBlock = false,
+      isSmallMobile,
+      sortValue,
+   } = props
 
-  const [openModal, setOpenModal] = useState(false)
-  const [search, setSearch] = useState('')
+   const [openModal, setOpenModal] = useState(false)
+   const [search, setSearch] = useState('')
 
-  const [triggerExcursion, resultExcursion] = useLazyGetExcursionByNameQuery()
+   const [triggerExcursion, resultExcursion] = useLazyGetExcursionByNameQuery()
 
-  const getExcursionByNameQuery = useCallback(
-    debounce((text: string) => {
-        triggerExcursion({
-            page: 1, 
-            limit: 20, 
-            text: text})
-    }, 300), [])
+   const getExcursionByNameQuery = useCallback(
+      debounce((text: string) => {
+         triggerExcursion({
+            page: 1,
+            limit: 20,
+            text: text,
+         })
+      }, 300),
+      []
+   )
 
-  const ReviewSliderComponent =
-        <ReviewSlider
-            sortValue={sortValue}
-            limit={isMobile ? LIMIT_MOBILE : LIMIT_DESKTOP}
-            isMobile={isMobile}/>
+   const ReviewSliderComponent = (
+      <ReviewSlider
+         sortValue={sortValue}
+         limit={isMobile ? LIMIT_MOBILE : LIMIT_DESKTOP}
+         isMobile={isMobile}
+      />
+   )
 
-    if(isMobile === undefined)
-        return null
+   if (isMobile === undefined) return null
 
-  return (
-        <div 
-            style={{margin}} 
-            className={classNames(isMobile ? style.reviews_mobile : style.reviews, className)}>
-            {isMobile
-              ? <>
-                    {isShowTitleBlock &&
-                        <Text
-                            className={style.title}
-                            margin="0 0 21px 0"
-                            styleText={enumStyleText.TERNARY_TITLE}
-                            text="Отзывы"/>}
-                    {ReviewSliderComponent}
-                    {isShowTitleBlock &&
-                        <Button
-                            onClick={() => { setOpenModal(true) }}
-                            padding={isMobile ? '16px 22px' : '18px 25px'}
-                            height="55px"
-                            styleButton={enumStyleButton.PRIMARY}>
-                                Оставить отзыв
-                        </Button>}
-                </>
-              : <>
-                    {isShowTitleBlock &&
-                        <div className={style.left_part}>
-                            <Text
-                                className={style.title}
-                                margin="0 0 21px 0"
-                                styleText={enumStyleText.TERNARY_TITLE}
-                                text="Отзывы"/>
-                            <Text
-                                width="318px"
-                                styleText={enumStyleText.PRIMARY_TEXT}
-                                margin="0 0 68px 0"
-                                text={description || ''}/>
-                            <Button
-                                onClick={() => { setOpenModal(true) }}
-                                padding={isMobile ? '16px 22px' : '18px 25px'}
-                                height="55px"
-                                styleButton={enumStyleButton.PRIMARY}>
-                                    Оставить отзыв
-                            </Button>
-                        </div>}
-                    {ReviewSliderComponent}
-                </>}
+   return (
+      <div
+         style={{ margin }}
+         className={classNames(
+            isMobile ? style.reviews_mobile : style.reviews,
+            className
+         )}>
+         {isMobile ? (
+            <>
+               {isShowTitleBlock && (
+                  <Text
+                     className={style.title}
+                     margin="0 0 21px 0"
+                     styleText={enumStyleText.TERNARY_TITLE}
+                     text="Отзывы"
+                  />
+               )}
 
-            {isShowTitleBlock &&
-                <Modal
-                    lazy
-                    loadingComponent={<Loader isCenter/>}
-                    width="70%" height="700px"
-                    onClose={() => { setOpenModal(false) }} open={openModal}>
-                        <Text
-                            margin="0 0 20px"
-                            styleText={enumStyleText.SECONDARY_SUBTITLE}
-                            text="Оставить отзыв"/>
-                        <FormAddReviewLazy
-                            isLoadingExcursion={resultExcursion.isLoading} isErrorExursion={resultExcursion.isError}
-                            onCloseModal={() => { setOpenModal(false) }}
-                            onChangeValueSearch={(text: string) => {
-                                setSearch(text)
-                                getExcursionByNameQuery(text)
-                            }}
-                            valueSearch={search}
-                            excursions={resultExcursion.data || []}/>
-                </Modal>}
-        </div>
-  )
+               {ReviewSliderComponent}
+               {isShowTitleBlock && (
+                  <Button
+                     onClick={() => {
+                        setOpenModal(true)
+                     }}
+                     padding={isMobile ? '16px 22px' : '18px 25px'}
+                     height="55px"
+                     styleButton={enumStyleButton.PRIMARY}>
+                     Оставить отзыв
+                  </Button>
+               )}
+            </>
+         ) : (
+            <>
+               {isShowTitleBlock && (
+                  <div className={style.left_part}>
+                     <Text
+                        className={style.title}
+                        margin="0 0 21px 0"
+                        styleText={enumStyleText.TERNARY_TITLE}
+                        text="Отзывы"
+                     />
+                     <Text
+                        width="100%"
+                        styleText={enumStyleText.PRIMARY_TEXT}
+                        margin="0 0 68px 0"
+                        text={description || ''}
+                     />
+                     <Button
+                        onClick={() => {
+                           setOpenModal(true)
+                        }}
+                        padding={isMobile ? '16px 22px' : '18px 25px'}
+                        height="55px"
+                        styleButton={enumStyleButton.PRIMARY}>
+                        Оставить отзыв
+                     </Button>
+                  </div>
+               )}
+               {ReviewSliderComponent}
+            </>
+         )}
+
+         {isShowTitleBlock && (
+            <Modal
+               lazy
+               loadingComponent={<Loader isCenter />}
+               width={isMobile ? '100%' : '70%'}
+               height={isMobile ? '100%' : '700px'}
+               onClose={() => {
+                  setOpenModal(false)
+               }}
+               open={openModal}>
+               <FormAddReviewLazy
+                  isSmallMobile={isSmallMobile}
+                  isLoadingExcursion={resultExcursion.isLoading}
+                  isErrorExursion={resultExcursion.isError}
+                  onCloseModal={() => {
+                     setOpenModal(false)
+                  }}
+                  onChangeValueSearch={(text: string) => {
+                     setSearch(text)
+                     getExcursionByNameQuery(text)
+                  }}
+                  valueSearch={search}
+                  excursions={resultExcursion.data || []}
+               />
+            </Modal>
+         )}
+      </div>
+   )
 })

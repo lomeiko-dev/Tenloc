@@ -1,5 +1,5 @@
 import { memo, useCallback, useState } from 'react'
-import style from '../FIeldSearched.module.scss'
+import style from '../FieldSearched.module.scss'
 import { Map, Placemark, YMaps } from 'react-yandex-maps'
 import { Text } from 'shared/ui/text'
 
@@ -27,7 +27,7 @@ const YandexMap: React.FC<YandexMapProps> = memo((props) => {
   }, [])
 
   return (
-        <div className={style.map}>
+        <div className={style.wrap}>
             <Text margin="0 0 15px 0" text="Выберите место на карте"/>
             <YMaps>
                 <Map 

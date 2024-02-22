@@ -18,8 +18,8 @@ const CityList: React.FC<ICityListProps> = memo(({ isMobile = undefined }) => {
 
   const navigate = useNavigate()
 
-  const clickButtonHandle = useCallback((id: string) => {
-    navigate(`${pathRoutes.city.path}/${id}`)
+  const clickButtonHandle = useCallback((name: string) => {
+    navigate(`${pathRoutes.city.path}/${name}`)
   }, [])
 
   if (isLoading) { return <div className={style.btn}>загрузка...</div> }
@@ -43,7 +43,7 @@ const CityList: React.FC<ICityListProps> = memo(({ isMobile = undefined }) => {
                     borderRadius='30px'
                     color='#FFFFFF' height='32px' fontSize={14}
                     key={item.id}
-                    onClick={() => { clickButtonHandle(item.id) }}
+                    onClick={() => { clickButtonHandle(item.city) }}
                     className={style.btn}>
                         {item.city}
                 </Button>)}

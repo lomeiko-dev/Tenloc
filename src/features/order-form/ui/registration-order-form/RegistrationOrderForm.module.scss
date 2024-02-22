@@ -1,0 +1,91 @@
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;justify-content: center;
+    padding: 22px 85px;
+    height: 100%;
+    width: 100%;
+}
+
+.title_wrap{
+    display: flex;
+    justify-content: center;
+}
+
+//mask
+.input{
+    margin: 8px 0 0 0;
+    padding: 14px 20px;
+    background-color:#F1F1F1;
+    border-radius: 100px;
+}
+.form_ui, .input{
+    width: 100%;
+    max-width: 359px;
+    height: 55px;
+}
+
+.payment_block{
+    margin-top: 34px;
+    width: 100%;
+}
+
+.payment_methods{
+    position: relative;
+    margin-top: 29px;
+    display: flex;
+    gap: 25px;
+}
+
+.form_user_data{
+    display: flex;
+    border: 1px solid #EEEEEE;
+    border-radius: 20px;
+    padding: 33px 44px;
+    margin-top: 33px;
+    gap: 45px;
+
+    .right_part{
+        background-color: #F6F6F6;
+        border-radius: 20px;
+        max-width: 381px;
+        width: 100%;
+        height: 257px;
+        margin-top: 20px;
+        padding: 32px;
+    }
+}
+
+.second{
+    margin-top: 24px;
+}
+
+.ternary {
+    margin-top: 96px;
+}
+
+@media (max-width: 850px) {
+    .form{
+        padding: 10px 20px;
+    }
+}
+
+@media (max-width: 680px) {
+    .form_user_data{
+        align-items: center;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 500px) {
+    .payment_methods{
+        align-items: center;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 340px) {
+    .form_user_data{
+        padding: 10px 15px;
+    }
+}

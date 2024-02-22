@@ -13,8 +13,8 @@ export const DropdownCity = memo(() => {
 
   const { data = [], isLoading, isError } = useGetCityQuery(5)
 
-  const clickCityHandle = useCallback((id: string) => {
-    navigate(`${pathRoutes.city.path}/${id}`)
+  const clickCityHandle = useCallback((name: string) => {
+    navigate(`${pathRoutes.city.path}/${name}`)
   }, [navigate])
 
   return (
@@ -30,7 +30,7 @@ export const DropdownCity = memo(() => {
                           : data?.map(item =>
                                 <div
                                     key={item.id}
-                                    onClick={() => { clickCityHandle(item.id) }}
+                                    onClick={() => { clickCityHandle(item.city) }}
                                     className={style.item}>
                                         {item.city}
                                 </div>)}

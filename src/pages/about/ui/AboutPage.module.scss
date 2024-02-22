@@ -1,0 +1,153 @@
+.traval_me{
+    width: 100vw;
+    transform: translateX(-50%);
+    position: relative;
+    left: 50%;
+    background-color: #FFFFFF;
+    border-radius: 30px;
+    padding: 66px 144px;
+    z-index: 1000;
+}
+
+.our_advantages{
+    width: 100vw;
+    transform: translateX(-50%);
+    position: relative;
+    left: 50%;
+    height: 654px;
+
+    .inner{
+        display: flex;
+        align-items: center;
+        position: absolute;
+        width: 100%;
+        top: -66px;
+        background-color: #EEBF55;
+        padding: 223px 0 175px 145px;
+        height: 720px;
+
+        .women{
+            position: absolute;
+            right: 165px;
+            bottom: 0;
+        }
+    }
+}
+
+.info{
+    width: 100vw;
+    transform: translateX(-50%);
+    position: relative;
+    left: 50%;
+
+    display: flex;
+    gap: 155px;
+    padding: 95px 145px;
+    border-radius: 30px;
+    z-index: 999;
+    background-color: #FFFFFF;
+
+    .head{
+        display: flex;
+        align-items: center;
+        gap: 8.5px;
+        margin-bottom: 21px;
+    }
+
+    .icon{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 61px;
+        height: 61px;
+        border-radius: 50%;
+        background-color: var(--primary-color);
+    }
+
+    .description{
+        border-top: 1px solid #E8E8E8;
+        padding: 15px 0 0 4px;
+    }
+}
+
+.guide_work{
+    width: 100vw;
+    transform: translateX(-50%);
+    position: relative;
+    left: 50%;
+    height: 1041px;
+
+    .inner{
+        position: absolute;
+        top: -60px;
+        width: 100%;
+        height: 1041px;
+        background-color: #F6F6F6;
+    }
+
+    .content{
+        display: flex;
+    }
+
+    .steps{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 72px;
+        .step{
+            .head{
+                display: flex;
+                align-items: center;
+                gap: 21px;
+                margin-bottom: 24px;
+            }
+            width: 100%;
+            max-width: 760px;
+        }
+
+        .step_text{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--primary-color);
+            width: 73px;
+            height: 32px;
+            border-radius: 100px;
+        }
+    }
+}
+
+.review{
+    width: 100vw;
+    transform: translateX(-50%);
+    position: relative;
+    left: 50%;
+    padding: 0 344px;
+    z-index: 777;
+
+    background-color: #FFFFFF;
+    border-radius: 30px;
+    height: 741px;
+}
+
+.blog{
+    width: 100vw;
+    height: 821px;
+    transform: translateX(-50%);
+    position: relative;
+    left: 50%;
+    
+    .inner{
+        top: -66px;
+        position: absolute;
+        width: 100%;
+        height: 821px;
+        padding: 80px 0;
+    }
+
+    .articles{
+        display: flex;
+        margin: 0 auto;
+        width: 1430px;
+    }
+}

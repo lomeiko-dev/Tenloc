@@ -11,9 +11,10 @@ interface IModalProps {
   onClose: () => void
   open?: boolean
   width?: string
+  maxHeight?: string,
   height?: string
   loadingComponent?: React.ReactNode
-  lazy?: boolean
+  lazy?: boolean,
 }
 
 export const Modal: React.FC<IModalProps> = (props) => {
@@ -23,6 +24,7 @@ export const Modal: React.FC<IModalProps> = (props) => {
     height,
     open = false,
     width,
+    maxHeight,
     className,
     loadingComponent,
     lazy = false
@@ -65,12 +67,13 @@ export const Modal: React.FC<IModalProps> = (props) => {
 
   const cssStyles: CSSProperties = {
     width,
-    height
+    height,
+    maxHeight
   }
 
   const mods = {
     [style.open]: open,
-    [style.closed]: closed
+    [style.closed]: closed,
   }
 
   if (lazy && !isMounted) { return null }

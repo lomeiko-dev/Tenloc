@@ -1,5 +1,5 @@
 import { memo, useRef } from 'react'
-import style from '../FIeldSearched.module.scss'
+import style from '../FieldSearched.module.scss'
 
 import { Field, enumStyleField } from 'shared/ui/field'
 import { Button, enumStyleButton } from 'shared/ui/button'

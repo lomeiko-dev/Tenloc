@@ -43,7 +43,7 @@ export const CityCard: React.FC<ICityVIewProps> = memo((props) => {
             className={classNames(style.wrapper, className)}>
             <div className={style.darkening} />
             <Image
-                borderRadius='20px'
+                borderRadius={20}
                 className={style.background}
                 width="100%" height="100%"
                 src={`/server/assets/${preview}`}/>

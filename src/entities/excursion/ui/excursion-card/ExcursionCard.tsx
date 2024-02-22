@@ -44,7 +44,7 @@ export const ExcursionCard: React.FC<IExcursionCardProps> = memo((props) => {
           style={cssStyle} 
           className={classNames(style.card, className)}>
             <Image
-                borderRadius='20px 20px 0 0'
+                className={style.image}
                 width="100%" height={isMobile ? '97px' : '226px'}
                 src={`/server${imagePreview}`}/>
 

@@ -42,7 +42,7 @@ export const AddToLikesExcursion: React.FC<IAddToLikesExcursionProps> = memo((pr
             style={{margin}}
             onClick={toggleLikeHamdle}
             className={classNames(findExcursionById() ? style.btn_active : style.btn, className)}
-            width={isMobile ? '23px' : '50px'} height={isMobile ? '23px' : '50px'}
+            width={isMobile ? '23px' : '50px'} height={isMobile ? '23px' : '45px'}
             padding="5px 0 0 0"
             borderRadius="100px">
                 <LikeIcon

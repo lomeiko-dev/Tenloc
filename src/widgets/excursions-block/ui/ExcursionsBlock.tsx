@@ -129,6 +129,8 @@ export const  ExcursionsBlock: React.FC<IExcursionListPaginationProps> = memo((p
                 ? !isActiveDynamic
                     ? (resultExcursion.data?.totalCount || 0) > limit &&
                           <Button
+                              fontSize={15} fontWeight={400}
+                              height='55px'
                               onClick={showMoreHandle}
                               styleButton={enumStyleButton.PRIMARY}>
                                   Все экскурсии

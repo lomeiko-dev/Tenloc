@@ -5,7 +5,9 @@ export {
   useGetCityByNameQuery,
   useLazyGetCityByNameQuery,
   useGetExcursionByNameQuery,
-  useLazyGetExcursionByNameQuery
+  useLazyGetExcursionByNameQuery,
+  useGetExcursionByIdQuery,
+  useLazyGetExcursionByIdQuery
 } from './model/api/sort-excursion-api'
 
 export { FieldSearched } from './ui/field-searched/FieldSearched'

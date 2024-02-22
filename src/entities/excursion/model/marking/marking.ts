@@ -3,7 +3,8 @@ import { IMarking } from "./types";
 
 export const markingTypeExcurison: IMarking[] = [
     {name: 'Группа', marking: enumTypeExcursion.GROUP},
-    {name: 'Индивидуальная', marking: enumTypeExcursion.INDIVIDUAL}
+    {name: 'Индивидуальная', marking: enumTypeExcursion.INDIVIDUAL},
+    {name: 'Мини группа', marking: enumTypeExcursion.MINIGROUP}
 ]
 
 export const markingTypePay: IMarking[] = [

@@ -1,11 +1,12 @@
+.form{
+    padding: 10px 20px;
+}
+
 .excursions{
     height: 300px;
     width: 100%;
     margin: 20px 0;
     padding: 20px 0;
-    
-    border-top: 1px solid #EBEBEB;
-    border-bottom: 1px solid #EBEBEB;
 
     overflow: auto;
 }
@@ -27,15 +28,18 @@
     gap: 10px;
 }
 .excursion_item{
-    margin: 10px 0;
     cursor: pointer;
     transition: .2s;
 }
 
 .excursion_item_select{
-    border: 3px solid var(--primary-color);
+    border-top: 2px solid var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+    background-color: rgba($color: #8d8d8d, $alpha: .1);
 }
 
 .excursion_item:hover {
-    border: 1px solid var(--primary-color);
+    border-top: 2px solid var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+    background-color: rgba($color: #8d8d8d, $alpha: .1);
 }

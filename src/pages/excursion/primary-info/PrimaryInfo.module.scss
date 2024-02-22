@@ -1,0 +1,31 @@
+.info_excursion{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px 58px;
+
+    border-top: 1px solid #E4E4E4;
+    border-bottom: 1px solid #E4E4E4;
+    width: fit-content;
+    padding: 28px 15px 28px 0;
+    div{
+        display: flex;
+        align-items: center;
+        gap: 4px;
+
+        .title{
+            white-space: pre;
+        }
+    }
+}
+
+@media (max-width: 910px) {
+    .info_excursion{
+        gap: 18px;
+    }
+}
+
+@media (max-width: 785px) {
+    .info_excursion{
+        flex-direction: column;
+    }
+}

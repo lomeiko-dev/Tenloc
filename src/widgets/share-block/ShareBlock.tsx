@@ -18,7 +18,7 @@ export const ShareBlock: React.FC<IShareBlockProps> = memo(({ isMobile }) => {
   return (
         <div className={style.wrap}>
             <Image
-                borderRadius='20px'
+                borderRadius={20}
                 className={style.image}
                 width="100%" height="100%"
                 src={footerIntro}/>

@@ -7,6 +7,7 @@ import { cartReducer } from 'entities/cart'
 import { reviewsApiMiddleware, reviewsApiReducer } from 'entities/reviews'
 import { addReviewApiMiddleware, addReviewApiReducer } from 'features/form-add-review'
 import { articleApiMiddleware, articleApiReducer } from 'entities/article'
+import { addOrderApiMiddleware, addOrderApiReducer } from 'features/order-form/model/api/add-order-api'
 
 const rootReducers: ReducersMapObject<IStore> = {
   LikesReducer: likesReducer,
@@ -15,7 +16,8 @@ const rootReducers: ReducersMapObject<IStore> = {
   SortExcursionApi: sortExcursionApiReducer,
   ReviewsApi: reviewsApiReducer,
   AddReviewApi: addReviewApiReducer,
-  ArticleApi: articleApiReducer
+  ArticleApi: articleApiReducer,
+  AddOrderApi: addOrderApiReducer,
 }
 
 export const store = configureStore({
@@ -27,7 +29,8 @@ export const store = configureStore({
         excursionApiMiddleware,
         reviewsApiMiddleware,
         addReviewApiMiddleware,
-        articleApiMiddleware)
+        articleApiMiddleware,
+        addOrderApiMiddleware)
 })
 
 export type RootState = ReturnType<typeof store.getState>

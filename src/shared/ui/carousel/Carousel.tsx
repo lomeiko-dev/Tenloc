@@ -46,15 +46,18 @@ export const Carousel: React.FC<ICarouselProps> = memo((props) => {
   }, [inViewObserver])
 
   const leftHandle = useCallback(() => {
-    if(position === 0) { return null }
-
     setPosition(position - valueSkipPx)
+
+    if (inViewObserver) { setPosition(positionPx) }
   }, [inViewObserver, position, valueSkipPx])
 
   const rightHandle = useCallback(() => {
-    setPosition(position + valueSkipPx)
+    if(position >= 0) { 
+      setPosition(positionPx) 
+      return null
+    }
 
-    if (inViewObserver) { setPosition(0) }
+    setPosition(position + valueSkipPx)
   }, [inViewObserver, position, valueSkipPx])
 
   const cssStyles: CSSProperties = {
