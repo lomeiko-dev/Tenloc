@@ -1,19 +1,25 @@
 import { type articleApiReducer } from 'entities/article'
+import { IAuthScheme } from 'entities/auth'
 import { type ICartScheme } from 'entities/cart'
 import { type excursionApiReducer } from 'entities/excursion'
 import { type ILikesScheme } from 'entities/likes'
 import { type reviewsApiReducer } from 'entities/reviews'
+import { userApiReducer } from 'entities/user'
+import { authApiReducer } from 'features/auth'
 import { type addReviewApiReducer } from 'features/form-add-review'
-import { type addOrderApiReducer } from 'features/order-form/model/api/add-order-api'
+import { type addOrderApiReducer } from 'features/order-form'
 import { type sortExcursionApiReducer } from 'features/sort-excursion'
 
 export interface IStore {
-  LikesReducer: ILikesScheme
-  CartReducer: ICartScheme
-  SortExcursionApi: ReturnType<typeof sortExcursionApiReducer>
-  ExcursionApi: ReturnType<typeof excursionApiReducer>
-  ReviewsApi: ReturnType<typeof reviewsApiReducer>
-  AddReviewApi: ReturnType<typeof addReviewApiReducer>
-  ArticleApi: ReturnType<typeof articleApiReducer>,
-  AddOrderApi: ReturnType<typeof addOrderApiReducer>
+   AuthReducer: IAuthScheme
+   LikesReducer: ILikesScheme
+   CartReducer: ICartScheme
+   UserApi: ReturnType<typeof userApiReducer>
+   AuthApi: ReturnType<typeof authApiReducer>
+   SortExcursionApi: ReturnType<typeof sortExcursionApiReducer>
+   ExcursionApi: ReturnType<typeof excursionApiReducer>
+   ReviewsApi: ReturnType<typeof reviewsApiReducer>
+   AddReviewApi: ReturnType<typeof addReviewApiReducer>
+   ArticleApi: ReturnType<typeof articleApiReducer>
+   AddOrderApi: ReturnType<typeof addOrderApiReducer>
 }

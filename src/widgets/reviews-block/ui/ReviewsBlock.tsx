@@ -1,18 +1,11 @@
 import { memo, useCallback, useState } from 'react'
-import style from './ReviewsBlock.module.scss'
 import { useLazyGetExcursionByNameQuery } from 'features/sort-excursion'
 
 import { FormAddReviewLazy } from 'features/form-add-review'
-import { Button, enumStyleButton } from 'shared/ui/button'
 import { Modal } from 'shared/ui/modal'
-import { Text, enumStyleText } from 'shared/ui/text'
-import { ReviewSlider } from 'widgets/reviews-block'
 import { Loader } from 'shared/ui/loader'
 import debounce from 'lodash.debounce'
-import classNames from 'classnames'
-
-const LIMIT_DESKTOP = 5
-const LIMIT_MOBILE = 7
+import { ReviewDesktopLazy, ReviewMobileLazy } from './other'
 
 interface IReviewsProps {
    className?: string
@@ -51,76 +44,29 @@ export const ReviewsBlock: React.FC<IReviewsProps> = memo((props) => {
       []
    )
 
-   const ReviewSliderComponent = (
-      <ReviewSlider
-         sortValue={sortValue}
-         limit={isMobile ? LIMIT_MOBILE : LIMIT_DESKTOP}
-         isMobile={isMobile}
-      />
-   )
-
    if (isMobile === undefined) return null
 
    return (
-      <div
-         style={{ margin }}
-         className={classNames(
-            isMobile ? style.reviews_mobile : style.reviews,
-            className
-         )}>
+      <div style={{ margin }}>
          {isMobile ? (
-            <>
-               {isShowTitleBlock && (
-                  <Text
-                     className={style.title}
-                     margin="0 0 21px 0"
-                     styleText={enumStyleText.TERNARY_TITLE}
-                     text="Отзывы"
-                  />
-               )}
-
-               {ReviewSliderComponent}
-               {isShowTitleBlock && (
-                  <Button
-                     onClick={() => {
-                        setOpenModal(true)
-                     }}
-                     padding={isMobile ? '16px 22px' : '18px 25px'}
-                     height="55px"
-                     styleButton={enumStyleButton.PRIMARY}>
-                     Оставить отзыв
-                  </Button>
-               )}
-            </>
+            <ReviewMobileLazy
+               limit={7}
+               sortValue={sortValue}
+               className={className}
+               isShowTitleBlock={isShowTitleBlock}
+               isMobile={isMobile}
+               onOpenModal={() => setOpenModal(true)}
+            />
          ) : (
-            <>
-               {isShowTitleBlock && (
-                  <div className={style.left_part}>
-                     <Text
-                        className={style.title}
-                        margin="0 0 21px 0"
-                        styleText={enumStyleText.TERNARY_TITLE}
-                        text="Отзывы"
-                     />
-                     <Text
-                        width="100%"
-                        styleText={enumStyleText.PRIMARY_TEXT}
-                        margin="0 0 68px 0"
-                        text={description || ''}
-                     />
-                     <Button
-                        onClick={() => {
-                           setOpenModal(true)
-                        }}
-                        padding={isMobile ? '16px 22px' : '18px 25px'}
-                        height="55px"
-                        styleButton={enumStyleButton.PRIMARY}>
-                        Оставить отзыв
-                     </Button>
-                  </div>
-               )}
-               {ReviewSliderComponent}
-            </>
+            <ReviewDesktopLazy
+               limit={5}
+               sortValue={sortValue}
+               className={className}
+               isShowTitleBlock={isShowTitleBlock}
+               description={description}
+               isMobile={isMobile}
+               onOpenModal={() => setOpenModal(true)}
+            />
          )}
 
          {isShowTitleBlock && (

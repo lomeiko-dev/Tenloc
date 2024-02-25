@@ -8,11 +8,13 @@ import { loadCart } from 'entities/cart'
 
 import { Routing } from './providers/routing'
 import { Layout } from 'widgets/layout'
+import { initAuth } from 'entities/auth'
 
 export const App = () => {
   const dispatch = useAppDispatch()
 
   useEffect(() => {
+    dispatch(initAuth())
     dispatch(loadLikes())
     dispatch(loadCart())
   }, [dispatch])

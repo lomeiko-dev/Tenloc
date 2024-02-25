@@ -34,7 +34,9 @@ export const Checkbox: React.FC<ICheckboxProps> = memo((props) => {
             onChange={handleCheckboxChange}
           />
           <span className={style.checkmark}/>
-          {children}
+          <div className={style.label}>
+            {children}
+          </div>
         </label>
   )
 })
