@@ -6,14 +6,16 @@ import { Button, enumStyleButton } from 'shared/ui/button'
 import { SideBarLazy } from '../sidebar'
 import { Logotype } from 'shared/ui/logotype'
 import { Loader } from 'shared/ui/loader'
-
-import LikeIcon from 'shared/assets/img/svg-icon/like.svg?react'
-import BurgerMenuIcon from 'shared/assets/img/svg-icon/burger-menu.svg?react'
 import { DropdownCity } from '../other/dropdown-city/DropdownCity'
 import { Modal } from 'shared/ui/modal'
 import { AuthForm } from 'features/auth'
+
 import { useAuth } from 'shared/lib/hooks/useAuth'
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch'
+
+import LikeIcon from 'shared/assets/img/svg-icon/like.svg?react'
+import BurgerMenuIcon from 'shared/assets/img/svg-icon/burger-menu.svg?react'
+
 import { removeAuth } from 'entities/auth'
 
 interface IHeaderProps {

@@ -3,6 +3,7 @@ import { IAuthScheme } from 'entities/auth'
 import { type ICartScheme } from 'entities/cart'
 import { type excursionApiReducer } from 'entities/excursion'
 import { type ILikesScheme } from 'entities/likes'
+import { profileApiReducer } from 'entities/profile'
 import { type reviewsApiReducer } from 'entities/reviews'
 import { userApiReducer } from 'entities/user'
 import { authApiReducer } from 'features/auth'
@@ -14,6 +15,7 @@ export interface IStore {
    AuthReducer: IAuthScheme
    LikesReducer: ILikesScheme
    CartReducer: ICartScheme
+   ProfileApi: ReturnType<typeof profileApiReducer>
    UserApi: ReturnType<typeof userApiReducer>
    AuthApi: ReturnType<typeof authApiReducer>
    SortExcursionApi: ReturnType<typeof sortExcursionApiReducer>

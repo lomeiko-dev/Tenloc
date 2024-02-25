@@ -17,8 +17,10 @@ import { addOrderApiMiddleware, addOrderApiReducer } from 'features/order-form'
 import { authReducer } from 'entities/auth'
 import { authApiMiddleware, authApiReducer } from 'features/auth'
 import { userApiMiddleware, userApiReducer } from 'entities/user'
+import { profileApiMiddleware, profileApiReducer } from 'entities/profile'
 
 const rootReducers: ReducersMapObject<IStore> = {
+   ProfileApi: profileApiReducer,
    UserApi: userApiReducer,
    AuthApi: authApiReducer,
    AuthReducer: authReducer,
@@ -37,6 +39,7 @@ export const store = configureStore({
    devTools: true,
    middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat(
+         profileApiMiddleware,
          userApiMiddleware,
          authApiMiddleware,
          sortExcursionApiMiddleware,

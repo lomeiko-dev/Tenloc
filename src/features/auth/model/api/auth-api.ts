@@ -1,7 +1,12 @@
 import { createApi } from '@reduxjs/toolkit/query/react'
 import { baseQuery, fetchPath } from 'shared/config/api'
 import { IUserScheme } from 'entities/user'
-import { ILoginProps, IRegistrationProps } from './payload-types'
+import {
+   ICreateProfile,
+   ILoginProps,
+   IRegistrationProps,
+} from './payload-types'
+import { IProfile } from 'entities/profile'
 
 export const authgApi = createApi({
    reducerPath: 'AuthApi',
@@ -10,6 +15,13 @@ export const authgApi = createApi({
       registration: builder.mutation<IUserScheme, IRegistrationProps>({
          query: (body) => ({
             url: `${fetchPath.users}`,
+            method: 'POST',
+            body,
+         }),
+      }),
+      createProfile: builder.query<IProfile, ICreateProfile>({
+         query: (body) => ({
+            url: `${fetchPath.profile}`,
             method: 'POST',
             body,
          }),
@@ -30,6 +42,7 @@ export const {
    useLoginQuery,
    useGetUserByLoginQuery,
    useLazyGetUserByLoginQuery,
+   useLazyCreateProfileQuery,
 } = authgApi
 
 export const authApiReducer = authgApi.reducer

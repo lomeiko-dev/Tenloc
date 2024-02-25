@@ -1,8 +1,13 @@
 import { memo, useCallback, useState } from 'react'
 import { LoginFormLazy, RegistrationFormLazy } from './forms'
-import { useLazyLoginQuery, useRegistrationMutation } from '..'
+import {
+   useLazyCreateProfileQuery,
+   useLazyLoginQuery,
+   useRegistrationMutation,
+} from '..'
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch'
 import { saveAuth, setAuth } from 'entities/auth'
+import { enumNotification } from 'entities/profile'
 
 interface IAuthFormProps {
    onClosedModal: () => void
@@ -16,6 +21,7 @@ export const AuthForm: React.FC<IAuthFormProps> = memo((props) => {
 
    const [error, setError] = useState<string | undefined>(undefined)
    const [registration, resultRegistration] = useRegistrationMutation()
+   const [createProfile] = useLazyCreateProfileQuery()
    const [triggerLogin, resultLogin] = useLazyLoginQuery()
 
    const toggleFormHandle = useCallback(() => {
@@ -29,8 +35,7 @@ export const AuthForm: React.FC<IAuthFormProps> = memo((props) => {
          if (result.data?.length !== 0 && result.data) {
             if (isRememberMy) dispatch(saveAuth(result.data[0].id))
             onClosedModal()
-         }
-         else{
+         } else {
             setError('Логин или пароль не верны.')
          }
       },
@@ -44,9 +49,14 @@ export const AuthForm: React.FC<IAuthFormProps> = memo((props) => {
             email: email,
             phone: phone,
             password: password,
-            profileId: '',
          }).unwrap()
-         
+
+         await createProfile({
+            avatar: '',
+            typeNotification: enumNotification.EMAIL,
+            userId: user.id,
+         })
+
          dispatch(setAuth(user.id))
          onClosedModal()
       },
@@ -55,7 +65,7 @@ export const AuthForm: React.FC<IAuthFormProps> = memo((props) => {
 
    return (
       <div>
-         { isLoginForm ? (
+         {isLoginForm ? (
             <LoginFormLazy
                externalError={error}
                isLoading={resultLogin.isLoading}

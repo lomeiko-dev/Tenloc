@@ -7,4 +7,7 @@ export {
    useLazyLoginQuery,
    useLoginQuery,
    useRegistrationMutation,
+   useGetUserByLoginQuery,
+   useLazyCreateProfileQuery,
+   useLazyGetUserByLoginQuery,
 } from './model/api/auth-api'
