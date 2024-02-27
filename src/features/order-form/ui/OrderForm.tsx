@@ -71,8 +71,8 @@ export const OrderForm: React.FC<IOrderFormProps> = memo((props) => {
    const [isOpenModal, setOpenModal] = useState(false)
 
    const openModalHandle = useCallback(() => {
-      if (!isAuth) {
-         errorAuth && errorAuth()
+      if (!isAuth && errorAuth) {
+         errorAuth()
          return
       }
       if (

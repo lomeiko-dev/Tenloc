@@ -1,4 +1,4 @@
-import { memo, useCallback, useState } from 'react'
+import { Suspense, memo, useCallback, useState } from 'react'
 import { LoginFormLazy, RegistrationFormLazy } from './forms'
 import {
    useLazyCreateProfileQuery,
@@ -45,10 +45,10 @@ export const AuthForm: React.FC<IAuthFormProps> = memo((props) => {
    const registrationHandle = useCallback(
       async (name: string, email: string, phone: string, password: string) => {
          const user = await registration({
-            name: name,
-            email: email,
-            phone: phone,
-            password: password,
+            name,
+            email,
+            phone,
+            password,
          }).unwrap()
 
          await createProfile({
@@ -66,19 +66,23 @@ export const AuthForm: React.FC<IAuthFormProps> = memo((props) => {
    return (
       <div>
          {isLoginForm ? (
-            <LoginFormLazy
-               externalError={error}
-               isLoading={resultLogin.isLoading}
-               onClickRegistration={toggleFormHandle}
-               onClickLogin={loginHandle}
-               onClickPasswordRecovery={() => null}
-            />
+            <Suspense>
+               <LoginFormLazy
+                  externalError={error}
+                  isLoading={resultLogin.isLoading}
+                  onClickRegistration={toggleFormHandle}
+                  onClickLogin={loginHandle}
+                  onClickPasswordRecovery={() => null}
+               />
+            </Suspense>
          ) : (
-            <RegistrationFormLazy
-               isLoading={resultRegistration.isLoading}
-               onClickLogin={toggleFormHandle}
-               onClickRegistration={registrationHandle}
-            />
+            <Suspense>
+               <RegistrationFormLazy
+                  isLoading={resultRegistration.isLoading}
+                  onClickLogin={toggleFormHandle}
+                  onClickRegistration={registrationHandle}
+               />
+            </Suspense>
          )}
       </div>
    )

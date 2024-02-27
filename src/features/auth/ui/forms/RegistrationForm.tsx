@@ -10,6 +10,7 @@ import EyeClosedIcon from 'shared/assets/img/svg-icon/eye-closed.svg?react'
 
 import { useLazyGetUserByLoginQuery } from '../../model/api/auth-api'
 import ReactInputMask from 'react-input-mask'
+import { ValidateAuth } from 'features/auth/model/lib/validate-auth'
 
 interface IRegistrationFormProps {
    isLoading?: boolean
@@ -39,25 +40,15 @@ const RegistrationForm: React.FC<IRegistrationFormProps> = memo((props) => {
    }, [isShowPassword])
 
    const registrationHandle = useCallback(async () => {
-      if (name.length < 6) {
-         setError('Имя должно быть больше 6 символов')
-         return
-      } else setError(undefined)
-
-      if (email.length < 4) {
-         setError('Почта должна быть больше 4 символов')
-         return
-      } else setError(undefined)
-
-      if (phone.length === 0) {
-         setError('Телефон не указан')
-         return
-      } else setError(undefined)
-
-      if (password.length < 6) {
-         setError('Пароль должен быть больше 6 симоволов')
-         return
-      } else setError(undefined)
+      ValidateAuth(
+         {
+            email,
+            name,
+            phone,
+            password,
+         },
+         { getError: setError }
+      )
 
       const user = await getUser(email)
 

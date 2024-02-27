@@ -52,7 +52,7 @@ const FormAddReview: React.FC<IFormAddReviewProps> = memo((props) => {
    const [selectId, setId] = useState('')
    const [error, setError] = useState<string | undefined>(undefined)
    const [addNewReview, secondaryDataReview] = useAddNewReviewMutation()
-   const user = useAuth();
+   const user = useAuth()
 
    useEffect(() => {
       onChangeValueSearch('')
@@ -73,7 +73,7 @@ const FormAddReview: React.FC<IFormAddReviewProps> = memo((props) => {
          message,
          excursionId: selectId,
          score,
-         userId: user.data?.user?.id || ''
+         userId: user.data?.user?.id || '',
       })
 
       onCloseModal && onCloseModal()
@@ -117,9 +117,7 @@ const FormAddReview: React.FC<IFormAddReviewProps> = memo((props) => {
                      price={isSmallMobile ? undefined : item.priceMiddle}
                      imagePreview={item.imagePreview}
                      name={item.name}
-                     onClick={() => {
-                        setId(item.id)
-                     }}
+                     onClick={() => setId(item.id)}
                      key={item.id}
                      className={classNames(
                         style.excursion_item,

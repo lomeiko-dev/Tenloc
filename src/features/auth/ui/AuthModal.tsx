@@ -6,6 +6,8 @@ interface IAuthModalProps {
    onCloseModal: () => void
 }
 
+// FOR AUTO CALL FORM
+
 export const AuthModal: React.FC<IAuthModalProps> = memo((props) => {
    const { onCloseModal } = props
 

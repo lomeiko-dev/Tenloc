@@ -12,29 +12,9 @@
     justify-content: center;
 }
 
-//mask
-.input{
-    margin: 8px 0 0 0;
-    padding: 14px 20px;
-    background-color:#F1F1F1;
-    border-radius: 100px;
-}
-.form_ui, .input{
-    width: 100%;
-    max-width: 359px;
-    height: 55px;
-}
-
 .payment_block{
     margin-top: 34px;
     width: 100%;
-}
-
-.payment_methods{
-    position: relative;
-    margin-top: 29px;
-    display: flex;
-    gap: 25px;
 }
 
 .form_user_data{
@@ -72,13 +52,6 @@
 
 @media (max-width: 680px) {
     .form_user_data{
-        align-items: center;
-        flex-direction: column;
-    }
-}
-
-@media (max-width: 500px) {
-    .payment_methods{
         align-items: center;
         flex-direction: column;
     }

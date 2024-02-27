@@ -8,9 +8,10 @@ import { Button, enumStyleButton } from 'shared/ui/button'
 
 import EyeOpenIcon from 'shared/assets/img/svg-icon/eye-open.svg?react'
 import EyeClosedIcon from 'shared/assets/img/svg-icon/eye-closed.svg?react'
+import { ValidateAuth } from 'features/auth/model/lib/validate-auth'
 
 interface ILoginFormProps {
-   externalError?: string,
+   externalError?: string
    isLoading?: boolean
    onClickRegistration: () => void
    onClickLogin: (
@@ -42,15 +43,7 @@ const LoginForm: React.FC<ILoginFormProps> = memo((props) => {
    }, [isShowPassword])
 
    const loginHandle = useCallback(() => {
-      if (login.length < 4) {
-         setError('Логин должен быть больше 4 символов')
-         return
-      } else setError(undefined)
-
-      if (password.length < 6) {
-         setError('Пароль должен быть больше 6 символов')
-         return
-      } else setError(undefined)
+      ValidateAuth({ email: login, password }, { getError: setError })
 
       onClickLogin(login, password, isRememberMy)
    }, [login, password, isRememberMy])
@@ -58,7 +51,10 @@ const LoginForm: React.FC<ILoginFormProps> = memo((props) => {
    return (
       <div className={style.form}>
          <Text styleText={enumStyleText.QUATERNARY_TITLE} text="Вход" />
-         {error || externalError && <Text color="red" text={error || externalError} />}
+         {error ||
+            (externalError && (
+               <Text color="red" text={error || externalError} />
+            ))}
          <Field
             value={login}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -98,7 +94,9 @@ const LoginForm: React.FC<ILoginFormProps> = memo((props) => {
             }
          />
          <div className={style.line}>
-            <Checkbox onChecked={(value) => setRememberMy(!value)}>Запомнить пароль</Checkbox>
+            <Checkbox onChecked={(value) => setRememberMy(!value)}>
+               Запомнить пароль
+            </Checkbox>
             <Button
                onClick={onClickPasswordRecovery}
                padding="0"
