@@ -9,10 +9,16 @@ import EyeOpenIcon from 'shared/assets/img/svg-icon/eye-open.svg?react'
 import EyeClosedIcon from 'shared/assets/img/svg-icon/eye-closed.svg?react'
 
 import { useLazyGetUserByLoginQuery } from '../../model/api/auth-api'
+import ReactInputMask from 'react-input-mask'
 
 interface IRegistrationFormProps {
    isLoading?: boolean
-   onClickRegistration: (name: string, email: string, phone: string, password: string) => void
+   onClickRegistration: (
+      name: string,
+      email: string,
+      phone: string,
+      password: string
+   ) => void
    onClickLogin: () => void
 }
 
@@ -31,43 +37,38 @@ const RegistrationForm: React.FC<IRegistrationFormProps> = memo((props) => {
    const togglePasswordHandle = useCallback(() => {
       setShowPassword(!isShowPassword)
    }, [isShowPassword])
-   
+
    const registrationHandle = useCallback(async () => {
-      if(name.length < 6){
-         setError("Имя должно быть больше 6 символов")
+      if (name.length < 6) {
+         setError('Имя должно быть больше 6 символов')
          return
-      }
-      else setError(undefined)
+      } else setError(undefined)
 
-      if(email.length < 4){
-         setError("Почта должна быть больше 4 символов")
+      if (email.length < 4) {
+         setError('Почта должна быть больше 4 символов')
          return
-      }
-      else setError(undefined)
+      } else setError(undefined)
 
-      if(phone.length === 0){
-         setError("Телефон не указан")
+      if (phone.length === 0) {
+         setError('Телефон не указан')
          return
-      }
-      else setError(undefined)
+      } else setError(undefined)
 
-      if(password.length < 6) {
-         setError("Пароль должен быть больше 6 симоволов")
+      if (password.length < 6) {
+         setError('Пароль должен быть больше 6 симоволов')
          return
-      }
-      else setError(undefined)
+      } else setError(undefined)
 
       const user = await getUser(email)
-      
-      if(user.data?.length !== 0){
-         setError("Почта уже занята")
+
+      if (user.data?.length !== 0) {
+         setError('Почта уже занята')
          setEmail('')
          setName('')
          setPassword('')
          setPhone('')
          return
-      }
-      else setError(undefined)
+      } else setError(undefined)
 
       onClickRegistration(name, email, phone, password)
    }, [name, email, password, error])
@@ -75,8 +76,7 @@ const RegistrationForm: React.FC<IRegistrationFormProps> = memo((props) => {
    return (
       <div className={style.form}>
          <Text styleText={enumStyleText.QUATERNARY_TITLE} text="Регистрация" />
-         {error &&
-            <Text color='red' text={error}/>}
+         {error && <Text color="red" text={error} />}
          <Field
             value={name}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -99,15 +99,14 @@ const RegistrationForm: React.FC<IRegistrationFormProps> = memo((props) => {
             margin="14px 0 0 0"
             placeholder="E-mail"
          />
-         <Field
+         <ReactInputMask
             value={phone}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                setPhone(e.target.value)
             }
-            borderRadius={10}
-            height="55px"
-            styleField={enumStyleField.SECONDARY}
-            margin="14px 0 0 0"
+            mask="+7 (999) 999 - 99 - 99"
+            maskChar="_"
+            className={style.input_mask}
             placeholder="Телефон"
          />
          <Field

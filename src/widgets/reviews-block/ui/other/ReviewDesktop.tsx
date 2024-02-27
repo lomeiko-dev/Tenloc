@@ -12,6 +12,7 @@ const ReviewDesktop: React.FC<IReviewProps> = memo((props) => {
       className,
       description,
       isShowTitleBlock,
+      errorMessage,
       limit = 5,
       sortValue,
       onOpenModal,
@@ -41,6 +42,8 @@ const ReviewDesktop: React.FC<IReviewProps> = memo((props) => {
                      styleButton={enumStyleButton.PRIMARY}>
                      Оставить отзыв
                   </Button>
+                  {errorMessage &&
+                     <Text color='red' text={errorMessage}/>}
                </>
             )}
          </div>

@@ -6,6 +6,8 @@ import { Modal } from 'shared/ui/modal'
 import { Loader } from 'shared/ui/loader'
 import debounce from 'lodash.debounce'
 import { ReviewDesktopLazy, ReviewMobileLazy } from './other'
+import { useAuth } from 'shared/lib/hooks/useAuth'
+import { AuthModal } from 'features/auth'
 
 interface IReviewsProps {
    className?: string
@@ -30,8 +32,16 @@ export const ReviewsBlock: React.FC<IReviewsProps> = memo((props) => {
 
    const [openModal, setOpenModal] = useState(false)
    const [search, setSearch] = useState('')
+   const [openLoginModal, setOpenLoginModal] = useState(false)
+   const { isAuth } = useAuth()
 
    const [triggerExcursion, resultExcursion] = useLazyGetExcursionByNameQuery()
+
+   const clickOpenModalHandle = useCallback(() => {
+      if (!isAuth) {
+         setOpenLoginModal(true)
+      } else setOpenModal(true)
+   }, [isAuth])
 
    const getExcursionByNameQuery = useCallback(
       debounce((text: string) => {
@@ -55,7 +65,7 @@ export const ReviewsBlock: React.FC<IReviewsProps> = memo((props) => {
                className={className}
                isShowTitleBlock={isShowTitleBlock}
                isMobile={isMobile}
-               onOpenModal={() => setOpenModal(true)}
+               onOpenModal={clickOpenModalHandle}
             />
          ) : (
             <ReviewDesktopLazy
@@ -65,7 +75,7 @@ export const ReviewsBlock: React.FC<IReviewsProps> = memo((props) => {
                isShowTitleBlock={isShowTitleBlock}
                description={description}
                isMobile={isMobile}
-               onOpenModal={() => setOpenModal(true)}
+               onOpenModal={clickOpenModalHandle}
             />
          )}
 
@@ -75,9 +85,7 @@ export const ReviewsBlock: React.FC<IReviewsProps> = memo((props) => {
                loadingComponent={<Loader isCenter />}
                width={isMobile ? '100%' : '70%'}
                height={isMobile ? '100%' : '700px'}
-               onClose={() => {
-                  setOpenModal(false)
-               }}
+               onClose={() => setOpenModal(false)}
                open={openModal}>
                <FormAddReviewLazy
                   isSmallMobile={isSmallMobile}
@@ -94,6 +102,9 @@ export const ReviewsBlock: React.FC<IReviewsProps> = memo((props) => {
                   excursions={resultExcursion.data || []}
                />
             </Modal>
+         )}
+         {openLoginModal && (
+            <AuthModal onCloseModal={() => setOpenLoginModal(false)} />
          )}
       </div>
    )

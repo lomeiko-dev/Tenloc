@@ -5,5 +5,6 @@ export interface IReviewProps {
    isShowTitleBlock?: boolean
    limit?: number
    sortValue?: string
+   errorMessage?: string
    onOpenModal: () => void
 }

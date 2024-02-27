@@ -15,6 +15,7 @@ const ReviewMobile: React.FC<IProps> = memo((props) => {
       isShowTitleBlock = false,
       isMobile,
       onOpenModal,
+      errorMessage,
       className,
       limit,
       sortValue,
@@ -42,6 +43,8 @@ const ReviewMobile: React.FC<IProps> = memo((props) => {
                Оставить отзыв
             </Button>
          )}
+         {errorMessage &&
+             <Text color='red' text={errorMessage}/>}
       </div>
    )
 })

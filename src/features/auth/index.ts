@@ -1,4 +1,5 @@
 export { AuthForm } from './ui/AuthForm'
+export { AuthModal } from './ui/AuthModal'
 
 export {
    authApiMiddleware,
