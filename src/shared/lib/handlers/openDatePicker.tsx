@@ -1,3 +1,5 @@
+import { formatDateToString } from "./formatDate"
+
 export const openDatePicker = (func: (date: string) => void, object: React.RefObject<HTMLDivElement>) => {
   const datePicker = document.createElement('input')
   datePicker.type = 'date'
@@ -15,7 +17,7 @@ export const openDatePicker = (func: (date: string) => void, object: React.RefOb
 
   datePicker.addEventListener('change', () => {
     const selectedDate = new Date(datePicker.value)
-    const formattedDate = formatDate(selectedDate)
+    const formattedDate = formatDateToString(selectedDate)
     func(formattedDate)
     object.current?.removeChild(datePicker)
     window.removeEventListener('click', windowClickHandle)
@@ -25,12 +27,4 @@ export const openDatePicker = (func: (date: string) => void, object: React.RefOb
 
   object.current?.append(datePicker)
   datePicker.showPicker()
-}
-
-export const formatDate = (date: Date) => {
-  const day = ('0' + date.getDate()).slice(-2)
-  const month = ('0' + (date.getMonth() + 1)).slice(-2)
-  const year = date.getFullYear().toString()
-
-  return `${day}.${month}.${year}`
 }

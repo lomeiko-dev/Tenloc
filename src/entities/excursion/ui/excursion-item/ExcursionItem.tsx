@@ -1,4 +1,4 @@
-import { CSSProperties, memo } from 'react'
+import React, { CSSProperties, memo } from 'react'
 import style from './ExcursionItem.module.scss'
 import classNames from 'classnames'
 
@@ -11,10 +11,13 @@ interface IExcursionItemProps
    extends Pick<IExcursion, 'imagePreview' | 'name'> {
    date?: string
    price?: number
+   count?: number
+   description?: string
    className?: string
    margin?: string
    width?: string
    onClick?: () => void
+   buttonSlot?: React.ReactNode
 }
 
 export const ExcursionItem: React.FC<IExcursionItemProps> = memo((props) => {
@@ -22,11 +25,14 @@ export const ExcursionItem: React.FC<IExcursionItemProps> = memo((props) => {
       className,
       margin,
       width,
+      description,
+      count,
       imagePreview,
       price,
       name,
       date,
       onClick,
+      buttonSlot,
    } = props
 
    const cssStyle: CSSProperties = {
@@ -55,20 +61,34 @@ export const ExcursionItem: React.FC<IExcursionItemProps> = memo((props) => {
                text={name}
             />
          </div>
+         {description && (
+            <Text className={style.description} text={description} />
+         )}
+
          {date && (
-            <div className={style.date}>
+            <div className={style.slice}>
                <Text fontSize={14} fontWeight={600} text="Дата и время" />
-               <Text text={date} />
+               <Text fontSize={16} fontWeight={400} text={date} />
+            </div>
+         )}
+         {count && (
+            <div className={style.slice}>
+               <Text fontSize={14} fontWeight={600} text="Кол-во" />
+               <Text fontSize={16} fontWeight={400} text={`${count}`} />
             </div>
          )}
          {price && (
-            <Text
-               className={style.price}
-               fontSize={17}
-               fontWeight={600}
-               text={`${price} ₽`}
-            />
+            <div className={style.slice}>
+               <Text fontSize={14} fontWeight={600} text="Цена" />
+               <Text
+                  className={style.price}
+                  fontSize={16}
+                  fontWeight={400}
+                  text={`${price} ₽`}
+               />
+            </div>
          )}
+         {buttonSlot}
       </div>
    )
 })

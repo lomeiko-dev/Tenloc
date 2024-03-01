@@ -19,5 +19,6 @@ export enum enumPath {
   ARTICLE = 'article',
   GUIDE = 'guide',
   NOTFOUND = 'notfound',
+  ORDER = 'order',
   INTERNALSERVERERROR = 'internal_server_error'
 }

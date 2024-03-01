@@ -15,6 +15,7 @@ import { ProfilePageLazy } from 'pages/profile'
 import { ThanksPageLazy } from 'pages/thanks'
 import { NotFoundPageLazy } from 'pages/not-found'
 import InternalServerError from 'pages/internal-server-error/ui/InternalServerError'
+import { OrderPageLazy } from 'pages/order'
 
 export const Routes: typeRouteProps[] = [
   {
@@ -56,6 +57,11 @@ export const Routes: typeRouteProps[] = [
     path: pathRoutes.feedback.fullPath,
     element: <FeedbackPageLazy/>,
     isAuth: pathRoutes.feedback.isAuth
+  },
+  {
+    path: pathRoutes.order.fullPath,
+    element: <OrderPageLazy/>,
+    isAuth: pathRoutes.order.isAuth
   },
   {
     path: pathRoutes.feedback_answer.fullPath,

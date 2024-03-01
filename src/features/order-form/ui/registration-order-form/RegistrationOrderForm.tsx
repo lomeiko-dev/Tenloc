@@ -5,17 +5,18 @@ import { PaymentMethod } from '../other/payment-method/PaymentMethod'
 import { Text, enumStyleText } from 'shared/ui/text'
 import { ExcursionItem, enumTypePay } from 'entities/excursion'
 import { PriceSlice } from '../other/price-slice/PriceSlice'
-
 import { IOrder, enumPaymentMethod } from 'entities/order'
-import { useAddNewOrderMutation } from '../../model/api/add-order-api'
+
+import { useAddNewOrderMutation } from '../../model/api/order-api'
+import { useNavigate } from 'react-router-dom'
+import { useAuth } from 'shared/lib/hooks/useAuth'
+
+import { pathRoutes } from 'shared/config/route-path'
+import { FormUserData } from '../other/form-user-data/FormUserData'
 
 import bankLogotypes from 'shared/assets/img/other/bank-logotypes2.png'
 import sberLogo from 'shared/assets/img/other/sber-logo.png'
 import yomoneyLogo from 'shared/assets/img/other/yoomoney-logo.png'
-import { useNavigate } from 'react-router-dom'
-import { pathRoutes } from 'shared/config/route-path'
-import { FormUserData } from '../other/form-user-data/FormUserData'
-import { useAuth } from 'shared/lib/hooks/useAuth'
 
 interface IRegistrationOrderForm
    extends Pick<
@@ -28,10 +29,11 @@ interface IRegistrationOrderForm
    > {
    excursionId: string
    nameExcursion: string
-   imagePrivew: string
-   price: number
+   imagePreview: string
+   city: string,
+   price: number,
+   date: string,
    onCloseModal: () => void
-   date: string
    time: string
    typePay: enumTypePay
 }
@@ -39,11 +41,12 @@ interface IRegistrationOrderForm
 const RegistrationOrderForm: React.FC<IRegistrationOrderForm> = memo(
    (props) => {
       const {
-         imagePrivew,
+         imagePreview,
          nameExcursion,
          excursionId,
-         date,
+         city,
          time,
+         date,
          valueAdult,
          valueChildren,
          valuePensioner,
@@ -59,6 +62,8 @@ const RegistrationOrderForm: React.FC<IRegistrationOrderForm> = memo(
       const navigate = useNavigate()
       const user = useAuth()
 
+      console.log(user.data?.user?.id)
+
       useEffect(() => {
          if (result.isLoading) onCloseModal()
       }, [result.isLoading])
@@ -66,8 +71,12 @@ const RegistrationOrderForm: React.FC<IRegistrationOrderForm> = memo(
       const addOrderHandle = useCallback(
          async (username: string, phone: string) => {
             await addOrder({
+               price,
+               nameExcursion,
+               city,
                date,
                time,
+               imagePreview,
                name: username,
                phoneNumber: phone,
                valueAdult,
@@ -83,13 +92,14 @@ const RegistrationOrderForm: React.FC<IRegistrationOrderForm> = memo(
             navigate(pathRoutes.thanks.path)
          },
          [
-            date,
             time,
             valueYouth,
+            date,
             valueAdult,
             valueChildren,
             valuePensioner,
             valueSmallChildren,
+            user
          ]
       )
 
@@ -102,15 +112,16 @@ const RegistrationOrderForm: React.FC<IRegistrationOrderForm> = memo(
                />
             </div>
             <ExcursionItem
+               className={style.excursion}
                date={`${date} | ${time}`}
-               margin="32px 0 0 0"
+               margin="24px 0 0 0"
                width="100%"
-               imagePreview={imagePrivew}
+               imagePreview={imagePreview}
                name={nameExcursion}
                price={price}
             />
             <div className={style.payment_block}>
-               <Text fontSize={20} fontWeight={500} text="Способ оплаты" />
+               <Text margin='0px 0 0 0' fontSize={20} fontWeight={500} text="Способ оплаты" />
                <Text
                   margin="15px 0 0 0"
                   fontWeight={400}

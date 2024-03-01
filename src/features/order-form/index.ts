@@ -1,7 +1,10 @@
 export { OrderForm } from './ui/OrderForm'
 export {
-   addOrderApi,
-   addOrderApiMiddleware,
-   addOrderApiReducer,
+   OrderApi,
+   orderApiMiddleware,
+   orderApiReducer,
+   useGetOrdersByUserIdQuery,
+   useLazyGetOrdersByUserIdQuery,
+   useRemoveOrderByIdMutation,
    useAddNewOrderMutation,
-} from './model/api/add-order-api'
+} from './model/api/order-api'

@@ -6,6 +6,11 @@ export const pathRoutes: Record<enumPath, IRoutePathProperties> = {
     fullPath: '/',
     isAuth: false
   },
+  [enumPath.ORDER]: {
+    path: '/order',
+    fullPath: '/order',
+    isAuth: false
+  },
   [enumPath.CITY]: {
     path: '/city',
     fullPath: '/city/:name',

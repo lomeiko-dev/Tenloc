@@ -8,13 +8,14 @@ import { type reviewsApiReducer } from 'entities/reviews'
 import { userApiReducer } from 'entities/user'
 import { authApiReducer } from 'features/auth'
 import { type addReviewApiReducer } from 'features/form-add-review'
-import { type addOrderApiReducer } from 'features/order-form'
+import { orderApiReducer } from 'features/order-form'
 import { type sortExcursionApiReducer } from 'features/sort-excursion'
 
 export interface IStore {
    AuthReducer: IAuthScheme
    LikesReducer: ILikesScheme
    CartReducer: ICartScheme
+   OrderApi: ReturnType<typeof orderApiReducer>
    ProfileApi: ReturnType<typeof profileApiReducer>
    UserApi: ReturnType<typeof userApiReducer>
    AuthApi: ReturnType<typeof authApiReducer>
@@ -23,5 +24,4 @@ export interface IStore {
    ReviewsApi: ReturnType<typeof reviewsApiReducer>
    AddReviewApi: ReturnType<typeof addReviewApiReducer>
    ArticleApi: ReturnType<typeof articleApiReducer>
-   AddOrderApi: ReturnType<typeof addOrderApiReducer>
 }

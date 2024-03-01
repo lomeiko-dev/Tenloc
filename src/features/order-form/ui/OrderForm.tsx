@@ -26,6 +26,7 @@ interface IOrderFormProps
       | 'priceSmallChildren'
       | 'priceChildren'
       | 'name'
+      | 'city'
       | 'imagePreview'
    > {
    className?: string
@@ -45,6 +46,7 @@ export const OrderForm: React.FC<IOrderFormProps> = memo((props) => {
       priceAdult,
       priceChildren,
       pricePensioner,
+      city,
       priceSmallChildren,
       priceYouth,
       typePay,
@@ -220,11 +222,11 @@ export const OrderForm: React.FC<IOrderFormProps> = memo((props) => {
             lazy
             width="1075px"
             height="95%"
-            maxHeight="1000px"
             open={isOpenModal}
             onClose={() => setOpenModal(false)}>
             <RegistrationOderFormLazy
-               imagePrivew={imagePreview}
+               city={city}
+               imagePreview={imagePreview}
                nameExcursion={name}
                onCloseModal={() => setOpenModal(false)}
                date={valueDate}

@@ -2,14 +2,20 @@
     display: flex;
     flex-direction: column;
     align-items: center;justify-content: center;
-    padding: 22px 85px;
-    height: 100%;
+    padding: 32px 85px 44px 85px;
+    height: 900px;
     width: 100%;
 }
 
 .title_wrap{
     display: flex;
     justify-content: center;
+}
+
+.payment_methods{
+    margin-top: 24px;
+    display: flex;
+    gap: 25px;
 }
 
 .payment_block{
@@ -19,10 +25,11 @@
 
 .form_user_data{
     display: flex;
+    justify-content: center;
     border: 1px solid #EEEEEE;
     border-radius: 20px;
-    padding: 33px 44px;
-    margin-top: 33px;
+    padding: 24px 0;
+    margin-top: 23px;
     gap: 45px;
 
     .right_part{

@@ -1,1 +1,1 @@
-export {enumPaymentMethod, type IOrder} from "./model/type"
+export { enumPaymentMethod, type IOrder } from './model/type'

@@ -13,14 +13,15 @@ import {
    addReviewApiReducer,
 } from 'features/form-add-review'
 import { articleApiMiddleware, articleApiReducer } from 'entities/article'
-import { addOrderApiMiddleware, addOrderApiReducer } from 'features/order-form'
 import { authReducer } from 'entities/auth'
 import { authApiMiddleware, authApiReducer } from 'features/auth'
 import { userApiMiddleware, userApiReducer } from 'entities/user'
 import { profileApiMiddleware, profileApiReducer } from 'entities/profile'
+import { orderApiMiddleware, orderApiReducer } from 'features/order-form'
 
 const rootReducers: ReducersMapObject<IStore> = {
    ProfileApi: profileApiReducer,
+   OrderApi: orderApiReducer,
    UserApi: userApiReducer,
    AuthApi: authApiReducer,
    AuthReducer: authReducer,
@@ -31,7 +32,6 @@ const rootReducers: ReducersMapObject<IStore> = {
    ReviewsApi: reviewsApiReducer,
    AddReviewApi: addReviewApiReducer,
    ArticleApi: articleApiReducer,
-   AddOrderApi: addOrderApiReducer,
 }
 
 export const store = configureStore({
@@ -39,6 +39,7 @@ export const store = configureStore({
    devTools: true,
    middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat(
+         orderApiMiddleware,
          profileApiMiddleware,
          userApiMiddleware,
          authApiMiddleware,
@@ -46,8 +47,7 @@ export const store = configureStore({
          excursionApiMiddleware,
          reviewsApiMiddleware,
          addReviewApiMiddleware,
-         articleApiMiddleware,
-         addOrderApiMiddleware
+         articleApiMiddleware
       ),
 })
 
