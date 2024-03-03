@@ -1,7 +1,9 @@
+import { PaginationManagment } from "shared/ui/pagination-managment"
+
 const ArticlePage = () => {
   return (
         <div>
-            Article Page
+            <PaginationManagment maxValue={10} onClick={() => null}/>
         </div>
   )
 }
