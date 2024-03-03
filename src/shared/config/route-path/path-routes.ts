@@ -12,6 +12,16 @@ export const pathRoutes: Record<enumPath, IRoutePathProperties> = {
       fullPath: '/order',
       isAuth: false,
    },
+   [enumPath.ARTICLES]: {
+      path: '/articles',
+      fullPath: '/articles',
+      isAuth: false,
+   },
+   [enumPath.ARTICLES_DETAILED]: {
+      path: '/articles/:id',
+      fullPath: '/articles/:id',
+      isAuth: false,
+   },
    [enumPath.CITY]: {
       path: '/city',
       fullPath: '/city/:name',
@@ -34,11 +44,6 @@ export const pathRoutes: Record<enumPath, IRoutePathProperties> = {
       fullPath: '/blog',
       isAuth: false,
    },
-   [enumPath.ARTICLE]: {
-      path: '/article',
-      fullPath: '/article/:id',
-      isAuth: false,
-   },
    [enumPath.CART]: {
       path: '/cart',
       fullPath: '/cart',
@@ -54,12 +59,6 @@ export const pathRoutes: Record<enumPath, IRoutePathProperties> = {
       name: 'Написать в поддержку',
       path: '/feedback',
       fullPath: '/feedback',
-      isAuth: true,
-   },
-   [enumPath.FEEDBACK_ANSWER]: {
-      name: 'Ответы',
-      path: '/feedback/answer',
-      fullPath: '/feedback/answer',
       isAuth: true,
    },
    [enumPath.PROFILE]: {
