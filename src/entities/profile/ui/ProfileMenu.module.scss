@@ -1,0 +1,12 @@
+.menu{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 7.5px;
+    width: 206px;
+
+    .link{
+        border-bottom: 1px solid #ECECEC;
+        padding-bottom: 7.5px;
+    }
+}

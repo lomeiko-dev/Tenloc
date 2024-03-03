@@ -1,7 +1,7 @@
 import { memo, useCallback, useState } from 'react'
 import style from '../Form.module.scss'
 
-import { Field, enumStyleField } from 'shared/ui/field'
+import { Field, FieldPhoneMask, enumStyleField } from 'shared/ui/field'
 import { Text, enumStyleText } from 'shared/ui/text'
 import { Button, enumStyleButton } from 'shared/ui/button'
 
@@ -9,7 +9,6 @@ import EyeOpenIcon from 'shared/assets/img/svg-icon/eye-open.svg?react'
 import EyeClosedIcon from 'shared/assets/img/svg-icon/eye-closed.svg?react'
 
 import { useLazyGetUserByLoginQuery } from '../../model/api/auth-api'
-import ReactInputMask from 'react-input-mask'
 import { ValidateAuth } from 'features/auth/model/lib/validate-auth'
 
 interface IRegistrationFormProps {
@@ -90,15 +89,11 @@ const RegistrationForm: React.FC<IRegistrationFormProps> = memo((props) => {
             margin="14px 0 0 0"
             placeholder="E-mail"
          />
-         <ReactInputMask
+         <FieldPhoneMask
             value={phone}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-               setPhone(e.target.value)
-            }
-            mask="+7 (999) 999 - 99 - 99"
-            maskChar="_"
-            className={style.input_mask}
-            placeholder="Телефон"
+            onChange={setPhone}
+            margin="8px 0 0 0"
+            padding="14px 20px"
          />
          <Field
             value={password}

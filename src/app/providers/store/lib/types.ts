@@ -1,20 +1,25 @@
-import { type articleApiReducer } from 'entities/article'
-import { IAuthScheme } from 'entities/auth'
 import { type ICartScheme } from 'entities/cart'
-import { type excursionApiReducer } from 'entities/excursion'
 import { type ILikesScheme } from 'entities/likes'
-import { profileApiReducer } from 'entities/profile'
 import { type reviewsApiReducer } from 'entities/reviews'
-import { userApiReducer } from 'entities/user'
-import { authApiReducer } from 'features/auth'
+import { type articleApiReducer } from 'entities/article'
+import { type excursionApiReducer } from 'entities/excursion'
 import { type addReviewApiReducer } from 'features/form-add-review'
-import { orderApiReducer } from 'features/order-form'
 import { type sortExcursionApiReducer } from 'features/sort-excursion'
+
+import { IAuthScheme } from 'entities/auth'
+import { authApiReducer } from 'features/auth'
+import { userApiReducer } from 'entities/user'
+import { profileApiReducer } from 'entities/profile'
+import { orderApiReducer } from 'features/order-form'
+import { feedbackApiReducer } from 'features/feedback-form'
+import { changeProfileApiReducer } from 'features/profile-form'
 
 export interface IStore {
    AuthReducer: IAuthScheme
    LikesReducer: ILikesScheme
    CartReducer: ICartScheme
+   FeedbackApi: ReturnType<typeof feedbackApiReducer>
+   ChangeProfileApi: ReturnType<typeof changeProfileApiReducer>
    OrderApi: ReturnType<typeof orderApiReducer>
    ProfileApi: ReturnType<typeof profileApiReducer>
    UserApi: ReturnType<typeof userApiReducer>

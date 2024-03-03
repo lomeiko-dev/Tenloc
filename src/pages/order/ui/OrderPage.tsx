@@ -23,8 +23,6 @@ const OrderPage = () => {
       if (data.length > 0) setSortingOrder(data)
    }, [data])
 
-   console.log(sortingOrder, data)
-
    const removeOrderHandle = useCallback(async (id: string) => {
       await removeOrder(id)
    }, [])

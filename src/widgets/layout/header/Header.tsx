@@ -17,6 +17,7 @@ import LikeIcon from 'shared/assets/img/svg-icon/like.svg?react'
 import BurgerMenuIcon from 'shared/assets/img/svg-icon/burger-menu.svg?react'
 
 import { removeAuth } from 'entities/auth'
+import { ProfileMenu } from 'entities/profile'
 
 interface IHeaderProps {
    isMobile?: boolean
@@ -31,9 +32,7 @@ export const Header: React.FC<IHeaderProps> = memo((props) => {
    const [isMountedSidebar, setMountedSidebar] = useState(false)
    const dispatch = useAppDispatch()
 
-   const { isAuth } = useAuth()
-
-   console.log(isAuth)
+   const { isAuth, data: auth } = useAuth()
 
    useEffect(() => {
       if (openSidebar) {
@@ -81,13 +80,11 @@ export const Header: React.FC<IHeaderProps> = memo((props) => {
                      <LikeIcon width={isMobile ? '15px' : '40px'} />
                   </Button>
                   {isAuth ? (
-                     <Button
-                        onClick={() => dispatch(removeAuth())}
-                        height={isMobile ? '35px' : '50px'}
-                        width={isMobile ? '75px' : '114px'}
-                        styleButton={enumStyleButton.SECONDARY}>
-                        Выйти
-                     </Button>
+                     <ProfileMenu
+                        onLogout={() => dispatch(removeAuth())}
+                        name={auth?.user?.name || ''}
+                        avatar={auth?.profile?.avatar || ''}
+                     />
                   ) : (
                      <Button
                         onClick={() => setOpenAuthModal(true)}

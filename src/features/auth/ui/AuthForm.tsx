@@ -7,7 +7,6 @@ import {
 } from '..'
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch'
 import { saveAuth, setAuth } from 'entities/auth'
-import { enumNotification } from 'entities/profile'
 
 interface IAuthFormProps {
    onClosedModal: () => void
@@ -53,7 +52,8 @@ export const AuthForm: React.FC<IAuthFormProps> = memo((props) => {
 
          await createProfile({
             avatar: '',
-            typeNotification: enumNotification.EMAIL,
+            isNotifyEmail: true,
+            isNotifySMS: false,
             userId: user.id,
          })
 

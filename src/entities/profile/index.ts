@@ -6,4 +6,5 @@ export {
    useLazyGetProfileByUserIdQuery,
 } from './modal/api/profile-api'
 
-export { type IProfile, enumNotification } from './modal/types'
+export { type IProfile } from './modal/types'
+export {ProfileMenu} from "./ui/ProfileMenu"

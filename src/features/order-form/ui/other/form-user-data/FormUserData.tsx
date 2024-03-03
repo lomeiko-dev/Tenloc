@@ -1,8 +1,6 @@
 import { memo, useCallback, useState } from 'react'
-import style from './FormUserData.module.scss'
 import { Text } from 'shared/ui/text'
-import { Field } from 'shared/ui/field'
-import ReactInputMask from 'react-input-mask'
+import { Field, FieldPhoneMask } from 'shared/ui/field'
 import { Button, enumStyleButton } from 'shared/ui/button'
 import { enumTypePay } from 'entities/excursion'
 
@@ -57,15 +55,11 @@ export const FormUserData: React.FC<IFormUserDataProps> = memo((props) => {
             fontWeight={400}
             text="Контактный телефон"
          />
-         <ReactInputMask
+         <FieldPhoneMask
+            margin="8px 0 0 0"
+            padding="14px 20px"
             value={phone}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-               setPhone(e.target.value)
-            }
-            mask="+7 (999) 999 - 99 - 99"
-            maskChar="_"
-            className={style.input}
-            placeholder="+7 (___) ___ - __ - __"
+            onChange={setPhone}
          />
          {error && <Text color="red" text={error} />}
          <Button

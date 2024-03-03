@@ -1,8 +1,9 @@
-import { memo, useCallback, useState } from 'react'
+import { memo, useCallback, useEffect, useState } from 'react'
 import style from './Checkbox.module.scss'
 import classNames from 'classnames'
 
 interface ICheckboxProps {
+  checked?: boolean
   children?: React.ReactNode
   onChecked: (value: boolean) => void
   className?: string
@@ -14,14 +15,19 @@ export const Checkbox: React.FC<ICheckboxProps> = memo((props) => {
     onChecked,
     children,
     className,
-    margin
+    margin,
+    checked = false,
   } = props
 
   const [isChecked, setChecked] = useState(false)
 
+  useEffect(() => {
+    setChecked(checked)
+  }, [checked])
+
   const handleCheckboxChange = useCallback(() => {
     setChecked(!isChecked)
-    onChecked(isChecked)
+    onChecked(!isChecked)
   }, [isChecked])
 
   return (
