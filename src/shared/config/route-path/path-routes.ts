@@ -15,11 +15,12 @@ export const pathRoutes: Record<enumPath, IRoutePathProperties> = {
    [enumPath.ARTICLES]: {
       path: '/articles',
       fullPath: '/articles',
+      name: 'Блог',
       isAuth: false,
    },
    [enumPath.ARTICLES_DETAILED]: {
-      path: '/articles/:id',
-      fullPath: '/articles/:id',
+      path: '/article',
+      fullPath: '/article/:id',
       isAuth: false,
    },
    [enumPath.CITY]: {
@@ -36,12 +37,6 @@ export const pathRoutes: Record<enumPath, IRoutePathProperties> = {
    [enumPath.EXCURSION]: {
       path: '/excursion',
       fullPath: '/excursion/:id',
-      isAuth: false,
-   },
-   [enumPath.BLOG]: {
-      name: 'Блог',
-      path: '/blog',
-      fullPath: '/blog',
       isAuth: false,
    },
    [enumPath.CART]: {

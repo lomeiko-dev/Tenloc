@@ -58,7 +58,7 @@ export const ArticleCard: React.FC<IArticleCardProps> = memo((props) => {
             borderRadius={15}
             width={isMobile ? '258px' : '323px'}
             height={isMobile ? '181px' : '228px'}
-            src={`server${preview}`}
+            src={`/server${preview}`}
          />
          <div className={style.date_block}>
             <CalendarIcon className={style.icon} />

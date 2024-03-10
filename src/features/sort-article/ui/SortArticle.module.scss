@@ -1,0 +1,26 @@
+.sort{
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.dropdown_wrap{
+    display: flex;   
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 20px;
+    width: 170px;
+
+    .item{
+        border-bottom: 1px solid #E2E2E2;
+        padding: 10px 0;
+        font-size: 15px;
+        font-weight: 400;
+        transition: .2s;
+        cursor: pointer;
+    }
+    .item:hover{
+        border-bottom: 1px solid #4e4e4e;
+        padding-left: 5px;
+    }
+}

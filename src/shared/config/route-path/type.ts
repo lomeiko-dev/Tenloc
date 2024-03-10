@@ -14,7 +14,6 @@ export enum enumPath {
    CART = 'cart',
    PROFILE = 'profile',
    FEEDBACK = 'feedback',
-   BLOG = 'blog',
    ARTICLES = 'articles',
    ARTICLES_DETAILED = 'articles_detailed',
    GUIDE = 'guide',

@@ -2,7 +2,6 @@ import { type typeRouteProps } from '../types'
 import { pathRoutes } from 'shared/config/route-path'
 
 import { MainPageLazy } from 'pages/main'
-import { BLogPageLazy } from 'pages/blog'
 import { CartPageLazy } from 'pages/cart'
 import { CityPageLazy } from 'pages/city'
 import { OrderPageLazy } from 'pages/order'
@@ -38,11 +37,6 @@ export const Routes: typeRouteProps[] = [
       path: pathRoutes.articles_detailed.fullPath,
       element: <ArticlePageDetailedLazy />,
       isAuth: pathRoutes.articles_detailed.isAuth,
-   },
-   {
-      path: pathRoutes.blog.fullPath,
-      element: <BLogPageLazy />,
-      isAuth: pathRoutes.blog.isAuth,
    },
    {
       path: pathRoutes.cart.fullPath,

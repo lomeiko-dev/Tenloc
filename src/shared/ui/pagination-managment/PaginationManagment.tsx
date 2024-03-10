@@ -39,7 +39,7 @@ export const PaginationManagment: React.FC<IPaginationManagmentProps> = memo(
 
       useEffect(() => {
          onClick(selectValue)
-      }, [values])
+      }, [selectValue])
 
       return (
          <div style={{ margin }} className={classNames(style.wrap, className)}>

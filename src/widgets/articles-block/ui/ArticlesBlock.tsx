@@ -18,10 +18,23 @@ interface IArticleProps {
    isMobile?: boolean
    width?: string
    limit?: number
+   title?: string
+   isLinkButton?: boolean
+   isSliderManagment?: boolean
+   margin?: string
 }
 
 export const ArticlesBlock: React.FC<IArticleProps> = memo((props) => {
-   const { isMobile = false, limit = 4, width = '100%', className } = props
+   const {
+      isMobile = false,
+      limit = 4,
+      width = '100%',
+      className,
+      title = 'Блог',
+      isLinkButton = true,
+      isSliderManagment = true,
+      margin,
+   } = props
 
    const [position, setPosition] = useState(0)
    const [observer, setObserver] = useState(false)
@@ -67,36 +80,40 @@ export const ArticlesBlock: React.FC<IArticleProps> = memo((props) => {
    }
 
    return (
-      <div className={classNames(style.wrap, className)}>
+      <div style={{ margin }} className={classNames(style.wrap, className)}>
          <div className={style.title}>
             <div className={style.left_part}>
                {/* HEAD LEFT PART */}
-               
+
                <Text
                   margin={isMobile ? '0 27px 0 0' : '0 59px 0 0'}
                   styleText={enumStyleText.TERNARY_TITLE}
-                  text="Блог"
+                  text={title}
                />
-               <SliderManagment
-                  margin="6px 0 0 0"
-                  isMobile={isMobile}
-                  onClickPrev={clickLeftButtonHandle}
-                  onClickNext={clickRightButtonHandle}
-                  isHideButtons={false}
-                  isShowViewValue={false}
-               />
+               {isSliderManagment && (
+                  <SliderManagment
+                     margin="6px 0 0 0"
+                     isMobile={isMobile}
+                     onClickPrev={clickLeftButtonHandle}
+                     onClickNext={clickRightButtonHandle}
+                     isHideButtons={false}
+                     isShowViewValue={false}
+                  />
+               )}
 
                {/* HEAD LEFT PART */}
             </div>
-            <Button
-               padding="0"
-               width="100px"
-               height="50px"
-               fontSize={16}
-               fontWeight={400}
-               styleButton={enumStyleButton.TERNARY}>
-               В блог
-            </Button>
+            {isLinkButton && (
+               <Button
+                  padding="0"
+                  width="100px"
+                  height="50px"
+                  fontSize={16}
+                  fontWeight={400}
+                  styleButton={enumStyleButton.TERNARY}>
+                  В блог
+               </Button>
+            )}
          </div>
          <div className={style.wrap_carousel}>
             {isLoading ? (

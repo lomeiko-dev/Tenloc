@@ -30,8 +30,8 @@ export const Navbar: React.FC<INavbarProps> = memo((props) => {
             <Link
                 onClick={onFunc}
                 className={style.link}
-                to={pathRoutes.blog.path}>
-                    {pathRoutes.blog.name}
+                to={pathRoutes.articles.path}>
+                    {pathRoutes.articles.name}
             </Link>
             {!isMobile
               ? <Dropwdown
