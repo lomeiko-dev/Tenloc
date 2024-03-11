@@ -18,13 +18,21 @@ import { authApiMiddleware, authApiReducer } from 'features/auth'
 import { userApiMiddleware, userApiReducer } from 'entities/user'
 import { profileApiMiddleware, profileApiReducer } from 'entities/profile'
 import { orderApiMiddleware, orderApiReducer } from 'features/order-form'
-import { changeProfileApiMiddleware, changeProfileApiReducer } from 'features/profile-form'
-import { feedbackApiMiddleware, feedbackApiReducer } from 'features/feedback-form'
+import {
+   changeProfileApiMiddleware,
+   changeProfileApiReducer,
+} from 'features/profile-form'
+import {
+   feedbackApiMiddleware,
+   feedbackApiReducer,
+} from 'features/feedback-form'
+import { guideApiMiddleware, guideApiReducer } from 'features/guide-form'
 
 const rootReducers: ReducersMapObject<IStore> = {
    FeedbackApi: feedbackApiReducer,
    ChangeProfileApi: changeProfileApiReducer,
    ProfileApi: profileApiReducer,
+   GuideApi: guideApiReducer,
    OrderApi: orderApiReducer,
    UserApi: userApiReducer,
    AuthApi: authApiReducer,
@@ -46,6 +54,7 @@ export const store = configureStore({
          changeProfileApiMiddleware,
          feedbackApiMiddleware,
          orderApiMiddleware,
+         guideApiMiddleware,
          profileApiMiddleware,
          userApiMiddleware,
          authApiMiddleware,

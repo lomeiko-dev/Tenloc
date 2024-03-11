@@ -1,0 +1,154 @@
+.about {
+    height: 704px;
+
+    .inner {
+        margin-top: 52px;
+        position: relative;
+
+        .background {
+            position: absolute;
+            border-radius: 20px;
+        }
+
+        .content {
+            padding: 108px 102px;
+            position: absolute;
+            z-index: 1000;
+        }
+    }
+}
+
+.info_guide_wrapper {
+    height: 600px;
+}
+
+.info_guide {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    background-color: #AEDDEF;
+
+    .inner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .content {
+            width: 689px;
+        }
+    }
+}
+
+.offer_excursion {
+    margin: 96px 0;
+
+    .head {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .tutorial {
+        margin-top: 90px;
+        display: flex;
+        gap: 139px;
+
+        .item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+
+            .illustration {
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: #FFF8D0;
+                width: 129px;
+                height: 129px;
+                border-radius: 50%;
+
+                .step {
+                    position: absolute;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 31px;
+                    height: 31px;
+                    border-radius: 50%;
+                    background-color: var(--primary-color);
+                    top: 0;
+                    left: 0;
+                }
+            }
+        }
+    }
+}
+
+.term_cooperation_wrapper {
+    height: 597px;
+
+    .terms_cooperation {
+        display: flex;
+        justify-content: center;
+        padding: 144px 112px;
+        gap: 72px;
+        position: absolute;
+        left: 0;
+        height: 597px;
+        width: 100%;
+        background-color: #F4F4F4;
+
+        .left_part {
+            display: flex;
+            flex-direction: column;
+            gap: 53px;
+
+            .item {
+                .head {
+                    display: flex;
+                    align-items: center;
+
+                    .step {
+                        margin-right: 16px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 31px;
+                        height: 31px;
+                        border-radius: 50%;
+                        background-color: var(--primary-color);
+                    }
+
+                }
+
+                width: 621px;
+            }
+        }
+
+        .right_part{
+            margin-top: 108px;
+            width: 746px;
+            height: 258px;
+            background-color: #FFFFFF;
+            border-radius: 20px;
+            padding: 54px 0 0 51px;
+            
+            .selected{
+                background-color: var(--primary-color);
+                padding: 9px 17px;
+                border-radius: 10px;
+            }
+        }
+    }
+}
+
+.form{
+    margin-top: 89px;
+    margin-bottom: 109px;
+    display: flex;
+    justify-content: center;
+}

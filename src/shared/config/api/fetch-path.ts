@@ -7,6 +7,7 @@ enum enumFetchPath {
    USERS = 'users',
    PROFILE = 'profile',
    FEEDBACK = 'feedback',
+   GUIDE = 'guide'
 }
 
 export const fetchPath: Record<enumFetchPath, string> = {
@@ -18,4 +19,5 @@ export const fetchPath: Record<enumFetchPath, string> = {
    [enumFetchPath.ORDER]: 'orders',
    [enumFetchPath.USERS]: 'users',
    [enumFetchPath.PROFILE]: 'profiles',
+   [enumFetchPath.GUIDE]: 'guides'
 }

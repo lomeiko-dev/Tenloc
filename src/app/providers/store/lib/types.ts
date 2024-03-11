@@ -13,11 +13,13 @@ import { profileApiReducer } from 'entities/profile'
 import { orderApiReducer } from 'features/order-form'
 import { feedbackApiReducer } from 'features/feedback-form'
 import { changeProfileApiReducer } from 'features/profile-form'
+import { guideApiReducer } from 'features/guide-form'
 
 export interface IStore {
    AuthReducer: IAuthScheme
    LikesReducer: ILikesScheme
    CartReducer: ICartScheme
+   GuideApi: ReturnType<typeof guideApiReducer>
    FeedbackApi: ReturnType<typeof feedbackApiReducer>
    ChangeProfileApi: ReturnType<typeof changeProfileApiReducer>
    OrderApi: ReturnType<typeof orderApiReducer>
