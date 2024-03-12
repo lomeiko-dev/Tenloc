@@ -37,7 +37,7 @@ const GuidePage = () => {
                      width="241px"
                      height="56px"
                      styleButton={enumStyleButton.PRIMARY}>
-                     Стать гидом
+                     <a className={style.link} href="#registration_form">Стать гидом</a>
                   </Button>
                </div>
             </div>
@@ -223,10 +223,10 @@ const GuidePage = () => {
                </div>
             </div>
          </div>
-         <div className={style.form}>
+         <div id="registration_form" className={style.form}>
             <GuideForm />
          </div>
-         <ShareBlock/>
+         <ShareBlock />
       </div>
    )
 }
