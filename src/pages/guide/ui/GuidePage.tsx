@@ -11,8 +11,18 @@ import TalkingIcon from 'shared/assets/img/svg-icon/talking.svg?react'
 import WebDesignIcon from 'shared/assets/img/svg-icon/web-design.svg?react'
 import { GuideForm } from 'features/guide-form'
 import { ShareBlock } from 'widgets/share-block'
+import { useCallback, useRef } from 'react'
 
 const GuidePage = () => {
+   const refAnchor = useRef<HTMLDivElement>(null)
+
+   const goAnchorHandle = useCallback(() => {
+      if(refAnchor.current)
+         refAnchor.current.scrollIntoView({
+            behavior: 'smooth',
+         })
+   }, [refAnchor])
+
    return (
       <div className={style.page}>
          <div className={style.about}>
@@ -31,13 +41,14 @@ const GuidePage = () => {
                      text="Trevel Me - это сервис необычных экскурсий от местных жителей. Присоединитесь к огромному сообществу гидов, делитесь своими знаниями, встречайтесь с интересными людьми и зарабатывайте, занимаясь любимым делом!"
                   />
                   <Button
+                     onClick={goAnchorHandle}
                      fontSize={15}
                      fontWeight={500}
                      margin="53px 0 0 0"
                      width="241px"
                      height="56px"
                      styleButton={enumStyleButton.PRIMARY}>
-                     <a className={style.link} href="#registration_form">Стать гидом</a>
+                     Стать гидом
                   </Button>
                </div>
             </div>
@@ -223,7 +234,7 @@ const GuidePage = () => {
                </div>
             </div>
          </div>
-         <div id="registration_form" className={style.form}>
+         <div ref={refAnchor} className={style.form}>
             <GuideForm />
          </div>
          <ShareBlock />
