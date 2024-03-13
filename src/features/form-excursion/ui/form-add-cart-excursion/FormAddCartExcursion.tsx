@@ -19,6 +19,7 @@ interface IFromAddCartExcursionProps {
   id: string
   price: number
   title: string
+  previewImage: string
   isMobile?: boolean,
   className?: string,
   width?: string,
@@ -32,6 +33,7 @@ export const FormAddCartExcursion: React.FC<IFromAddCartExcursionProps> = memo((
     id,
     price,
     title,
+    previewImage,
     isMobile = false,
     className,
     height,
@@ -63,6 +65,7 @@ export const FormAddCartExcursion: React.FC<IFromAddCartExcursionProps> = memo((
       } else {
        dispatch(addToCart({
           date,
+          previewImage,
           excursionId: id,
           price,
           title

@@ -73,6 +73,7 @@ export const ExcursionList: React.FC<IExcursionListProps> = memo((props) => {
                     orderSlot={
                         <FormAddCartExcursion
                             isMobile={isMobile}
+                            previewImage={item.imagePreview}
                             price={item.priceMiddle}
                             title={item.name}
                             dates={item.dates}

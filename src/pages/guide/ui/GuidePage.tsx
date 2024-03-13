@@ -17,7 +17,7 @@ const GuidePage = () => {
    const refAnchor = useRef<HTMLDivElement>(null)
 
    const goAnchorHandle = useCallback(() => {
-      if(refAnchor.current)
+      if (refAnchor.current)
          refAnchor.current.scrollIntoView({
             behavior: 'smooth',
          })
@@ -234,7 +234,8 @@ const GuidePage = () => {
                </div>
             </div>
          </div>
-         <div ref={refAnchor} className={style.form}>
+         <div ref={refAnchor} style={{ height: '70px' }}></div>
+         <div className={style.form}>
             <GuideForm />
          </div>
          <ShareBlock />
